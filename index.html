@@ -841,26 +841,312 @@
 
       
         
-          
-            <a id="more"></a>
-<h3 id="46-异常"><a href="#46-异常" class="headerlink" title="46.异常"></a>46.异常</h3><h4 id="1"><a href="#1" class="headerlink" title="(1)"></a>(1)</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">declare</span></div><div class="line"></div><div class="line">            v_temp <span class="built_in">number</span>(<span class="number">4</span>);</div><div class="line"></div><div class="line">     <span class="keyword">begin</span></div><div class="line"></div><div class="line">            <span class="keyword">select</span> empno <span class="keyword">into</span> v_temp <span class="keyword">from</span> emp <span class="keyword">where</span> deptno = <span class="number">10</span>;</div><div class="line"></div><div class="line">     exception</div><div class="line"></div><div class="line">            when too_many_rows then</div><div class="line"></div><div class="line">                   dbms_output.put_line('太多记录了');</div><div class="line"></div><div class="line">            when others then</div><div class="line"></div><div class="line">                   dbms_output.put_line('error'); </div><div class="line"></div><div class="line">     <span class="keyword">end</span>;</div></pre></td></tr></table></figure>
-<h4 id="2"><a href="#2" class="headerlink" title="(2)"></a>(2)</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">declare</span></div><div class="line"></div><div class="line">              v_tempnumber(<span class="number">4</span>);</div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              <span class="keyword">select</span> empno <span class="keyword">into</span> v_temp <span class="keyword">from</span> emp <span class="keyword">where</span> empno = <span class="number">2222</span>;</div><div class="line"></div><div class="line">       exception</div><div class="line"></div><div class="line">              when no_data_found then</div><div class="line"></div><div class="line">                     dbms_output.put_line('没有该项数据');</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div><div class="line"></div><div class="line"><span class="comment">----------------错误记录日志(用表记录：将系统日志存到数据库便于以后查看) -----------</span></div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">	   创建序列（用来处理递增的ＩＤ）：</div><div class="line"></div><div class="line">       <span class="keyword">create</span> <span class="keyword">sequence</span> seq_errorlog_id <span class="keyword">start</span> <span class="keyword">with</span> <span class="number">1</span> <span class="keyword">increment</span> <span class="keyword">by</span> <span class="number">1</span>;</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">       创建日志表:</div><div class="line"></div><div class="line">       <span class="keyword">create</span> <span class="keyword">table</span> errorlog</div><div class="line"></div><div class="line">       (</div><div class="line"></div><div class="line">       <span class="keyword">id</span> <span class="built_in">number</span> primary <span class="keyword">key</span>,</div><div class="line"></div><div class="line">       errcode <span class="built_in">number</span>,</div><div class="line"></div><div class="line">       errmsg varchar2(<span class="number">1024</span>),</div><div class="line"></div><div class="line">       errdate <span class="built_in">date</span></div><div class="line"></div><div class="line">       );</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">       示例程序：</div><div class="line"></div><div class="line">       <span class="keyword">declare</span></div><div class="line"></div><div class="line">              v_deptno dept.deptno%<span class="keyword">type</span> := <span class="number">10</span>;</div><div class="line"></div><div class="line">              v_errcode  number;</div><div class="line"></div><div class="line">              v_errmsg varchar2(1024);</div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              <span class="keyword">delete</span> <span class="keyword">from</span> dept <span class="keyword">where</span> deptno = v_deptno;</div><div class="line"></div><div class="line">          <span class="keyword">commit</span>;</div><div class="line"></div><div class="line">       exception</div><div class="line"></div><div class="line">              when others then</div><div class="line"></div><div class="line">                     <span class="keyword">rollback</span>;</div><div class="line"></div><div class="line">                            v_errcode:= SQLCODE;</div><div class="line"></div><div class="line">                            v_errmsg:= SQLERRM;</div><div class="line"></div><div class="line">              <span class="keyword">insert</span> <span class="keyword">into</span> errorlog <span class="keyword">values</span> (seq_errorlog_id.nextval, v_errcode,v_errmsg, <span class="keyword">sysdate</span>);</div><div class="line"></div><div class="line">                            <span class="keyword">commit</span>;</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div></pre></td></tr></table></figure>
-<h3 id="47-PL-SQL中的重点cursor-游标-和指针的概念差不多"><a href="#47-PL-SQL中的重点cursor-游标-和指针的概念差不多" class="headerlink" title="47. PL/SQL中的重点cursor(游标)和指针的概念差不多"></a>47. PL/SQL中的重点cursor(游标)和指针的概念差不多</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">declare</span></div><div class="line"></div><div class="line">              cursorc <span class="keyword">is</span></div><div class="line"></div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp; //此处的语句不会立刻执行，而是当下面的open c的时候，才会真正去数据库中取数据</div><div class="line"></div><div class="line">              v_emp c%rowtype;</div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              <span class="keyword">open</span> c;</div><div class="line"></div><div class="line">                     fetch c into v_emp;</div><div class="line"></div><div class="line">dbms_output.put_line(v_emp.ename); //这样会只输出一条数据 134将使用循环的方法输出每一条记录</div><div class="line"></div><div class="line">         close c;</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div><div class="line"></div><div class="line"><span class="comment">----------------------使用do while  循环遍历游标中的每一个数据---------------------</span></div><div class="line"></div><div class="line">       <span class="keyword">declare</span></div><div class="line"></div><div class="line">              <span class="keyword">cursor</span> c <span class="keyword">is</span></div><div class="line"></div><div class="line">                     <span class="keyword">select</span>* <span class="keyword">from</span> emp;</div><div class="line"></div><div class="line">              v_emp c%rowtype;</div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              <span class="keyword">open</span> c;    </div><div class="line"></div><div class="line">              loop</div><div class="line"></div><div class="line">                     fetch c into v_emp;</div><div class="line"></div><div class="line">(1)   exit when(c%notfound);  //notfound是oracle中的关键字，作用是判断是否还有下一条数据</div><div class="line"></div><div class="line">(2)   dbms_output.put_line(v_emp.ename);  //(1)(2)的顺序不能颠倒，否则会把最后一条结果再多打印一次。</div><div class="line"></div><div class="line">          <span class="keyword">end</span> <span class="keyword">loop</span>;</div><div class="line"></div><div class="line">          close c;</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div><div class="line"></div><div class="line"><span class="comment">------------------------使用while循环，遍历游标---------------------</span></div><div class="line"></div><div class="line">       <span class="keyword">declare</span></div><div class="line"></div><div class="line">              <span class="keyword">cursor</span> c <span class="keyword">is</span></div><div class="line"></div><div class="line">                     <span class="keyword">select</span>* <span class="keyword">from</span> emp;</div><div class="line"></div><div class="line">              v_emp emp%rowtype;</div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              <span class="keyword">open</span> c;</div><div class="line"></div><div class="line">              fetch c into v_emp;</div><div class="line"></div><div class="line">              while(c%found) loop</div><div class="line"></div><div class="line">                 dbms_output.put_line(v_emp.ename);</div><div class="line"></div><div class="line">                 fetch c into v_emp;</div><div class="line"></div><div class="line">          <span class="keyword">end</span> <span class="keyword">loop</span>;</div><div class="line"></div><div class="line">          close c;</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;s</div><div class="line"></div><div class="line"><span class="comment">------------------------使用for 循环，遍历游标（最方便快捷的方法！）-----------------</span></div><div class="line"></div><div class="line">       <span class="keyword">declare</span></div><div class="line"></div><div class="line">              cursorc <span class="keyword">is</span></div><div class="line"></div><div class="line">                 <span class="keyword">select</span> * <span class="keyword">from</span> emp;</div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              <span class="keyword">for</span> v_emp <span class="keyword">in</span> c <span class="keyword">loop</span></div><div class="line"></div><div class="line">                     dbms_output.put_line(v_emp.ename);</div><div class="line"></div><div class="line">              endloop;</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div></pre></td></tr></table></figure>
-<h4 id="带参数的游标（相当于函数）"><a href="#带参数的游标（相当于函数）" class="headerlink" title="带参数的游标（相当于函数）"></a>带参数的游标（相当于函数）</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">declare</span></div><div class="line"></div><div class="line">       <span class="keyword">cursor</span> c(v_deptno emp.deptno%<span class="keyword">type</span>, v_job emp.job%<span class="keyword">type</span>)</div><div class="line"></div><div class="line">       <span class="keyword">is</span></div><div class="line"></div><div class="line">          <span class="keyword">select</span> ename, sal <span class="keyword">from</span> emp <span class="keyword">where</span> deptno=v_deptno <span class="keyword">and</span> job=v_job; </div><div class="line"></div><div class="line"><span class="keyword">begin</span></div><div class="line"></div><div class="line">       forv_temp <span class="keyword">in</span> c(<span class="number">30</span>, <span class="string">'CLERK'</span>) <span class="keyword">loop</span></div><div class="line"></div><div class="line">              dbms_output.put_line(v_temp.ename);</div><div class="line"></div><div class="line">       endloop;</div><div class="line"></div><div class="line"><span class="keyword">end</span>;</div></pre></td></tr></table></figure>
-<h4 id="可更新的游标"><a href="#可更新的游标" class="headerlink" title="可更新的游标"></a>可更新的游标</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">declare</span></div><div class="line"></div><div class="line">              cursorc </div><div class="line"></div><div class="line">              <span class="keyword">is</span></div><div class="line"></div><div class="line">                 <span class="keyword">select</span> * <span class="keyword">from</span> emp2 <span class="keyword">for</span> <span class="keyword">update</span>;</div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">          <span class="keyword">for</span> v_temp <span class="keyword">in</span> c <span class="keyword">loop</span></div><div class="line"></div><div class="line">              <span class="keyword">if</span>(v_temp.sal&lt; <span class="number">2000</span>) <span class="keyword">then</span></div><div class="line"></div><div class="line">                     <span class="keyword">update</span> emp2 <span class="keyword">set</span> sal = sal * <span class="number">2</span> <span class="keyword">where</span> <span class="keyword">current</span> <span class="keyword">of</span> c;</div><div class="line"></div><div class="line">             elsif (v_temp.sal =5000) then</div><div class="line"></div><div class="line">              deletefrom emp2 where current of c;</div><div class="line"></div><div class="line">              <span class="keyword">end</span> <span class="keyword">if</span>;</div><div class="line"></div><div class="line">            <span class="keyword">end</span> <span class="keyword">loop</span>;</div><div class="line"></div><div class="line">            <span class="keyword">commit</span>;</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div></pre></td></tr></table></figure>
-<h3 id="48-store-procedure存储过程-带有名字的程序块"><a href="#48-store-procedure存储过程-带有名字的程序块" class="headerlink" title="48. store procedure存储过程(带有名字的程序块)"></a>48. store procedure存储过程(带有名字的程序块)</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">createor <span class="keyword">replace</span> <span class="keyword">procedure</span> p</div><div class="line"></div><div class="line">           <span class="keyword">is</span><span class="comment">--除了这两句替代declare，下面的语句全部都一样  </span></div><div class="line"></div><div class="line">        <span class="keyword">cursor</span> c <span class="keyword">is</span></div><div class="line"></div><div class="line">                  <span class="keyword">select</span> * <span class="keyword">from</span> emp2 <span class="keyword">for</span> <span class="keyword">update</span>;</div><div class="line"></div><div class="line">    <span class="keyword">begin</span></div><div class="line"></div><div class="line">         <span class="keyword">for</span> v_emp <span class="keyword">in</span> c <span class="keyword">loop</span></div><div class="line"></div><div class="line">           <span class="keyword">if</span>(v_emp.deptno= <span class="number">10</span>) <span class="keyword">then</span></div><div class="line"></div><div class="line">                  updateemp2 <span class="keyword">set</span> sal = sal +<span class="number">10</span> <span class="keyword">where</span> <span class="keyword">current</span> <span class="keyword">of</span> c;</div><div class="line"></div><div class="line">           elseif(v_emp.deptno =20) then</div><div class="line"></div><div class="line">                  updateemp2 <span class="keyword">set</span> sal =  sal + <span class="number">20</span> <span class="keyword">where</span> <span class="keyword">current</span> ofc;</div><div class="line"></div><div class="line">           else</div><div class="line"></div><div class="line">                  updateemp2 <span class="keyword">set</span> sal = sal + <span class="number">50</span> <span class="keyword">where</span> <span class="keyword">current</span> <span class="keyword">of</span> c;</div><div class="line"></div><div class="line">           endif;</div><div class="line"></div><div class="line">        <span class="keyword">end</span> <span class="keyword">loop</span>;</div><div class="line"></div><div class="line">      <span class="keyword">commit</span>;</div><div class="line"></div><div class="line">     <span class="keyword">end</span>;</div><div class="line"></div><div class="line">    执行存储过程的两种方法：</div><div class="line"></div><div class="line">    （1）exec p;(p是存储过程的名称)</div><div class="line"></div><div class="line">    （2）<span class="keyword">begin</span></div><div class="line"></div><div class="line">                  p;</div><div class="line"></div><div class="line">            <span class="keyword">end</span>;</div><div class="line"></div><div class="line">           /</div></pre></td></tr></table></figure>
-<h4 id="带参数的存储过程"><a href="#带参数的存储过程" class="headerlink" title="带参数的存储过程"></a>带参数的存储过程</h4><p>先创建存储过程：（in标识传入参数，out标识传出参数，默认为传入参数）</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">       createor <span class="keyword">replace</span> <span class="keyword">procedure</span> p</div><div class="line"></div><div class="line">              (v_ain <span class="built_in">number</span>, v_b <span class="built_in">number</span>, v_ret <span class="keyword">out</span> <span class="built_in">number</span>, v_temp inout <span class="built_in">number</span>)</div><div class="line"></div><div class="line">       <span class="keyword">is</span></div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              <span class="keyword">if</span>(v_a&gt; v_b) <span class="keyword">then</span></div><div class="line"></div><div class="line">                     v_ret:= v_a;</div><div class="line"></div><div class="line">              else</div><div class="line"></div><div class="line">                     v_ret:= v_b;</div><div class="line"></div><div class="line">              endif;</div><div class="line"></div><div class="line">              v_temp:= v_temp + 1;</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div><div class="line"></div><div class="line">再调用：</div><div class="line"></div><div class="line">       <span class="keyword">declare</span></div><div class="line"></div><div class="line">              v_a  <span class="built_in">number</span> := <span class="number">3</span>;</div><div class="line"></div><div class="line">              v_b  number := 4;</div><div class="line"></div><div class="line">              v_retnumber;</div><div class="line"></div><div class="line">              v_tempnumber := 5;</div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              p(v_a,v_b, v_ret, v_temp);</div><div class="line"></div><div class="line">              dbms_output.put_line(v_ret);</div><div class="line"></div><div class="line">              dbms_output.put_line(v_temp);</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div></pre></td></tr></table></figure>
-<h4 id="删除存储过程"><a href="#删除存储过程" class="headerlink" title="删除存储过程"></a>删除存储过程</h4><p>​       dropprocedure p;</p>
-<h3 id="49-创建函数计算个人所得税的税率"><a href="#49-创建函数计算个人所得税的税率" class="headerlink" title="49. 创建函数计算个人所得税的税率"></a>49. 创建<strong>函数</strong>计算个人所得税的税率</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">createor replace function sal_tax</div><div class="line"></div><div class="line">             (v_sal  number)    </div><div class="line"></div><div class="line">             returnnumber</div><div class="line"></div><div class="line">      is</div><div class="line"></div><div class="line">      begin</div><div class="line"></div><div class="line">             if(v_sal&lt; 2000) then</div><div class="line"></div><div class="line">                    return0.10;</div><div class="line"></div><div class="line">             elsif(v_sal&lt;2750) then</div><div class="line"></div><div class="line">                    return0.15;</div><div class="line"></div><div class="line">             else</div><div class="line"></div><div class="line">                    return0.20;</div><div class="line"></div><div class="line">             endif;</div><div class="line"></div><div class="line">      end;</div></pre></td></tr></table></figure>
-<h3 id="50-创建触发器（trigger）"><a href="#50-创建触发器（trigger）" class="headerlink" title="50. 创建触发器（trigger）"></a>50. 创建触发器（trigger）</h3><p>触发器不能单独的存在，必须依附在某一张表上</p>
-<p>写主语 谓语 宾语 游戏</p>
-<p>​       创建触发器的依附表：       </p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">     createtable emp2_log</div><div class="line"></div><div class="line">     (</div><div class="line"></div><div class="line">     enamevarchar2(30) ,</div><div class="line"></div><div class="line">     eactionvarchar2(20),</div><div class="line"></div><div class="line">     etimedate</div><div class="line"></div><div class="line">     );</div><div class="line">     <span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">trigger</span> trig</div><div class="line"></div><div class="line"><span class="keyword">after</span> <span class="keyword">insert</span> <span class="keyword">or</span> <span class="keyword">delete</span> orupdate <span class="keyword">on</span> emp2 <span class="keyword">for</span> <span class="keyword">each</span> <span class="keyword">row</span> <span class="comment">--加上此句，每更新一行，触发一次，不加入则值触发一次</span></div><div class="line"></div><div class="line">     <span class="keyword">begin</span></div><div class="line"></div><div class="line">            ifinserting <span class="keyword">then</span></div><div class="line"></div><div class="line">                   insertinto emp2_log <span class="keyword">values</span>(<span class="keyword">USER</span>, <span class="string">'insert'</span>, <span class="keyword">sysdate</span>);</div><div class="line"></div><div class="line">            elsifupdating then</div><div class="line"></div><div class="line">                   insertinto emp2_log values(USER, '<span class="keyword">update</span><span class="string">', sysdate);</span></div><div class="line"></div><div class="line">            elsifdeleting then</div><div class="line"></div><div class="line">                   insertinto emp2_log values(USER, '<span class="keyword">delete</span><span class="string">', sysdate);</span></div><div class="line"></div><div class="line">            endif;</div><div class="line"></div><div class="line">     end;</div></pre></td></tr></table></figure>
-<h3 id="51-触发器用法之一：通过触发器更新约束的相关数据"><a href="#51-触发器用法之一：通过触发器更新约束的相关数据" class="headerlink" title="51.触发器用法之一：通过触发器更新约束的相关数据"></a>51.触发器用法之一：通过触发器更新约束的相关数据</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">createor <span class="keyword">replace</span> <span class="keyword">trigger</span> trig</div><div class="line"></div><div class="line">              afterupdate <span class="keyword">on</span> dept</div><div class="line"></div><div class="line">              foreach <span class="keyword">row</span></div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              updateemp <span class="keyword">set</span> deptno =:NEW.deptno <span class="keyword">where</span> deptno =: OLD.deptno;</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div><div class="line"></div><div class="line">       <span class="comment">--只编译不显示的解决办法 set serveroutput on;</span></div></pre></td></tr></table></figure>
-<h3 id="52-通过创建存储过程完成递归"><a href="#52-通过创建存储过程完成递归" class="headerlink" title="52.通过创建存储过程完成递归"></a>52.通过创建存储过程完成递归</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">       createor replace procedure p(v_pid article.pid%type,v_level binary_integer) is</div><div class="line"></div><div class="line">              cursorc is select * from article where pid = v_pid;</div><div class="line"></div><div class="line">              v_preStrvarchar2(1024) := '';</div><div class="line"></div><div class="line">       begin</div><div class="line"></div><div class="line">         for i in 0..v_leave loop</div><div class="line"></div><div class="line">              v_preStr:= v_preStr || '';</div><div class="line"></div><div class="line">         end loop;</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">         for v_article in c loop</div><div class="line"></div><div class="line">              dbms_output.put_line(v_article.cont);</div><div class="line"></div><div class="line">              if(v_article.isleaf= 0) then</div><div class="line"></div><div class="line">                     p(v_article.id);</div><div class="line"></div><div class="line">              endif;</div><div class="line"></div><div class="line">              endloop;</div><div class="line"></div><div class="line">       end;</div><div class="line"></div><div class="line">-------------------------------查看当前用户下有哪些表---</div><div class="line"></div><div class="line">       首先，用这个用户登录然后使用语句：</div><div class="line"></div><div class="line">       select* from tab;</div><div class="line"></div><div class="line">       </div><div class="line"></div><div class="line">-----------------------------用Oracle进行分页！--------------</div><div class="line"></div><div class="line">       因为Oracle中的隐含字段rownum不支持'&gt;'所以：</div><div class="line"></div><div class="line">       select* from (</div><div class="line"></div><div class="line">              selectrownum rn, t.* from (</div><div class="line"></div><div class="line">                     select* from t_user where user_id &lt;&gt; 'root'</div><div class="line"></div><div class="line">              )t where rownum &lt;6</div><div class="line"></div><div class="line">       )where rn &gt;3</div><div class="line"></div><div class="line">------------------------Oracle下面的清屏命令----------------</div><div class="line"></div><div class="line">       clearscreen; 或者 cle scr;</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">-----------将创建好的guohailong的这个用户的密码改为abc--------------</div><div class="line"></div><div class="line">   alter user guohailong identified by abc</div><div class="line"></div><div class="line">    --当密码使用的是数字的时候可能会不行</div></pre></td></tr></table></figure>
+          <h3 id="46-异常"><a href="#46-异常" class="headerlink" title="46.异常"></a>46.异常</h3><h4 id="1"><a href="#1" class="headerlink" title="(1)"></a>(1)</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">declare</span></div><div class="line"></div><div class="line">            v_temp <span class="built_in">number</span>(<span class="number">4</span>);</div><div class="line"></div><div class="line">     <span class="keyword">begin</span></div><div class="line"></div><div class="line">            <span class="keyword">select</span> empno <span class="keyword">into</span> v_temp <span class="keyword">from</span> emp <span class="keyword">where</span> deptno = <span class="number">10</span>;</div><div class="line"></div><div class="line">     exception</div><div class="line"></div><div class="line">            when too_many_rows then</div><div class="line"></div><div class="line">                   dbms_output.put_line('太多记录了');</div><div class="line"></div><div class="line">            when others then</div><div class="line"></div><div class="line">                   dbms_output.put_line('error'); </div><div class="line"></div><div class="line">     <span class="keyword">end</span>;</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/20/Oracle学习笔记-六/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://okcthouder.github.io/2017/07/19/Oracle学习笔记-五/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yujie Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://assets-cdn.github.com/pinned-octocat.svg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Island">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/19/Oracle学习笔记-五/" itemprop="url">Oracle学习笔记(五)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-19T16:19:13+08:00">
+                2017-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Oracle/" itemprop="url" rel="index">
+                    <span itemprop="name">Oracle</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/19/Oracle学习笔记-五/" class="leancloud_visitors" data-flag-title="Oracle学习笔记(五)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="PL-SQL-过程化SQL语言"><a href="#PL-SQL-过程化SQL语言" class="headerlink" title="PL_SQL(过程化SQL语言)"></a>PL_SQL(过程化SQL语言)</h1><h3 id="38-在客户端输出helloworld"><a href="#38-在客户端输出helloworld" class="headerlink" title="38. 在客户端输出helloworld"></a>38. 在客户端输出helloworld</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">       <span class="keyword">set</span> serveroutput <span class="keyword">on</span>;//默认是off，设成on是让Oracle可以在客户端输出数据 </div><div class="line"></div><div class="line"><span class="keyword">begin</span></div><div class="line"></div><div class="line">       dbms_output.put_line(<span class="string">'helloworld'</span>);</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div><div class="line"></div><div class="line">       /</div><div class="line"></div><div class="line"><span class="comment">----------------pl/sql变量的赋值与输出----</span></div><div class="line"></div><div class="line">       <span class="keyword">declare</span></div><div class="line"></div><div class="line">              v_name varchar2(<span class="number">20</span>);//声明变量v_name变量的声明以v_开头</div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              v_name:= <span class="string">'myname'</span>;</div><div class="line"></div><div class="line">              dbms_output.put_line(v_name);</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div><div class="line"></div><div class="line">       /</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/19/Oracle学习笔记-五/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://okcthouder.github.io/2017/07/18/Oracle学习笔记-四/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yujie Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://assets-cdn.github.com/pinned-octocat.svg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Island">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/18/Oracle学习笔记-四/" itemprop="url">Oracle学习笔记(四)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-18T16:21:33+08:00">
+                2017-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Oracle/" itemprop="url" rel="index">
+                    <span itemprop="name">Oracle</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/18/Oracle学习笔记-四/" class="leancloud_visitors" data-flag-title="Oracle学习笔记(四)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="24-——-创建新用户——–"><a href="#24-——-创建新用户——–" class="headerlink" title="24.——-创建新用户——–"></a>24.——-创建新用户——–</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">1、<span class="keyword">backup</span> scott//备份</div><div class="line"></div><div class="line">       <span class="keyword">exp</span>//导出</div><div class="line"></div><div class="line"><span class="number">2</span>、<span class="keyword">create</span> <span class="keyword">user</span></div><div class="line"></div><div class="line">       createuser guohailong <span class="keyword">identified</span>(认证) <span class="keyword">by</span> guohailong  <span class="keyword">default</span> <span class="keyword">table</span> <span class="keyword">space</span> <span class="keyword">users</span> <span class="keyword">quota</span>(配额) <span class="number">10</span>M <span class="keyword">on</span> <span class="keyword">users</span></div><div class="line"></div><div class="line">       <span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">session</span>(给它登录到服务器的权限),<span class="keyword">create</span> <span class="keyword">table</span>, <span class="keyword">create</span> <span class="keyword">view</span> <span class="keyword">to</span> guohailong</div><div class="line"></div><div class="line"><span class="number">3</span>、<span class="keyword">import</span> <span class="keyword">data</span></div><div class="line"></div><div class="line">       Imp</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/18/Oracle学习笔记-四/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -939,7 +1225,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

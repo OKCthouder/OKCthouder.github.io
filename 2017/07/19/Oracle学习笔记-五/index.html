@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Oracle sql," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Island" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="PL_SQL(过程化SQL语言)38. 在客户端输出helloworld12345678910111213141516171819202122232425       set serveroutput on;//默认是off，设成on是让Oracle可以在客户端输出数据 begin       dbms_output.put_line(&apos;helloworld&apos;);       end;">
+<meta name="keywords" content="Oracle sql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle学习笔记(五)">
+<meta property="og:url" content="https://okcthouder.github.io/2017/07/19/Oracle学习笔记-五/index.html">
+<meta property="og:site_name" content="Island">
+<meta property="og:description" content="PL_SQL(过程化SQL语言)38. 在客户端输出helloworld12345678910111213141516171819202122232425       set serveroutput on;//默认是off，设成on是让Oracle可以在客户端输出数据 begin       dbms_output.put_line(&apos;helloworld&apos;);       end;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-07-23T08:20:59.937Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Oracle学习笔记(五)">
+<meta name="twitter:description" content="PL_SQL(过程化SQL语言)38. 在客户端输出helloworld12345678910111213141516171819202122232425       set serveroutput on;//默认是off，设成on是让Oracle可以在客户端输出数据 begin       dbms_output.put_line(&apos;helloworld&apos;);       end;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://okcthouder.github.io/2017/07/19/Oracle学习笔记-五/"/>
+
+
+
+
+
+  <title>Oracle学习笔记(五) | Island</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Island</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个人的孤岛。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+      <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//7xuupy.com1.z0.glb.clouddn.com/tongxingSibel%20-%20Im%20Sorry.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()    '>High一下</a> </li>
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://okcthouder.github.io/2017/07/19/Oracle学习笔记-五/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yujie Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://assets-cdn.github.com/pinned-octocat.svg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Island">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Oracle学习笔记(五)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-19T16:19:13+08:00">
+                2017-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Oracle/" itemprop="url" rel="index">
+                    <span itemprop="name">Oracle</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/19/Oracle学习笔记-五/" class="leancloud_visitors" data-flag-title="Oracle学习笔记(五)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="PL-SQL-过程化SQL语言"><a href="#PL-SQL-过程化SQL语言" class="headerlink" title="PL_SQL(过程化SQL语言)"></a>PL_SQL(过程化SQL语言)</h1><h3 id="38-在客户端输出helloworld"><a href="#38-在客户端输出helloworld" class="headerlink" title="38. 在客户端输出helloworld"></a>38. 在客户端输出helloworld</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">       <span class="keyword">set</span> serveroutput <span class="keyword">on</span>;//默认是off，设成on是让Oracle可以在客户端输出数据 </div><div class="line"></div><div class="line"><span class="keyword">begin</span></div><div class="line"></div><div class="line">       dbms_output.put_line(<span class="string">'helloworld'</span>);</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div><div class="line"></div><div class="line">       /</div><div class="line"></div><div class="line"><span class="comment">----------------pl/sql变量的赋值与输出----</span></div><div class="line"></div><div class="line">       <span class="keyword">declare</span></div><div class="line"></div><div class="line">              v_name varchar2(<span class="number">20</span>);//声明变量v_name变量的声明以v_开头</div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              v_name:= <span class="string">'myname'</span>;</div><div class="line"></div><div class="line">              dbms_output.put_line(v_name);</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div><div class="line"></div><div class="line">       /</div></pre></td></tr></table></figure>
+  <a id="more"></a>
+<h3 id="39-pl-sql对于异常的处理-除数为0"><a href="#39-pl-sql对于异常的处理-除数为0" class="headerlink" title="39. pl/sql对于异常的处理(除数为0)"></a>39. pl/sql对于异常的处理(除数为0)</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"> declare</div><div class="line"></div><div class="line">              v_num number := 0;</div><div class="line"></div><div class="line">       begin</div><div class="line"></div><div class="line">              v_num:= 2/v_num;</div><div class="line"></div><div class="line">              dbms_output.put_line(v_num);</div><div class="line"></div><div class="line">**       exception**</div><div class="line"></div><div class="line">**              when others then**</div><div class="line"></div><div class="line">**              dbms_output.put_line('error');**</div><div class="line"></div><div class="line">       end;</div><div class="line"></div><div class="line">       /</div></pre></td></tr></table></figure>
+<h3 id="40-变量的声明"><a href="#40-变量的声明" class="headerlink" title="40. 变量的声明"></a>40. 变量的声明</h3><p>​       binary_integer:整数，主要用来计数而不是用来表示字段类型   比number效率高</p>
+<p>​       number:数字类型</p>
+<p>​       char:定长字符串</p>
+<p>​       varchar2：变长字符串</p>
+<p>​       date：日期</p>
+<p>​       long：字符串，最长2GB</p>
+<p>​       boolean：布尔类型，可以取值true，false，null//最好给一初值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">----------变量的声明，使用 '%type'属性---------</span></div><div class="line"></div><div class="line">       <span class="keyword">declare</span></div><div class="line"></div><div class="line">              v_empno <span class="built_in">number</span>(<span class="number">4</span>);</div><div class="line"></div><div class="line">              v_empno2 emp.empno%type;</div><div class="line"></div><div class="line">              v_empno3 v_empno2%type;</div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              dbms_output.put_line(<span class="string">'Test'</span>);</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div><div class="line"></div><div class="line">       /</div><div class="line"></div><div class="line">       <span class="comment">--使用%type属性，可以使变量的声明根据表字段的类型自动变换，省去了维护的麻烦，而且%type属性，可以用于变量身上</span></div></pre></td></tr></table></figure>
+<h3 id="41-组合变量"><a href="#41-组合变量" class="headerlink" title="41.组合变量"></a>41.组合变量</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">---------------Table变量类型(相当于java里面的数组)--------------------</span></div><div class="line"></div><div class="line">       <span class="keyword">declare</span></div><div class="line"></div><div class="line">              <span class="keyword">type</span> type_table_emp_empno <span class="keyword">is</span> <span class="keyword">table</span> <span class="keyword">of</span> emp.empno%<span class="keyword">type</span> <span class="keyword">index</span> <span class="keyword">by</span> binary_integer;</div><div class="line"></div><div class="line">                     v_empnostype_table type_table_empno;</div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              v_empnos(<span class="number">0</span>):= <span class="number">7345</span>;</div><div class="line"></div><div class="line">              v_empnos(-1):=9999;</div><div class="line"></div><div class="line">              dbms_output.put_line(v_empnos(-1));</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div></pre></td></tr></table></figure>
+<h3 id="42-Record变量类型（相当于Java里面的类）"><a href="#42-Record变量类型（相当于Java里面的类）" class="headerlink" title="42. Record变量类型（相当于Java里面的类）"></a>42. Record变量类型（相当于Java里面的类）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">declare</span></div><div class="line"></div><div class="line">              <span class="keyword">type</span> type_record_dept <span class="keyword">is</span> <span class="built_in">record</span></div><div class="line"></div><div class="line">              (</div><div class="line"></div><div class="line">                     deptno dept.deptno%<span class="keyword">type</span>,</div><div class="line"></div><div class="line">                     dname dept.dname%<span class="keyword">type</span>,</div><div class="line"></div><div class="line">                     loc dept.loc%<span class="keyword">type</span></div><div class="line"></div><div class="line">              );</div><div class="line"></div><div class="line">              v_temp type_record_dept;</div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              v_temp.deptno:=<span class="number">50</span>;</div><div class="line"></div><div class="line">              v_temp.dname:='aaaa';</div><div class="line"></div><div class="line">              v_temp.loc:='bj';</div><div class="line"></div><div class="line">              dbms_output.put_line(v_temp.deptno|| ' ' || v_temp.dname);</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line"><span class="comment">-----------使用 %rowtype声明record变量，直接参照表来声明record-------------------</span></div><div class="line"></div><div class="line">       <span class="keyword">declare</span></div><div class="line"></div><div class="line">              v_temp dept%rowtype;</div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              v_temp.deptno:=<span class="number">50</span>;</div><div class="line"></div><div class="line">              v_temp.dname:='aaaa';</div><div class="line"></div><div class="line">              v_temp.loc:='bj';</div><div class="line"></div><div class="line">       dbms_output.put_line(vtemp.deptno || '' || v temp.dname)                 </div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div></pre></td></tr></table></figure>
+<p>​       </p>
+<h3 id="43-select语句的运用-必须保证select语句有相应的返回记录"><a href="#43-select语句的运用-必须保证select语句有相应的返回记录" class="headerlink" title="43. select语句的运用(必须保证select语句有相应的返回记录)"></a>43. select语句的运用(必须保证select语句有相应的返回记录)</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line">   <span class="keyword">declare</span></div><div class="line"></div><div class="line">              v_ename emp.ename%<span class="keyword">type</span>;</div><div class="line"></div><div class="line">              v_sal emp.sal%type;</div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              <span class="keyword">select</span> ename,sal <span class="keyword">into</span> v_ename,v_sal <span class="keyword">from</span> emp <span class="keyword">where</span> empno = <span class="number">7369</span>;</div><div class="line"></div><div class="line">              dbms_output.put_line(v_ename|| '' || v_sal);</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div><div class="line"></div><div class="line"><span class="comment">-------------------------select语句的应用（record）------------------------------</span></div><div class="line"></div><div class="line">       <span class="keyword">declare</span></div><div class="line"></div><div class="line">              v_emp emp%rowtype;</div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              <span class="keyword">select</span> * <span class="keyword">into</span> v_emp <span class="keyword">from</span> emp <span class="keyword">where</span> empno=<span class="number">7369</span>;</div><div class="line"></div><div class="line">              dbms_output_line(v_emp.ename);</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line"><span class="comment">------------- insert语句的应用 -----------------------------</span></div><div class="line"></div><div class="line">       <span class="keyword">declare</span></div><div class="line"></div><div class="line">              v_deptno dept.deptno%<span class="keyword">type</span> := <span class="number">50</span>;</div><div class="line"></div><div class="line">              v_dname dept.dname%type :='aaa';</div><div class="line"></div><div class="line">              v_loc dept.loc%type := 'bj';</div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              <span class="keyword">insert</span> <span class="keyword">into</span> dept2 <span class="keyword">values</span>(v_deptno,v_dname,v_loc);</div><div class="line"></div><div class="line">              <span class="keyword">commit</span>;</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">       <span class="comment">-------------update 语句的应用------------------------------</span></div><div class="line"></div><div class="line">       <span class="keyword">declare</span></div><div class="line"></div><div class="line">              v_deptno emp2.deptno%<span class="keyword">type</span> := <span class="number">50</span>;</div><div class="line"></div><div class="line">              v_count  number;</div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              <span class="keyword">update</span> emp2 <span class="keyword">set</span> sal = sal/<span class="number">2</span> <span class="keyword">where</span> deptno =v_deptno;</div><div class="line"></div><div class="line">              dbms_output.put_line(sql%rowcount || ‘条记录被影响’);</div><div class="line"></div><div class="line">              <span class="keyword">commit</span>;</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div></pre></td></tr></table></figure>
+<p>注：sql%rowcount统计上一条sql语句更新的记录条数</p>
+<h3 id="44-ddl语言，数据定义语言"><a href="#44-ddl语言，数据定义语言" class="headerlink" title="44.ddl语言，数据定义语言"></a>44.ddl语言，数据定义语言</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"> begin</div><div class="line"></div><div class="line">              execute immediate 'create table T (nnn varchar(30) default ''a'')';</div><div class="line"></div><div class="line">       end;</div><div class="line"></div><div class="line">------------------ifelse语句--------------------------------------</div><div class="line"></div><div class="line">    declare</div><div class="line"></div><div class="line">              v_sal emp.sal%type;</div><div class="line"></div><div class="line">    begin</div><div class="line"></div><div class="line">              select sal into v_sal from emp where empno = 7369;</div><div class="line"></div><div class="line">       if(v_sal&lt; 2000) then</div><div class="line"></div><div class="line">              dbms_output.put_line('low');</div><div class="line"></div><div class="line">       els if(v_sal &gt; 2000) then</div><div class="line"></div><div class="line">              dbms_output.put_line('middle');</div><div class="line"></div><div class="line">       else</div><div class="line"></div><div class="line">              dbms_output.put_line('height');</div><div class="line"></div><div class="line">       end if;</div><div class="line"></div><div class="line">     end;</div></pre></td></tr></table></figure>
+<h3 id="45-循环"><a href="#45-循环" class="headerlink" title="45. 循环"></a>45. 循环</h3><h4 id="do-while-循环"><a href="#do-while-循环" class="headerlink" title="do while 循环"></a>do while 循环</h4><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">declare</div><div class="line"></div><div class="line">            i binary_integer := 1;</div><div class="line"></div><div class="line">     begin</div><div class="line"></div><div class="line">            loop</div><div class="line"></div><div class="line">                          dbms_output.put_line(i);</div><div class="line"></div><div class="line">                          i:= i + 1;</div><div class="line"></div><div class="line">                   exit when (i&gt;=11);</div><div class="line"></div><div class="line">            end loop;</div><div class="line"></div><div class="line">     end;</div></pre></td></tr></table></figure>
+<h4 id="while-循环"><a href="#while-循环" class="headerlink" title="while 循环"></a>while 循环</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">declare</span></div><div class="line"></div><div class="line">              j binary_integer := <span class="number">1</span>;</div><div class="line"></div><div class="line">       <span class="keyword">begin</span></div><div class="line"></div><div class="line">              <span class="keyword">while</span> j &lt; <span class="number">11</span> <span class="keyword">loop</span></div><div class="line"></div><div class="line">                     dbms_output.put_line(j);</div><div class="line"></div><div class="line">              j:=j+1;</div><div class="line"></div><div class="line">              <span class="keyword">end</span> <span class="keyword">loop</span>;</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div></pre></td></tr></table></figure>
+<h4 id="for-循环"><a href="#for-循环" class="headerlink" title="for 循环"></a>for 循环</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">begin</span></div><div class="line"></div><div class="line">              <span class="keyword">for</span> k <span class="keyword">in</span> <span class="number">1.</span><span class="number">.10</span> <span class="keyword">loop</span></div><div class="line"></div><div class="line">                     dbms_output.put_line(k);</div><div class="line"></div><div class="line">              <span class="keyword">end</span> <span class="keyword">loop</span>;</div><div class="line"></div><div class="line">              for k in reverse 1..10 loop</div><div class="line"></div><div class="line">                     dbms_output.put_line(k);</div><div class="line"></div><div class="line">              <span class="keyword">end</span> <span class="keyword">loop</span>;</div><div class="line"></div><div class="line">       <span class="keyword">end</span>;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://wx1.sinaimg.cn/mw1024/b033f7d0gy1fhtulvvmmcj20px0zk40h.jpg" alt="Yujie Yang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Oracle-sql/" rel="tag"># Oracle sql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/18/Oracle学习笔记-四/" rel="next" title="Oracle学习笔记(四)">
+                <i class="fa fa-chevron-left"></i> Oracle学习笔记(四)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/20/Oracle学习笔记-六/" rel="prev" title="Oracle学习笔记(六)">
+                Oracle学习笔记(六) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://assets-cdn.github.com/pinned-octocat.svg"
+               alt="Yujie Yang" />
+          <p class="site-author-name" itemprop="name">Yujie Yang</p>
+           
+              <p class="site-description motion-element" itemprop="description">杨宇杰的个人博客。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/about/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/OKCthouder" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2956195792/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="新浪微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  新浪微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Yujie_Yang666" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/onlylove_kd" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="615851120@qq.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.baidu.com/" title="百度" target="_blank">百度</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://example.com/" title="新浪" target="_blank">新浪</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PL-SQL-过程化SQL语言"><span class="nav-number">1.</span> <span class="nav-text">PL_SQL(过程化SQL语言)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#38-在客户端输出helloworld"><span class="nav-number">1.0.1.</span> <span class="nav-text">38. 在客户端输出helloworld</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#39-pl-sql对于异常的处理-除数为0"><span class="nav-number">1.0.2.</span> <span class="nav-text">39. pl/sql对于异常的处理(除数为0)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#40-变量的声明"><span class="nav-number">1.0.3.</span> <span class="nav-text">40. 变量的声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#41-组合变量"><span class="nav-number">1.0.4.</span> <span class="nav-text">41.组合变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#42-Record变量类型（相当于Java里面的类）"><span class="nav-number">1.0.5.</span> <span class="nav-text">42. Record变量类型（相当于Java里面的类）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#43-select语句的运用-必须保证select语句有相应的返回记录"><span class="nav-number">1.0.6.</span> <span class="nav-text">43. select语句的运用(必须保证select语句有相应的返回记录)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#44-ddl语言，数据定义语言"><span class="nav-number">1.0.7.</span> <span class="nav-text">44.ddl语言，数据定义语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#45-循环"><span class="nav-number">1.0.8.</span> <span class="nav-text">45. 循环</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#do-while-循环"><span class="nav-number">1.0.8.1.</span> <span class="nav-text">do while 循环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#while-循环"><span class="nav-number">1.0.8.2.</span> <span class="nav-text">while 循环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#for-循环"><span class="nav-number">1.0.8.3.</span> <span class="nav-text">for 循环</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yujie Yang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("mxE2nxgNcrdnISwHSqQRvPUv-gzGzoHsz", "aLmsGWRpuLloK2BGcaIJroEQ");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("mxE2nxgNcrdnISwHSqQRvPUv-gzGzoHsz", "aLmsGWRpuLloK2BGcaIJroEQ");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+   
+</body>
+</html>
