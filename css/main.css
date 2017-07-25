@@ -186,7 +186,7 @@ th {
 body {
   position: relative;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 2;
   color: #555;
   background: #f5f7f9;
@@ -203,7 +203,7 @@ body {
 }
 @media (min-width: 1600px) {
   body {
-    font-size: 16px;
+    font-size: 17px;
   }
 }
 h1,
@@ -1107,7 +1107,7 @@ pre .javascript .function {
 .post-body .figure .caption {
   margin: 10px auto 15px;
   text-align: center;
-  font-size: 14px;
+  font-size: 15px;
   color: #999;
   font-weight: bold;
   line-height: 1;
@@ -1915,7 +1915,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #0fffb0;
+  background: #fb9e5d;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2710,7 +2710,7 @@ img:hover {
   overflow: hidden;
   padding: 0;
   width: 240px;
-  background: transparent;
+  background: #fff;
   box-shadow: initial;
   border-radius: initial;
 }
@@ -2770,6 +2770,7 @@ img:hover {
   padding: 40px;
   width: calc(100% - 300px);
   min-height: 700px;
+  background: transparent;
   box-shadow: initial;
   border-radius: initial;
 }
@@ -2950,6 +2951,7 @@ img:hover {
   box-sizing: border-box;
   width: 240px;
   color: #555;
+  background: #fff;
   box-shadow: initial;
   border-radius: initial;
 }
@@ -3075,4 +3077,18 @@ img:hover {
   .post-body {
     text-align: justify;
   }
+}
+.post {
+  margin-top: 60px;
+  margin-bottom: 10px;
+  padding: 25px;
+  padding-bottom: 0px;
+  -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
+  -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+}
+* {
+  cursor: url("http://om8u46rmb.bkt.clouddn.com/sword2.ico"), auto !important;
+}
+:active {
+  cursor: url("http://om8u46rmb.bkt.clouddn.com/sword1.ico"), auto !important;
 }
