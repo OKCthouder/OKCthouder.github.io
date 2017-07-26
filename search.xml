@@ -104,6 +104,19 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[java读书笔记-IO类-编程小问题]]></title>
+    <url>%2F2017%2F07%2F13%2Fjava%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-IO%E7%B1%BB-%E7%BC%96%E7%A8%8B%E5%B0%8F%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近在重新复习下java SE的内容，把一下小问题记录下来。 一、Java流式输入输出原理图 二、流的分类 三、节点流类型 总结以stream结尾的是字节流，以reader或writer结尾的是字符流。 一、字节流文件复制12345678910111213141516171819202122import java.io.*;public class TestFileOutputStream &#123; public static void main(String[] args) &#123; int b = 0; FileInputStream in = null; FileOutputStream out = null; try &#123; in = new FileInputStream("d:/share/java/HelloWorld.java"); out = new FileOutputStream("d:/share/java/io/HW.java"); while((b=in.read())!=-1)&#123; out.write(b); &#125; in.close(); out.close(); &#125; catch (FileNotFoundException e2) &#123; System.out.println("找不到指定文件"); System.exit(-1); &#125; catch (IOException e1) &#123; System.out.println("文件复制错误"); System.exit(-1); &#125; System.out.println("文件已复制"); &#125;&#125; 二、BufferedWriter和BufferedReader图解如果只是用FileWriter的话只能每次写入一个字符，而在外面再包装一层BufferedWriter的话一次可以写入一个缓冲区的内容。 三、OutputStreamWriter工作原理如果只是用FileWriter的话只能每次写入一个字节，而在外面再包装一层BufferedWriter的话一次可以写入一个字符串的内容。]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>IO</tag>
+        <tag>编程小问题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hello Hexo]]></title>
     <url>%2F2017%2F01%2F23%2Fhello-hexo%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
