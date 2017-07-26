@@ -117,6 +117,19 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[java读书笔记-常用类-编程小问题]]></title>
+    <url>%2F2017%2F07%2F11%2Fjava%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%B8%B8%E7%94%A8%E7%B1%BB-%E7%BC%96%E7%A8%8B%E5%B0%8F%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近在重新复习下java SE中常用类的内容，把一下小问题记录下来。 一、用Java编写一个程序，输出一个字符串中的大写英文字母数，小写英文字母数以及非英文字母数。12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849import java.util.regex.*;public class TestString &#123; public static void main(String[] args) &#123; //方法一 //String s = "AaaaABBBBcc&amp;^%adfsfdCCOOkk99876 _haHA"; //int lCount = 0, uCount = 0, oCount = 0; /* for(int i=0; i&lt;s.length(); i++) &#123; char c = s.charAt(i); if(c &gt;= 'a' &amp;&amp; c &lt;= 'z') &#123; lCount ++; &#125; else if (c &gt;='A' &amp;&amp; c &lt;= 'Z') &#123; uCount ++; &#125; else &#123; oCount ++; &#125; &#125; */ //方法二 /* String sL = "abcdefghijklmnopqrstuvwxyz"; String sU = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; for(int i=0; i&lt;s.length(); i++) &#123; char c = s.charAt(i); if(sL.indexOf(c) != -1) &#123; lCount ++; &#125; else if (sU.indexOf(c) != -1) &#123; uCount ++; &#125; else &#123; oCount ++; &#125; &#125; */ //方法三 for(int i=0; i&lt;s.length(); i++) &#123; char c = s.charAt(i); if(Character.isLowerCase(c)) &#123; lCount ++; &#125; else if (Character.isUpperCase(c)) &#123; uCount ++; &#125; else &#123; oCount ++; &#125; &#125; System.out.println(lCount + " " + uCount + " " + oCount); 二、将“1,2;3,4,5;6,7,8”这个字符串分解为二维数组。123456789101112131415161718192021public class ArrayParser &#123; public static void main(String[] args)&#123; double[][] d; String = "1,2;3,4,5;6,7,8"; String[] sFirst = s.split(";"); d = new double[sFirst.length][]; for(int i = 0; i &lt; sFirst.length; i++)&#123; String[] sSecond = sFirst[i].split(","); d[i] = new double[sSecond.length]; for(int j = 0; j &lt; sSecong.length; j++)&#123; d[i][j] = Double.parseDouble(sSecond[j]); &#125; &#125; for(int i = 0; i &lt; d.length; i++)&#123; for(int j = 0; j &lt; d[i].length; j++)&#123; System.out.print(d[i][j] + " "); &#125; System.out.println(); &#125; &#125;&#125; 三、利用递归列出目录结构12345678910111213141516171819202122232425import java.io.*;public class FileList &#123; public static void main(String[] args) &#123; File f = new File("d:/A"); System.out.println(f.getName()); tree(f, 1); &#125; private static void tree(File f, int level) &#123; String preStr = ""; for(int i=0; i&lt;level; i++) &#123; preStr += " "; &#125; File childs = f.listFiles(); for(int i=0; i&lt;childs.length; i++) &#123; System.out.println(preStr + childs[i].getName()); if(childs[i].isDirectory()) &#123; tree(childs[i], level + 1); &#125; &#125; &#125;&#125; 四、编写一个方法，输出在一个字符串中，指定字符串出现的次数123456789101112131415 String s = "sunjavahpjavaokjavajjavahahajavajavagoodjava"; String sToFind = "java"; int count = 0; int index = -1; while((index = s.indexOf(sToFind)) != -1) &#123; s = s.substring(index + sToFind.length()); count ++; &#125; System.out.println(count);&#125;]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>class</tag>
+        <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hello Hexo]]></title>
     <url>%2F2017%2F01%2F23%2Fhello-hexo%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
