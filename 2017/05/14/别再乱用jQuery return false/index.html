@@ -99,7 +99,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="VMwave,OS X 10.11,虚拟机," />
+  <meta name="keywords" content="jQuery,javascript," />
 
 
 
@@ -117,30 +117,18 @@
 
 
 
-<meta name="description" content="一、前言最近笔者闲着无聊，由于一直挺仰慕mac大法，所以想装个mac系统来玩玩。虽然说过程不是很难，但是出现的各种小问题还是挺多的，所以在这里跟大家分享一下我的解决方法。 1.首先，当然是安装工具：  Mac OS X 10.11 镜像文件（链接：http://pan.baidu.com/s/1pL8HE59 密码：cq4d）（此镜像为网络收集，如果觉得有问题自己找谢谢。） unlocker208">
-<meta name="keywords" content="VMwave,OS X 10.11,虚拟机">
+<meta name="description" content="前言​    event.preventDefault()方法是用于取消事件的默认行为，但此方法并不被ie支持，在ie下需要用window.event.returnValue = false; 来实现。这不是jQuery的方法，是JS本身自带的。">
+<meta name="keywords" content="jQuery,javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VMwave Workstation12虚拟机安装OS X 10.11所遇到的各种问题集合(详细版)">
-<meta property="og:url" content="https://okcthouder.github.io/2017/07/24/10-11所遇到的各种问题集合-详细版/index.html">
+<meta property="og:title" content="别再乱用jQuery return false">
+<meta property="og:url" content="https://okcthouder.github.io/2017/05/14/别再乱用jQuery return false/index.html">
 <meta property="og:site_name" content="ISLAND">
-<meta property="og:description" content="一、前言最近笔者闲着无聊，由于一直挺仰慕mac大法，所以想装个mac系统来玩玩。虽然说过程不是很难，但是出现的各种小问题还是挺多的，所以在这里跟大家分享一下我的解决方法。 1.首先，当然是安装工具：  Mac OS X 10.11 镜像文件（链接：http://pan.baidu.com/s/1pL8HE59 密码：cq4d）（此镜像为网络收集，如果觉得有问题自己找谢谢。） unlocker208">
+<meta property="og:description" content="前言​    event.preventDefault()方法是用于取消事件的默认行为，但此方法并不被ie支持，在ie下需要用window.event.returnValue = false; 来实现。这不是jQuery的方法，是JS本身自带的。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://img.blog.csdn.net/20170424190230322?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20170424190316370?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20170430203759981?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20170424190515128?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20170424190604613?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20170424190642379?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20170424190735973?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20170424190825299?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20170424190901802?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20170424190938535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20170424191016740?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:updated_time" content="2017-07-25T12:09:26.640Z">
+<meta property="og:updated_time" content="2017-07-29T07:52:33.059Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="VMwave Workstation12虚拟机安装OS X 10.11所遇到的各种问题集合(详细版)">
-<meta name="twitter:description" content="一、前言最近笔者闲着无聊，由于一直挺仰慕mac大法，所以想装个mac系统来玩玩。虽然说过程不是很难，但是出现的各种小问题还是挺多的，所以在这里跟大家分享一下我的解决方法。 1.首先，当然是安装工具：  Mac OS X 10.11 镜像文件（链接：http://pan.baidu.com/s/1pL8HE59 密码：cq4d）（此镜像为网络收集，如果觉得有问题自己找谢谢。） unlocker208">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20170424190230322?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta name="twitter:title" content="别再乱用jQuery return false">
+<meta name="twitter:description" content="前言​    event.preventDefault()方法是用于取消事件的默认行为，但此方法并不被ie支持，在ie下需要用window.event.returnValue = false; 来实现。这不是jQuery的方法，是JS本身自带的。">
 
 
 
@@ -168,13 +156,13 @@
 
 
 
-  <link rel="canonical" href="https://okcthouder.github.io/2017/07/24/10-11所遇到的各种问题集合-详细版/"/>
+  <link rel="canonical" href="https://okcthouder.github.io/2017/05/14/别再乱用jQuery return false/"/>
 
 
 
 
 
-  <title>VMwave Workstation12虚拟机安装OS X 10.11所遇到的各种问题集合(详细版) | ISLAND</title>
+  <title>别再乱用jQuery return false | ISLAND</title>
   
 
 
@@ -465,7 +453,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://okcthouder.github.io/2017/07/24/10-11所遇到的各种问题集合-详细版/">
+    <link itemprop="mainEntityOfPage" href="https://okcthouder.github.io/2017/05/14/别再乱用jQuery return false/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yujie Yang">
@@ -482,7 +470,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">VMwave Workstation12虚拟机安装OS X 10.11所遇到的各种问题集合(详细版)</h1>
+          <h1 class="post-title" itemprop="name headline">别再乱用jQuery return false</h1>
         
 
         <div class="post-meta">
@@ -494,8 +482,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-24T16:09:29+08:00">
-                2017-07-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-14T15:48:12+08:00">
+                2017-05-14
               </time>
             
 
@@ -517,8 +505,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/装系统/" itemprop="url" rel="index">
-                    <span itemprop="name">装系统</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery</span>
                   </a>
                 </span>
 
@@ -535,9 +534,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/07/24/10-11所遇到的各种问题集合-详细版/#comments" itemprop="discussionUrl">
+                <a href="/2017/05/14/别再乱用jQuery return false/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/07/24/10-11所遇到的各种问题集合-详细版/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/05/14/别再乱用jQuery return false/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -545,7 +544,7 @@
 
           
           
-             <span id="/2017/07/24/10-11所遇到的各种问题集合-详细版/" class="leancloud_visitors" data-flag-title="VMwave Workstation12虚拟机安装OS X 10.11所遇到的各种问题集合(详细版)">
+             <span id="/2017/05/14/别再乱用jQuery return false/" class="leancloud_visitors" data-flag-title="别再乱用jQuery return false">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -576,7 +575,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,043
+                  1,128
                 </span>
               
 
@@ -592,7 +591,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -610,46 +609,36 @@
       
 
       
-        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>最近笔者闲着无聊，由于一直挺仰慕mac大法，所以想装个mac系统来玩玩。虽然说过程不是很难，但是出现的各种小问题还是挺多的，所以在这里跟大家分享一下我的解决方法。</p>
-<p>1.首先，当然是安装工具：</p>
-<ul>
-<li>Mac OS X 10.11 镜像文件（链接：<a href="http://pan.baidu.com/s/1pL8HE59" target="_blank" rel="external">http://pan.baidu.com/s/1pL8HE59</a> 密码：cq4d）（此镜像为网络收集，如果觉得有问题自己找谢谢。）</li>
-<li>unlocker208文件（链接：<a href="http://pan.baidu.com/s/1bpftVjT" target="_blank" rel="external">http://pan.baidu.com/s/1bpftVjT</a> 密码：dp2g）</li>
-<li>VMware Workstation12（<a href="http://blog.sina.com.cn/s/blog_af49f8090102wqmw.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_af49f8090102wqmw.html</a>）</li>
-</ul>
-<p>2.详细教程请查看：<a href="http://jingyan.baidu.com/article/363872ec206a356e4ba16f30.html" target="_blank" rel="external">http://jingyan.baidu.com/article/363872ec206a356e4ba16f30.html</a></p>
-<p>在这里我就不再赘述。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​    event.preventDefault()方法是用于取消事件的默认行为，但此方法并不被ie支持，在ie下需要用window.event.returnValue = false; 来实现。这不是<a href="http://lib.csdn.net/base/jquery" target="_blank" rel="external">jQuery</a>的方法，是JS本身自带的。</p>
  <a id="more"></a>
-<h2 id="二、所遇到的问题"><a href="#二、所遇到的问题" class="headerlink" title="二、所遇到的问题"></a>二、所遇到的问题</h2><p>下面来看看我安装后遇到的各种问题：</p>
-<h2 id="1-VMware上MAC虚拟机不能上网问题"><a href="#1-VMware上MAC虚拟机不能上网问题" class="headerlink" title="1)  VMware上MAC虚拟机不能上网问题"></a>1)  VMware上MAC虚拟机不能上网问题</h2><p>首先最大的问题当然就是没网啦，别急，且听我慢慢道来：</p>
-<h3 id="解决方法-步骤"><a href="#解决方法-步骤" class="headerlink" title="解决方法/步骤"></a>解决方法/步骤</h3><h4 id="1-从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。"><a href="#1-从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。" class="headerlink" title="1.从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。"></a>1.从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。</h4><p><img src="http://img.blog.csdn.net/20170424190230322?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="2-选择属性，点击共享按钮。"><a href="#2-选择属性，点击共享按钮。" class="headerlink" title="2.选择属性，点击共享按钮。"></a>2.选择属性，点击共享按钮。</h4><p><img src="http://img.blog.csdn.net/20170424190316370?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="3-将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware-Network-Adapter-VMnet1。"><a href="#3-将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware-Network-Adapter-VMnet1。" class="headerlink" title="3.将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware Network Adapter VMnet1。"></a>3.将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware Network Adapter VMnet1。</h4><p><img src="http://img.blog.csdn.net/20170430203759981?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="4-在安装的虚拟机中选择虚拟机-gt-设置选项。"><a href="#4-在安装的虚拟机中选择虚拟机-gt-设置选项。" class="headerlink" title="4.在安装的虚拟机中选择虚拟机-&gt;设置选项。"></a>4.在安装的虚拟机中选择虚拟机-&gt;设置选项。</h4><p><img src="http://img.blog.csdn.net/20170424190515128?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="5-点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。"><a href="#5-点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。" class="headerlink" title="5.点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。"></a>5.点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。</h4><p><img src="http://img.blog.csdn.net/20170424190604613?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="6-进入Mac系统，选择设置，进入网络设置"><a href="#6-进入Mac系统，选择设置，进入网络设置" class="headerlink" title="6.进入Mac系统，选择设置，进入网络设置"></a>6.进入Mac系统，选择设置，进入网络设置</h4><p><img src="http://img.blog.csdn.net/20170424190642379?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="7-配置Ipv4选择设置DHCP，点击应用即可开始上网。"><a href="#7-配置Ipv4选择设置DHCP，点击应用即可开始上网。" class="headerlink" title="7.配置Ipv4选择设置DHCP，点击应用即可开始上网。"></a>7.配置Ipv4选择设置DHCP，点击应用即可开始上网。</h4><h2 id="2-OS-X-10-11-El-Capitan-无法连接Apple-store-和登录Apple-ID的问题"><a href="#2-OS-X-10-11-El-Capitan-无法连接Apple-store-和登录Apple-ID的问题" class="headerlink" title="2)OS X 10.11 El Capitan 无法连接Apple store 和登录Apple ID的问题"></a>2)<a href="http://blog.csdn.net/qq_25131687/article/details/52194202" target="_blank" rel="external">OS X 10.11 El Capitan 无法连接Apple store 和登录Apple ID的问题</a></h2><h4 id="1-step-1"><a href="#1-step-1" class="headerlink" title="1.step 1"></a>1.step 1</h4><p>强制退出Apple store进程</p>
-<h4 id="2-step-2"><a href="#2-step-2" class="headerlink" title="2. step 2"></a>2. step 2</h4><p>打开terminal终端（在launch中搜索终端），输入以下命令：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo pkill <span class="number">-9</span> -f Account    </div><div class="line"></div><div class="line">sudo rm $HOME/Library/Accounts<span class="comment">/*</span></div></pre></td></tr></table></figure>
-<p> 进行此操作时需要提供管理员密码，输入密码敲回车就行了。</p>
-<h4 id="3-step-3"><a href="#3-step-3" class="headerlink" title="3.step 3"></a>3.step 3</h4><p>完成前面两步你已经可以进入apple store了，但是你发现你的apple ID无法登陆：</p>
-<p>This action cant be Completed!</p>
-<p>这时你可以terminal终端输入以下命令：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo mkdir -p /Users/Shared     </div><div class="line"></div><div class="line">sudo chown root:wheel /Users/Shared    </div><div class="line"></div><div class="line">sudo chmod -R <span class="number">1777</span> /Users/Shared</div></pre></td></tr></table></figure>
-<p>至此，你的Apple ID就可以在Apple store上Login了。</p>
-<h2 id="3-苹果ID注册最后一步总是显示-如需帮助，请联系iTunes支持"><a href="#3-苹果ID注册最后一步总是显示-如需帮助，请联系iTunes支持" class="headerlink" title="3)苹果ID注册最后一步总是显示 如需帮助，请联系iTunes支持"></a>3)苹果ID注册最后一步总是显示 如需帮助，请联系iTunes支持</h2><p>由于我的apple id是刚刚注册的，登陆apple store后提示我还没有完善资料什么的，所以我就去填资料</p>
-<p>填完资料发现老是出现上面的那一句，继续不了。</p>
-<p>所以我又开始了尝试</p>
-<h4 id="1-首先在iTunes软件上面注册Apple-ID帐号时，注意要把提供付款方式选择为“银联UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple-ID帐号。"><a href="#1-首先在iTunes软件上面注册Apple-ID帐号时，注意要把提供付款方式选择为“银联UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple-ID帐号。" class="headerlink" title="1.首先在iTunes软件上面注册Apple ID帐号时，注意要把提供付款方式选择为“银联UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple ID帐号。"></a>1.首先在iTunes软件上面注册Apple ID帐号时，注意要把提供<a href="https://www.baidu.com/s?wd=%E4%BB%98%E6%AC%BE%E6%96%B9%E5%BC%8F&amp;tn=44039180_cpr&amp;fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1Yvm1TLPvn3PWw9mynLrj640ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnW0dnWc1nHn4PHfsnWT3Pj6zPs" target="_blank" rel="external">付款方式</a>选择为“<a href="https://www.baidu.com/s?wd=%E9%93%B6%E8%81%94&amp;tn=44039180_cpr&amp;fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1Yvm1TLPvn3PWw9mynLrj640ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnW0dnWc1nHn4PHfsnWT3Pj6zPs" target="_blank" rel="external">银联</a>UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple ID帐号。</h4><p><img src="http://img.blog.csdn.net/20170424190735973?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="2-然后填写银行卡以及输入银行预留手机号码。-注意：手机号码一定是要和银行卡绑定在一起的才可以使用。"><a href="#2-然后填写银行卡以及输入银行预留手机号码。-注意：手机号码一定是要和银行卡绑定在一起的才可以使用。" class="headerlink" title="2.然后填写银行卡以及输入银行预留手机号码。(注意：手机号码一定是要和银行卡绑定在一起的才可以使用。)"></a>2.然后填写银行卡以及输入银行预留手机号码。(注意：手机号码一定是要和银行卡绑定在一起的才可以使用。)</h4><p><img src="http://img.blog.csdn.net/20170424190825299?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="3-接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。"><a href="#3-接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。" class="headerlink" title="3.接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。"></a>3.接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。</h4><p><img src="http://img.blog.csdn.net/20170424190901802?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="4-点击创建Apple-ID，进入下一步。"><a href="#4-点击创建Apple-ID，进入下一步。" class="headerlink" title="4.点击创建Apple ID，进入下一步。"></a>4.点击创建Apple ID，进入下一步。</h4><p><img src="http://img.blog.csdn.net/20170424190938535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="5-然后收取绑定银行的短信验证码输入里面进行验证。"><a href="#5-然后收取绑定银行的短信验证码输入里面进行验证。" class="headerlink" title="5.然后收取绑定银行的短信验证码输入里面进行验证。"></a>5.然后收取绑定银行的<a href="https://www.baidu.com/s?wd=%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%E7%A0%81&amp;tn=44039180_cpr&amp;fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1Yvm1TLPvn3PWw9mynLrj640ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnW0dnWc1nHn4PHfsnWT3Pj6zPs" target="_blank" rel="external">短信验证码</a>输入里面进行验证。</h4><p><img src="http://img.blog.csdn.net/20170424191016740?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>填入验证码就可以完美解决，我也试过用银行卡的方式，但是还是不行，最后尝试了银联这个就OK了。</p>
-<h2 id="三、补充"><a href="#三、补充" class="headerlink" title="三、补充"></a>三、补充</h2><p>对了，补充一下，可能安装后会发现虚拟机没办法占全屏，只要安装VMwave Tools既可以完美解决，至于卡顿问题，我笔记本是8G内存，我分了4G在虚拟机，相对来说比较不卡，也可以下载一个叫做beamoff的工具,在mac osx下解压即可消除卡顿的感觉。</p>
-<p>下载链接 :   <a href="http://download.csdn.net/detail/u013803262/9702291" target="_blank" rel="external">http://download.csdn<strong>.NET</strong>/detail/u013803262/9702291</a></p>
-<p>具体解决方法参考：<a href="http://blog.csdn.net/u013803262/article/details/53467693" target="_blank" rel="external">http://blog.csdn.net/u013803262/article/details/53467693</a></p>
-<p>好了，以上就是我装mac虚拟机所遇到的比较难缠的问题，分享给大家一下。</p>
+<p>event.preventDefault()<br>​    该方法将通知 Web 浏览器不要执行与事件关联的默认动作（如果存在这样的动作）。例如，如果 type 属性是 “submit”，在事件传播的任意阶段可以调用任意的事件句柄，通过调用该方法，可以阻止提交表单。注意，如果 Event 对象的 cancelable 属性是 fasle，那么就没有默认动作，或者不能阻止默认动作。无论哪种情况，调用该方法都没有作用。</p>
+<p>event.stopPropagation()<br>​    该方法将停止事件的冒泡，阻止它被分派到其他 Document 节点。在事件冒泡的任何阶段都可以调用它。注意，虽然该方法不能阻止同一个 Document 节点上的其他事件句柄被调用，但是它可以阻止把事件分派到其他节点。<br>event是DOM的事件方法，所以不是单独使用，比如指定DOM。</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>在<a href="http://lib.csdn.net/base/jquery" target="_blank" rel="external">jQuery</a>代码中，我们常见用return false来阻止浏览器的默认行为。例如点击链接，浏览器默认打开一个新窗口/标签，为了阻止浏览器的默认行为，我们往往这样操作：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"a.toggle"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  </div><div class="line">    $(<span class="string">"#mydiv"</span>).toggle();  </div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;  </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这段代码的作用是通过点击toggle来隐藏或显示#mydiv，并阻止浏览器继续访问href指定链接。<a href="http://lib.csdn.net/base/softwaretest" target="_blank" rel="external">测试</a>如下：</p>
+<p><a href="http://www.berlinix.com/js/jquery-return-false.php#" target="_blank" rel="external">click toggle</a></p>
+<p>点击上一行的toggle，这段文字将被显示或隐藏。</p>
+<h2 id="return-false的作用"><a href="#return-false的作用" class="headerlink" title="return false的作用"></a>return false的作用</h2><p>return false达到了我们想要的目的，但这并不是阻止浏览器执行默认行为的正确方法。调用return false，它实际完成了3件事：</p>
+<h4 id="1-event-preventDefault"><a href="#1-event-preventDefault" class="headerlink" title="1.event.preventDefault()"></a>1.event.preventDefault()</h4><h4 id="2-event-stopPropagation"><a href="#2-event-stopPropagation" class="headerlink" title="2.event.stopPropagation()"></a>2.event.stopPropagation()</h4><h4 id="3-停止回调函数执行并立即返回。"><a href="#3-停止回调函数执行并立即返回。" class="headerlink" title="3.停止回调函数执行并立即返回。"></a>3.停止回调函数执行并立即返回。</h4><p>我们真正的目的是event.preventDefault()，后两者可不是我们想要的。<a href="http://lib.csdn.net/base/javascript" target="_blank" rel="external">JavaScript</a>事件有两种，一种称为事件冒泡（event bubbling），一种称为事件捕捉（event capturing）。事件冒泡指事件在初始DOM上触发，通过DOM树往上在每一级父元素上触发；当事件向下冒泡时，我们则称之为事件捕获。</p>
+<h2 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h2><p>因为return false多做了两件事，由此为代码埋下隐患。下面有一个简单的例子，点击一个链接，加载新的页面内容到当前页面：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;div class="post"&gt;  </div><div class="line">    &lt;a href="/js/loadp1.txt"&gt;Click here to load page1&lt;/a&gt;  </div><div class="line">    &lt;div class="content"&gt;  </div><div class="line">    &lt;/div&gt;  </div><div class="line">&lt;/div&gt;  </div><div class="line">  </div><div class="line">&lt;div class="post"&gt;  </div><div class="line">    &lt;a href="/js/loadp2.txt"&gt;Click here to load page2&lt;/a&gt;  </div><div class="line">    &lt;div class="content"&gt;  </div><div class="line">    &lt;/div&gt;  </div><div class="line">&lt;/div&gt;  </div><div class="line">  </div><div class="line">$("div.post a").click(function() &#123;  </div><div class="line">    var href = $(this).attr("href");  </div><div class="line">    $(this).next().load(href);  </div><div class="line">    return false;  </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><a href="http://lib.csdn.net/base/softwaretest" target="_blank" rel="external">测试</a>如下：</p>
+<p><a href="http://www.berlinix.com/js/loadp1.txt" target="_blank" rel="external">Click here to load page1</a></p>
+<p><a href="http://www.berlinix.com/js/loadp2.txt" target="_blank" rel="external">Click here to load page2</a></p>
+<p>​    点击链接就能加载页面内容到当前页，一切都OK。现在我们想要加一个新功能，例如论坛帖子的浏览，只有当前点击的帖子内容才会显示，其他帖子都隐藏。为此我们需要为div.post加一个click()事件处理：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"div.post"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">    $(<span class="string">"div.post .content"</span>).hide();          <span class="comment">// hide all content  </span></div><div class="line">    $(<span class="keyword">this</span>).children(<span class="string">".content"</span>).show();    <span class="comment">// show this one  </span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>​    添加完这段代码后，我们发现它不生效，缘故是因为<code>$(&quot;div.post a&quot;).click(function() { return false; });</code>，由于return false执行了event.stopPropagation()，因此事件不能冒泡到上一级DOM，即<code>$(&quot;div.post&quot;).click()</code>不会被事件触发。要达成我们的任务，应该把return false替换为event.preventDefault()：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"div.post a"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;  </div><div class="line">    <span class="keyword">var</span> href = $(<span class="keyword">this</span>).attr(<span class="string">"href"</span>);  </div><div class="line">    $(<span class="keyword">this</span>).next().load(href);  </div><div class="line">    e.preventDefault();  </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>测试修改后的代码：</p>
+<p><a href="http://www.berlinix.com/js/loadp1.txt" target="_blank" rel="external">Click here to load page1</a></p>
+<p><a href="http://www.berlinix.com/js/loadp2.txt" target="_blank" rel="external">Click here to load page2</a></p>
+<h2 id="return-false-和-live-delegate"><a href="#return-false-和-live-delegate" class="headerlink" title="return false 和 live/delegate"></a>return false 和 live/delegate</h2><p>如果把<strong>return false和live/delegate</strong>事件混用，情况就更糟糕了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"a"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">    <span class="comment">// do something  </span></div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;  </div><div class="line">&#125;);  </div><div class="line">  </div><div class="line">$(<span class="string">"a"</span>).live(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">    <span class="comment">// this won't fire  </span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>如果确实需要阻止事件冒泡，也应该<strong>显式</strong>地调用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"div.post"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">    <span class="comment">// do something  </span></div><div class="line">&#125;);  </div><div class="line">$(<span class="string">"div.post a"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;  </div><div class="line">    <span class="comment">// 浏览器跳转到新页面（默认行为）  </span></div><div class="line">    <span class="comment">// 但阻止事件冒泡，即不会执行$("div.post").click()  </span></div><div class="line">    e.stopPropagation();  </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="event-stoplmmediatePropagetion"><a href="#event-stoplmmediatePropagetion" class="headerlink" title="event.stoplmmediatePropagetion()"></a>event.stoplmmediatePropagetion()</h2><p>​    event.stopPropagation()用于阻止事件冒泡，jQuery中还有另一个函数：event.stopImmediatePropagation()，它用于阻止一个事件的继续执行，即使当前对象上还绑定了其他处理函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"div a"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">    <span class="comment">// do something  </span></div><div class="line">&#125;);  </div><div class="line">  </div><div class="line">$(<span class="string">"div a"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;  </div><div class="line">    <span class="comment">// stop immediate propagation  </span></div><div class="line">    e.stopImmediatePropagation();  </div><div class="line">&#125;);  </div><div class="line">  </div><div class="line">$(<span class="string">"div a"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">    <span class="comment">// never fires  </span></div><div class="line">&#125;);  </div><div class="line">  </div><div class="line">$(<span class="string">"div a"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">    <span class="comment">// never fires  </span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​    最后结论是：理解return false，尽量避免使用它，请用event.preventDefault()替代return false。</p>
 
       
     </div>
@@ -709,11 +698,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/VMwave/" rel="tag"><i class="fa fa-tag"></i> VMwave</a>
+            <a href="/tags/jQuery/" rel="tag"><i class="fa fa-tag"></i> jQuery</a>
           
-            <a href="/tags/OS-X-10-11/" rel="tag"><i class="fa fa-tag"></i> OS X 10.11</a>
-          
-            <a href="/tags/虚拟机/" rel="tag"><i class="fa fa-tag"></i> 虚拟机</a>
+            <a href="/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
           
         </div>
       
@@ -726,8 +713,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/24/如何理解javascript中的闭包/" rel="next" title="如何理解javascript中的闭包">
-                <i class="fa fa-chevron-left"></i> 如何理解javascript中的闭包
+              <a href="/2017/01/23/hello-hexo/" rel="next" title="Hello Hexo">
+                <i class="fa fa-chevron-left"></i> Hello Hexo
               </a>
             
           </div>
@@ -735,6 +722,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/11/java读书笔记-常用类-编程小问题/" rel="prev" title="java读书笔记-常用类-编程小问题">
+                java读书笔记-常用类-编程小问题 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -951,7 +942,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、所遇到的问题"><span class="nav-number">2.</span> <span class="nav-text">二、所遇到的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-VMware上MAC虚拟机不能上网问题"><span class="nav-number">3.</span> <span class="nav-text">1)  VMware上MAC虚拟机不能上网问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法-步骤"><span class="nav-number">3.1.</span> <span class="nav-text">解决方法/步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。"><span class="nav-number">3.1.1.</span> <span class="nav-text">1.从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-选择属性，点击共享按钮。"><span class="nav-number">3.1.2.</span> <span class="nav-text">2.选择属性，点击共享按钮。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware-Network-Adapter-VMnet1。"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware Network Adapter VMnet1。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-在安装的虚拟机中选择虚拟机-gt-设置选项。"><span class="nav-number">3.1.4.</span> <span class="nav-text">4.在安装的虚拟机中选择虚拟机->设置选项。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。"><span class="nav-number">3.1.5.</span> <span class="nav-text">5.点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-进入Mac系统，选择设置，进入网络设置"><span class="nav-number">3.1.6.</span> <span class="nav-text">6.进入Mac系统，选择设置，进入网络设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-配置Ipv4选择设置DHCP，点击应用即可开始上网。"><span class="nav-number">3.1.7.</span> <span class="nav-text">7.配置Ipv4选择设置DHCP，点击应用即可开始上网。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-OS-X-10-11-El-Capitan-无法连接Apple-store-和登录Apple-ID的问题"><span class="nav-number">4.</span> <span class="nav-text">2)OS X 10.11 El Capitan 无法连接Apple store 和登录Apple ID的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-step-1"><span class="nav-number">4.0.1.</span> <span class="nav-text">1.step 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-step-2"><span class="nav-number">4.0.2.</span> <span class="nav-text">2. step 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-step-3"><span class="nav-number">4.0.3.</span> <span class="nav-text">3.step 3</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-苹果ID注册最后一步总是显示-如需帮助，请联系iTunes支持"><span class="nav-number">5.</span> <span class="nav-text">3)苹果ID注册最后一步总是显示 如需帮助，请联系iTunes支持</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-首先在iTunes软件上面注册Apple-ID帐号时，注意要把提供付款方式选择为“银联UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple-ID帐号。"><span class="nav-number">5.0.1.</span> <span class="nav-text">1.首先在iTunes软件上面注册Apple ID帐号时，注意要把提供付款方式选择为“银联UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple ID帐号。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-然后填写银行卡以及输入银行预留手机号码。-注意：手机号码一定是要和银行卡绑定在一起的才可以使用。"><span class="nav-number">5.0.2.</span> <span class="nav-text">2.然后填写银行卡以及输入银行预留手机号码。(注意：手机号码一定是要和银行卡绑定在一起的才可以使用。)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。"><span class="nav-number">5.0.3.</span> <span class="nav-text">3.接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-点击创建Apple-ID，进入下一步。"><span class="nav-number">5.0.4.</span> <span class="nav-text">4.点击创建Apple ID，进入下一步。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-然后收取绑定银行的短信验证码输入里面进行验证。"><span class="nav-number">5.0.5.</span> <span class="nav-text">5.然后收取绑定银行的短信验证码输入里面进行验证。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、补充"><span class="nav-number">6.</span> <span class="nav-text">三、补充</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">2.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#return-false的作用"><span class="nav-number">3.</span> <span class="nav-text">return false的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-event-preventDefault"><span class="nav-number">3.0.1.</span> <span class="nav-text">1.event.preventDefault()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-event-stopPropagation"><span class="nav-number">3.0.2.</span> <span class="nav-text">2.event.stopPropagation()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-停止回调函数执行并立即返回。"><span class="nav-number">3.0.3.</span> <span class="nav-text">3.停止回调函数执行并立即返回。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试-1"><span class="nav-number">4.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#return-false-和-live-delegate"><span class="nav-number">5.</span> <span class="nav-text">return false 和 live/delegate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#event-stoplmmediatePropagetion"><span class="nav-number">6.</span> <span class="nav-text">event.stoplmmediatePropagetion()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -1135,9 +1126,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://okcthouder.github.io/2017/07/24/10-11所遇到的各种问题集合-详细版/';
-          this.page.identifier = '2017/07/24/10-11所遇到的各种问题集合-详细版/';
-          this.page.title = 'VMwave Workstation12虚拟机安装OS X 10.11所遇到的各种问题集合(详细版)';
+          this.page.url = 'https://okcthouder.github.io/2017/05/14/别再乱用jQuery return false/';
+          this.page.identifier = '2017/05/14/别再乱用jQuery return false/';
+          this.page.title = '别再乱用jQuery return false';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
