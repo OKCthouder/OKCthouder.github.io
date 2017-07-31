@@ -765,7 +765,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  346
+                  302
                 </span>
               
 
@@ -781,7 +781,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  2
+                  1
                 </span>
               
             </div>
@@ -800,23 +800,14 @@
 
       
         
-          
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;最近在学习node.js，今天在写一个文件上传的功能，调用fs.rename上传文件时发生了程序报了错，具体如下：</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近在学习node.js，今天在写一个文件上传的功能，调用fs.rename上传文件时发生了程序报了错，具体如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Error</span>: EXDEV: cross-device link not permitted, rename <span class="string">'C:\Users\Simple_Y\AppData\Local\Temp\12920-ww17q9.vtx0mb1emi.jpg'</span> -&gt; <span class="string">'E:\杨宇杰_备份2\光盘资源\Node.js实战\code\8\photo_app\public\photos\281295.jpg'</span></div><div class="line">    at <span class="built_in">Error</span> (native)</div></pre></td></tr></table></figure>
-<p>大致意思应该是说不能跨盘符上传文件，涉及到权限问题。</p>
-<hr>
-<h1 id="问题代码"><a href="#问题代码" class="headerlink" title="问题代码"></a>问题代码</h1><p>下面贴出我的代码(部分)：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">exports.submit = <span class="function"><span class="keyword">function</span> (<span class="params">dir</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> img = req.files.photo.image;</div><div class="line">    <span class="keyword">var</span> name = req.body.photo.name || img.name;</div><div class="line">    <span class="keyword">var</span> path = join(dir, img.name);</div><div class="line"></div><div class="line">    <span class="comment">//fs.rename(img.path, path, function(err)&#123;</span></div><div class="line">      <span class="comment">//if (err) return next(err);</span></div></pre></td></tr></table></figure>
-<hr>
-<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>经过百度，终于找到了解决办法：</p>
-<p>将上面的注释掉的两行代码换成下面的代码</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">fs.readFile(img.path, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'File read!'</span>);</div><div class="line"></div><div class="line">            <span class="comment">// Write the file</span></div><div class="line">            fs.writeFile(path, data, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</div><div class="line">                <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</div><div class="line">                res.write(<span class="string">'File uploaded and moved!'</span>);</div><div class="line">                res.end();</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">'File written!'</span>);</div><div class="line">            &#125;);</div><div class="line"></div><div class="line">            <span class="comment">// Delete the file</span></div><div class="line">            fs.unlink(img.path, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</div><div class="line">                <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">'File deleted!'</span>);</div><div class="line">            &#125;);</div></pre></td></tr></table></figure>
-<h1 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h1><p>至此，运行程序，问题完美解决。</p>
-<p>感谢万能的百度！</p>
-<p>参考链接：<a href="https://stackoverflow.com/questions/37153666/error-exdev-cross-device-link-not-permitted-rename-tmp-on-ubuntu-16-04-lts" target="_blank" rel="external">https://stackoverflow.com/questions/37153666/error-exdev-cross-device-link-not-permitted-rename-tmp-on-ubuntu-16-04-lts</a></p>
-
-          
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近在学习node.js，今天在写一个文件上传的功能，调用fs.rename上传文件时程序报了错。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/31/如何解决node-js中fs-rename文件跨域问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
