@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[如何解决node.js中fs.rename文件跨域问题]]></title>
     <url>%2F2017%2F07%2F31%2F%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3node-js%E4%B8%ADfs-rename%E6%96%87%E4%BB%B6%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[前言&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近在学习node.js，今天在写一个文件上传的功能，调用fs.rename上传文件时程序报了错。 具体如下： 12Error: EXDEV: cross-device link not permitted, rename 'C:\Users\Simple_Y\AppData\Local\Temp\12920-ww17q9.vtx0mb1emi.jpg' -&gt; 'E:\杨宇杰_备份2\光盘资源\Node.js实战\code\8\photo_app\public\photos\281295.jpg' at Error (native) 大致意思应该是说不能跨盘符上传文件，涉及到权限问题。 问题代码下面贴出我的代码(部分)： 12345678exports.submit = function (dir) &#123; return function(req, res, next)&#123; var img = req.files.photo.image; var name = req.body.photo.name || img.name; var path = join(dir, img.name); //fs.rename(img.path, path, function(err)&#123; //if (err) return next(err); 解决办法经过百度，终于找到了解决办法： 将上面的注释掉的两行代码换成下面的代码 1234567891011121314151617fs.readFile(img.path, function (err, data) &#123; if (err) throw err; console.log('File read!'); // Write the file fs.writeFile(path, data, function (err) &#123; if (err) throw err; res.write('File uploaded and moved!'); res.end(); console.log('File written!'); &#125;); // Delete the file fs.unlink(img.path, function (err) &#123; if (err) throw err; console.log('File deleted!'); &#125;); 结尾至此，运行程序，问题完美解决。 感谢万能的百度！ 参考链接：https://stackoverflow.com/questions/37153666/error-exdev-cross-device-link-not-permitted-rename-tmp-on-ubuntu-16-04-lts]]></content>
+    <content type="text"><![CDATA[前言&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近在学习node.js，今天在写一个文件上传的功能，调用fs.rename上传文件时程序报了错。 具体如下： 123Error: EXDEV: cross-device link not permitted, rename 'C:\Users\Simple_Y\AppData\Local\Temp\12920-ww17q9.vtx0mb1emi.jpg' -&gt; 'E:\杨宇杰_备份2\光盘资源\Node.js实战\code\8\photo_app\public\photos\281295.jpg' at Error (native) 大致意思应该是说不能跨盘符上传文件，涉及到权限问题。 问题代码下面贴出我的代码(部分)： 12345678exports.submit = function (dir) &#123; return function(req, res, next)&#123; var img = req.files.photo.image; var name = req.body.photo.name || img.name; var path = join(dir, img.name); //fs.rename(img.path, path, function(err)&#123; //if (err) return next(err); 解决办法经过百度，终于找到了解决办法： 将上面的注释掉的两行代码换成下面的代码 1234567891011121314151617fs.readFile(img.path, function (err, data) &#123; if (err) throw err; console.log('File read!'); // Write the file fs.writeFile(path, data, function (err) &#123; if (err) throw err; res.write('File uploaded and moved!'); res.end(); console.log('File written!'); &#125;); // Delete the file fs.unlink(img.path, function (err) &#123; if (err) throw err; console.log('File deleted!'); &#125;); 结尾至此，运行程序，问题完美解决。 感谢万能的百度！ 参考链接：https://stackoverflow.com/questions/37153666/error-exdev-cross-device-link-not-permitted-rename-tmp-on-ubuntu-16-04-lts]]></content>
       <categories>
         <category>node.js</category>
       </categories>
@@ -47,8 +47,8 @@
         <category>node.js</category>
       </categories>
       <tags>
-        <tag>node.js</tag>
         <tag>Heroku</tag>
+        <tag>node.js</tag>
       </tags>
   </entry>
   <entry>
