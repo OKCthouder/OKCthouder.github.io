@@ -125,7 +125,7 @@
 <meta property="og:site_name" content="ISLAND">
 <meta property="og:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近在学习node.js，今天在写一个文件上传的功能，调用fs.rename上传文件时程序报了错。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-07-31T10:20:22.790Z">
+<meta property="og:updated_time" content="2017-07-31T10:22:27.709Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何解决node.js中fs.rename文件跨域问题">
 <meta name="twitter:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近在学习node.js，今天在写一个文件上传的功能，调用fs.rename上传文件时程序报了错。">
@@ -599,7 +599,7 @@
 
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近在学习node.js，今天在写一个文件上传的功能，调用fs.rename上传文件时程序报了错。 </p>
-   <a id="more"></a>
+ <a id="more"></a>
 <p>具体如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Error</span>: EXDEV: cross-device link not permitted, rename <span class="string">'C:\Users\Simple_Y\AppData\Local\Temp\12920-ww17q9.vtx0mb1emi.jpg'</span> -&gt;</div><div class="line">  <span class="string">'E:\杨宇杰_备份2\光盘资源\Node.js实战\code\8\photo_app\public\photos\281295.jpg'</span></div><div class="line">    at <span class="built_in">Error</span> (native)</div></pre></td></tr></table></figure>
 <p>大致意思应该是说不能跨盘符上传文件，涉及到权限问题。</p>
