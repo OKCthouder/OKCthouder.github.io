@@ -117,18 +117,18 @@
 
 
 
-<meta name="description" content="前言​    由于笔者之前用的是dev还有code block，没怎么用过VS2015这个软件，所以发现有些东西不太一样，在下面跟大家分享一下。 问题​    在处理文件输入的时候，我本来是想用fscanf函数，但是编译的时候老是说fscanf函数不安全，建议改成fscanf_s函数。但是fscanf_s函数我不会用，找了挺久的资料，终于知道解决方法了。 解决方法方法一：在程序最前面加#defin">
+<meta name="description" content="前言​    由于笔者之前用的是dev还有code block，没怎么用过VS2015这个软件，所以发现有些东西不太一样，在下面跟大家分享一下。">
 <meta name="keywords" content="Visual Studio,fscanf_s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于解决VS2015不能用fscanf而老是提示用fscanf_s的方法">
 <meta property="og:url" content="https://okcthouder.github.io/2016/12/17/关于解决VS2015不能用fscanf而老是提示用fscanf-s的方法/index.html">
 <meta property="og:site_name" content="ISLAND">
-<meta property="og:description" content="前言​    由于笔者之前用的是dev还有code block，没怎么用过VS2015这个软件，所以发现有些东西不太一样，在下面跟大家分享一下。 问题​    在处理文件输入的时候，我本来是想用fscanf函数，但是编译的时候老是说fscanf函数不安全，建议改成fscanf_s函数。但是fscanf_s函数我不会用，找了挺久的资料，终于知道解决方法了。 解决方法方法一：在程序最前面加#defin">
+<meta property="og:description" content="前言​    由于笔者之前用的是dev还有code block，没怎么用过VS2015这个软件，所以发现有些东西不太一样，在下面跟大家分享一下。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-02T07:24:52.849Z">
+<meta property="og:updated_time" content="2017-08-02T07:26:17.047Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于解决VS2015不能用fscanf而老是提示用fscanf_s的方法">
-<meta name="twitter:description" content="前言​    由于笔者之前用的是dev还有code block，没怎么用过VS2015这个软件，所以发现有些东西不太一样，在下面跟大家分享一下。 问题​    在处理文件输入的时候，我本来是想用fscanf函数，但是编译的时候老是说fscanf函数不安全，建议改成fscanf_s函数。但是fscanf_s函数我不会用，找了挺久的资料，终于知道解决方法了。 解决方法方法一：在程序最前面加#defin">
+<meta name="twitter:description" content="前言​    由于笔者之前用的是dev还有code block，没怎么用过VS2015这个软件，所以发现有些东西不太一样，在下面跟大家分享一下。">
 
 
 
@@ -599,6 +599,7 @@
 
       
         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>​    由于笔者之前用的是dev还有code block，没怎么用过VS2015这个软件，所以发现有些东西不太一样，在下面跟大家分享一下。</p>
+ <a id="more"></a>
 <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>​    在处理文件输入的时候，我本来是想用fscanf函数，但是编译的时候老是说fscanf函数不安全，建议改成fscanf_s函数。但是fscanf_s函数我不会用，找了挺久的资料，终于知道解决方法了。</p>
 <h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>方法一：在程序最前面加#define _CRT_SECURE_NO_DEPRECATE；</p>
 <p>方法二：在程序最前面加#define _CRT_SECURE_NO_WARNINGS；</p>
