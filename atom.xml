@@ -896,9 +896,9 @@
     <link href="https://okcthouder.github.io/2017/03/23/Linux%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%9B%BE%E8%A7%A3%E6%95%99%E7%A8%8B/"/>
     <id>https://okcthouder.github.io/2017/03/23/Linux双系统图解教程/</id>
     <published>2017-03-23T10:22:19.000Z</published>
-    <updated>2017-08-04T10:32:23.954Z</updated>
+    <updated>2017-08-04T10:34:37.382Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>如果图片加载不出来请在：<a href="http://blog.csdn.net/onlylove_kd/article/details/70544204进行查看。" target="_blank" rel="external">http://blog.csdn.net/onlylove_kd/article/details/70544204进行查看。</a></p>
+    <content type="html"><![CDATA[<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>如果图片加载不出来请在：<a href="http://blog.csdn.net/onlylove_kd/article/details/70544204" target="_blank" rel="external">http://blog.csdn.net/onlylove_kd/article/details/70544204</a>  进行查看。</p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><pre><code>按照本图解教程的方法可以完成Windows 10和Ubuntu Kylin双系统的安装。（有些图片是百度得来的）
 </code></pre> <a id="more"></a>
 <p>Windows 10和Ubuntu Kylin双系统引导成功图：</p>
@@ -981,7 +981,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;注意&quot;&gt;&lt;a href=&quot;#注意&quot; class=&quot;headerlink&quot; title=&quot;注意&quot;&gt;&lt;/a&gt;注意&lt;/h1&gt;&lt;p&gt;如果图片加载不出来请在：&lt;a href=&quot;http://blog.csdn.net/onlylove_kd/article/details/70544204进行查看。&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/onlylove_kd/article/details/70544204进行查看。&lt;/a&gt;&lt;/p&gt;
+      &lt;h1 id=&quot;注意&quot;&gt;&lt;a href=&quot;#注意&quot; class=&quot;headerlink&quot; title=&quot;注意&quot;&gt;&lt;/a&gt;注意&lt;/h1&gt;&lt;p&gt;如果图片加载不出来请在：&lt;a href=&quot;http://blog.csdn.net/onlylove_kd/article/details/70544204&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/onlylove_kd/article/details/70544204&lt;/a&gt;  进行查看。&lt;/p&gt;
 &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;按照本图解教程的方法可以完成Windows 10和Ubuntu Kylin双系统的安装。（有些图片是百度得来的）
 &lt;/code&gt;&lt;/pre&gt;
     
