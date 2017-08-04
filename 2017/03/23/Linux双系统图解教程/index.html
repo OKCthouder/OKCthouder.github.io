@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="U盘,windows10,Ubuntu,Linux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ISLAND" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="注意如果图片加载不出来请在：http://blog.csdn.net/onlylove_kd/article/details/70544204进行查看。 前言按照本图解教程的方法可以完成Windows 10和Ubuntu Kylin双系统的安装。（有些图片是百度得来的）">
+<meta name="keywords" content="U盘,windows10,Ubuntu,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="u盘安装windows 10与Ubuntu Linux双系统图解教程">
+<meta property="og:url" content="https://okcthouder.github.io/2017/03/23/Linux双系统图解教程/index.html">
+<meta property="og:site_name" content="ISLAND">
+<meta property="og:description" content="注意如果图片加载不出来请在：http://blog.csdn.net/onlylove_kd/article/details/70544204进行查看。 前言按照本图解教程的方法可以完成Windows 10和Ubuntu Kylin双系统的安装。（有些图片是百度得来的）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载.jpg">
+<meta property="og:image" content="http://img.blog.csdn.net/20170424185733237?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20170424185845859?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20170424185932850?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/671333-774209de6270a208.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载1.jpg">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载3.jpg">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载4.jpg">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载5.jpg">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载6.jpg">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载7.jpg">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载8.jpg">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载9.jpg">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载10.jpg">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载11.jpg">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/2-150P41142422X.jpg">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载12.jpg">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载13.jpg">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载14.jpg">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载15.jpg">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载16.jpg">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载17.jpg">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载18.jpg">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载19.jpg">
+<meta property="og:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/671333-c221037a9a4731f5.png">
+<meta property="og:updated_time" content="2017-08-04T10:30:25.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="u盘安装windows 10与Ubuntu Linux双系统图解教程">
+<meta name="twitter:description" content="注意如果图片加载不出来请在：http://blog.csdn.net/onlylove_kd/article/details/70544204进行查看。 前言按照本图解教程的方法可以完成Windows 10和Ubuntu Kylin双系统的安装。（有些图片是百度得来的）">
+<meta name="twitter:image" content="c:/Users/Simple_Y/Pictures/Camera%20Roll/下载.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://okcthouder.github.io/2017/03/23/Linux双系统图解教程/"/>
+
+
+
+
+
+  <title>u盘安装windows 10与Ubuntu Linux双系统图解教程 | ISLAND</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+<a href="https://github.com/OKCthouder"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ISLAND</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个人的孤岛。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+ <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "http://o9w8f1xrl.bkt.clouddn.com/highqilai/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "http://o9w8f1xrl.bkt.clouddn.com/highqilai/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()    '>High一下</a> </li>
+
+      
+     
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://okcthouder.github.io/2017/03/23/Linux双系统图解教程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yujie Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://assets-cdn.github.com/pinned-octocat.svg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ISLAND">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">u盘安装windows 10与Ubuntu Linux双系统图解教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-23T18:22:19+08:00">
+                2017-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/装系统/" itemprop="url" rel="index">
+                    <span itemprop="name">装系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/23/Linux双系统图解教程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/03/23/Linux双系统图解教程/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/23/Linux双系统图解教程/" class="leancloud_visitors" data-flag-title="u盘安装windows 10与Ubuntu Linux双系统图解教程">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+               <span>°C</span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2,012
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>如果图片加载不出来请在：<a href="http://blog.csdn.net/onlylove_kd/article/details/70544204进行查看。" target="_blank" rel="external">http://blog.csdn.net/onlylove_kd/article/details/70544204进行查看。</a></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><pre><code>按照本图解教程的方法可以完成Windows 10和Ubuntu Kylin双系统的安装。（有些图片是百度得来的）
+</code></pre> <a id="more"></a>
+<p>Windows 10和Ubuntu Kylin双系统引导成功图：</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\下载.jpg" alt="下载"></p>
+<h3 id="1-安装环境"><a href="#1-安装环境" class="headerlink" title="1.安装环境"></a>1.安装环境</h3><pre><code>Windows 10系统
+</code></pre><h3 id="2-安装-ubuntu-首先需要准备以下工具以及安装包："><a href="#2-安装-ubuntu-首先需要准备以下工具以及安装包：" class="headerlink" title="2.安装 ubuntu 首先需要准备以下工具以及安装包："></a>2.安装 ubuntu 首先需要准备以下工具以及安装包：</h3><h4 id="1、ubuntu-系统安装包"><a href="#1、ubuntu-系统安装包" class="headerlink" title="1、ubuntu 系统安装包"></a>1、ubuntu 系统安装包</h4><p>​       <a href="https://mirrors.tuna.tsinghua.edu.cn/#" target="_blank" rel="external">https://mirrors.tuna.tsinghua.edu.cn/#</a>（这个是清华的镜像站点，里面有各种镜像，下载速度也很可观）</p>
+<h4 id="2、刻录软件，推荐软碟通，会提示注册，选择继续使用"><a href="#2、刻录软件，推荐软碟通，会提示注册，选择继续使用" class="headerlink" title="2、刻录软件，推荐软碟通，会提示注册，选择继续使用"></a>2、刻录软件，推荐<strong><a href="">软碟通</a></strong>，会提示注册，选择继续使用</h4><p>​       下载：在百度搜一大把</p>
+<h4 id="3、一个大于-2G-的-U-盘"><a href="#3、一个大于-2G-的-U-盘" class="headerlink" title="3、一个大于 2G 的 U 盘"></a>3、一个大于 2G 的 U 盘</h4><h4 id="4、EasyBCD-软件，此软件是同来作为系统引导所用"><a href="#4、EasyBCD-软件，此软件是同来作为系统引导所用" class="headerlink" title="4、EasyBCD 软件，此软件是同来作为系统引导所用"></a>4、EasyBCD 软件，此软件是同来作为系统引导所用</h4><p>​       下载地址：<a href="http://dl.pconline.com.cn/download/90611.html" target="_blank" rel="external">http://dl.pconline.com.cn/download/90611.html</a></p>
+<h3 id="3-准备安装"><a href="#3-准备安装" class="headerlink" title="3.准备安装"></a>3.准备安装</h3><p>1、回到桌面，鼠标右键点击开始菜单图标，选择属性，结果如下</p>
+<p><img src="http://img.blog.csdn.net/20170424185733237?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p> 2、进入然后选择<a href="">磁盘管理</a>，结果如下：</p>
+<p><img src="http://img.blog.csdn.net/20170424185845859?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>3、选择你认为剩余磁盘空间够大的磁盘，比如 D 盘，右键点击磁盘，选择压缩卷，结果如下：</p>
+<p><img src="http://img.blog.csdn.net/20170424185932850?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>4、然后就是分区的大小了，个人建议分个 50G 出去最好，然后等待，最终结果如下：压 缩后会发现多出一块未分区磁盘（黑色分区），如果选择的压缩大小是 50G， 则黑色的的应该是 50G 可用空间。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/671333-774209de6270a208.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>好了，<a href="">磁盘分区</a>到此结束，现在进行第四步。</p>
+<h3 id="4-用软碟通将-UBUNTU-的镜像写入-U-盘"><a href="#4-用软碟通将-UBUNTU-的镜像写入-U-盘" class="headerlink" title="4.用软碟通将 UBUNTU 的镜像写入 U 盘"></a>4.用软碟通将 UBUNTU 的镜像写入 U 盘</h3><p>1、安装并打开软碟通，插上 U 盘，并且最好<a href="">备份</a>你的 U 盘，因为之后需要<a href="">格式化</a></p>
+<p>2、进入软碟通，进行如下操作 选择文件，并且打开你下载的 UBUNTU 所在的目录，选择 unbuntu 镜像（改成选择Ubuntu Kylin 镜像即可），选择打开，如图：</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\下载1.jpg" alt="下载1"></p>
+<p>3、在<a href="">软碟通</a>界面菜单栏选择启动，选择写入硬盘映像，如图所示</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\下载3.jpg" alt="下载3"></p>
+<p>接下来很重要，记住次序：</p>
+<p>进入以后界面如下：</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\下载4.jpg" alt="下载4"></p>
+<p>1、看你的硬盘驱动器是否对应的是你的 U 盘（必须是） ，一般默认是</p>
+<p>2、看<a href="">映像文件</a>是否对应你的 ubuntu 镜像</p>
+<p>3、如果上述均没有错误，选择格式化，之后就会格式化你的 U 盘</p>
+<p>4、在 U 盘<a href="">格式化</a>完毕之后，选择写入，之后就是慢慢等待了，等待写入完毕</p>
+<h3 id="5-U-盘安装系统（记得关闭电脑的快速启动）"><a href="#5-U-盘安装系统（记得关闭电脑的快速启动）" class="headerlink" title="5.U 盘安装系统（记得关闭电脑的快速启动）"></a>5.U 盘安装系统（记得关闭电脑的快速启动）</h3><pre><code>写在前面，因为个厂商的计算机 BOOT 启动的快捷键不相同，所以 个人觉得要是你无法进入接下来的 BOOT 界面，还是自行百度如何 进入 BOOT 界面，本人华硕笔记本，所以默认快捷键是 F2。 第 6 步非常关键，如果你不想重装系统，你一定要小心
+</code></pre><p>1、重启系统，在开机刚开始按 F2，之后里面会有如下界面，手机 渣渣，多多包涵，选择 USB HDD，回车确认</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\下载5.jpg" alt="下载5"></p>
+<p>2、之后就进入 unbuntu 的安装界面了</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\下载6.jpg" alt="下载6"></p>
+<p>3、或许没有这个界面，但是下面的界面是一定有的</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\下载7.jpg" alt="下载7"></p>
+<p>4、然后选择左边的，往下拉会有中文选择，如图</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\下载8.jpg" alt="下载8"></p>
+<p>5、安装 <strong>unbuntu</strong></p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\下载9.jpg" alt="下载9"></p>
+<p>6、选择继续（注意，接下来这一步非常重要，一定小心），得到如下所视界面，如图</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\下载10.jpg" alt="下载10"></p>
+<p>这一步很关键，一定要选择其他选项，切记，然后进入如下界面</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\下载11.jpg" alt="下载11"></p>
+<p>看到没有，里面会有一个空闲分区，也就是我们之前所创建的那个分区</p>
+<p>在这里，我们谈谈关于 <a href="http://lib.csdn.net/base/linux" target="_blank" rel="external">Linux</a> 的分区：<br>a.首先 Linux 分区适合 WINDOWS 分区是不一样的， Linux 是以文 件形式作为分区</p>
+<p>b.所以分区就像划分磁盘大小一样， 在这里我个人建议如果你的 划分的空盘分区为 60G，则我们可以将其分为 :</p>
+<p>1)、/:这是 linux 也就是 ubuntu 的根目录就一个反斜杠表示， 我们将其分为 25G，文件格式为 ext4</p>
+<p>2）、 /home:这是 ubuntu 根目录下的一个文件夹， 这个也可以说 是我们的个人目录，所以为了让我们自己的目录大一点，我们可 以将其分为 30G 或者 20G，文件格式为 ext4</p>
+<p>3）、swap:这个是 Linux 也就是 ubuntu 的交换区目录，这个一 般的大小为内存的 2 倍左右， 主要是用来在电脑内存不足的情况 下，系统会调用这片区域，来运行程序，我们可以将其分为 4G， 这个没有让你选用文件格式</p>
+<p>4）、/boot：这个就是实现你双系统的原因了，这个就是用启动 ubuntu 的目录，里面会有系统的引导，这个文件其实只有几十 兆，但是我们建议将其划分为 200M 文件格式为 ext4，这个分区必不可少，否则后果你懂得！ 好了，这部分分区讲诉完毕，下面就让我们来进行期待已久的分区吧。当然，你可以划分的更详细，具体划分可以百度。<br>7、分区 选择空闲分区之后，点击添加，会得到如图界面：</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\2-150P41142422X.jpg" alt="2-150P41142422X"></p>
+<p>A.首先就是创建根目录，上面提到过，大小 25G 左右，用于 EXT4 文件系统，挂载点有下拉菜单，选择/就好，然后确定，继续选择空闲分区，别看错了，然后添加</p>
+<p>B.然后就是交换区的创建，步骤如上，区别是大小为 4G，用于那个下拉菜单选择交换空间，即 SWAP，然后确定</p>
+<p>C./BOOT 的创建，大小 200M，文件系统为 EXT4，挂载点选择/boot，点击确定</p>
+<p>D、/HOME 的创建，大小 30G，文件系统 40G，挂载点/HOME,点击确定 到此分区完成 接下来的这一步很重要，切记（关系到 ubuntu 的开机启动） 依然在这个界面上，选择安装启动下拉菜单，我们刚刚不是创建了/boot 的文件 吗，现在你看看这个区前面的编号是多少，我的是下面这个 /dev/sda1,不同的机 子在在这个上面会有不同的编号，也就是 sda1</p>
+<p>然后在安装启动的下拉菜单中找到 sda1，选择它，切记一定是/boot 的编号 如下图</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\下载12.jpg" alt="下载12"></p>
+<p>接下来就选择开始安装了；<br>8、选择继续，进入下一步操作，并设置地区为：chongqing，按你需要设置，在下一步操作中选择语言</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\下载13.jpg" alt="下载13"></p>
+<p>9、键盘布局“默认”，建议选择下面的这个</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\下载14.jpg" alt="下载14"></p>
+<p>10、这里设置系统用户，自己设置输入就可以了</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\下载15.jpg" alt="下载15"></p>
+<p>11、这个可选可不选，点“继续”</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\下载16.jpg" alt="下载16"></p>
+<p>12． 系统开始安装，可以喝杯咖啡，等安装完毕就可以了（这里应该是欢迎使用Ubuntu Kylin）</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\下载17.jpg" alt="下载17"></p>
+<p>当这些全部完成之后，机子会重启。你会发现直接进入你的 win10 系统，因为我们把它的引 导搞到/boot 分区了。我们要用 EasyBCD 来给它创建启动时候的选择系统是 windows 还是 ubuntu 。</p>
+<h3 id="6-用-EasyBCD-引导-ubuntu"><a href="#6-用-EasyBCD-引导-ubuntu" class="headerlink" title="6.用 EasyBCD 引导 ubuntu"></a>6.用 EasyBCD 引导 ubuntu</h3><p>接下来就很简单了，在 WIN10 下安装 EasyBCD,之后呢打开如图并且选择添加新条目：</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\下载18.jpg" alt="下载18"></p>
+<p>得到如图，选择有企鹅那个，也就是 LINUX/BSD 那个选项，在磁盘驱动器那个下拉菜单选 择以 linux 开头，大小为 200M 左右的那个选项，如图</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\下载19.jpg" alt="下载19"></p>
+<p>选择完了之后，添加条目，重启电脑，你就会发现你的 UBUNTU 和 WIN10的<a href="">双系统</a>就安装完成了。到此，ubuntu 安装结束！ 当你不要 ubuntu 的时候，直接在 window 里<a href="">磁盘管理</a>删了它所在的分区，然后在 Easybcd 里 删了它的引导就行，不影响你的 windows 系统，这就是为啥我不用 ubuntu 来引导 windows 的原因。</p>
+<p>然后就可以尽情享受双系统的乐趣了哈哈哈。</p>
+<p><img src="C:\Users\Simple_Y\Pictures\Camera Roll\671333-c221037a9a4731f5.png" alt="671333-c221037a9a4731f5"></p>
+<center> Ubuntu Kylin桌面</center>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://wx1.sinaimg.cn/mw1024/b033f7d0gy1fhtulvvmmcj20px0zk40h.jpg" alt="Yujie Yang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+            -------------本文结束
+            <i class="fa fa-paw"></i>
+            感谢您的阅读-------------
+        </div>
+    
+</div>
+  
+</div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/U盘/" rel="tag"><i class="fa fa-tag"></i> U盘</a>
+          
+            <a href="/tags/windows10/" rel="tag"><i class="fa fa-tag"></i> windows10</a>
+          
+            <a href="/tags/Ubuntu/" rel="tag"><i class="fa fa-tag"></i> Ubuntu</a>
+          
+            <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/23/hello-hexo/" rel="next" title="Hello Hexo">
+                <i class="fa fa-chevron-left"></i> Hello Hexo
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/22/javascript冒泡事件的作用效果/" rel="prev" title="javascript冒泡事件的作用效果">
+                javascript冒泡事件的作用效果 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://assets-cdn.github.com/pinned-octocat.svg"
+               alt="Yujie Yang" />
+          <p class="site-author-name" itemprop="name">Yujie Yang</p>
+           
+              <p class="site-description motion-element" itemprop="description">杨宇杰的个人博客。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/OKCthouder" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2956195792/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Yujie_Yang666" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/onlylove_kd" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-codiepie"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://okcthouder.github.io/author" target="_blank" title="Author">
+                  
+                    <i class="fa fa-fw fa-user-circle-o"></i>
+                  
+                  Author
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://lindexi.github.io/lindexi/" title="林德熙" target="_blank">林德熙</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.williamlong.info/" title="月光博客" target="_blank">月光博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.phodal.com/" title="phodal" target="_blank">phodal</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#注意"><span class="nav-number">1.</span> <span class="nav-text">注意</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.0.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装环境"><span class="nav-number">1.0.2.</span> <span class="nav-text">1.安装环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装-ubuntu-首先需要准备以下工具以及安装包："><span class="nav-number">1.0.3.</span> <span class="nav-text">2.安装 ubuntu 首先需要准备以下工具以及安装包：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、ubuntu-系统安装包"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">1、ubuntu 系统安装包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、刻录软件，推荐软碟通，会提示注册，选择继续使用"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">2、刻录软件，推荐软碟通，会提示注册，选择继续使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、一个大于-2G-的-U-盘"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">3、一个大于 2G 的 U 盘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、EasyBCD-软件，此软件是同来作为系统引导所用"><span class="nav-number">1.0.3.4.</span> <span class="nav-text">4、EasyBCD 软件，此软件是同来作为系统引导所用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-准备安装"><span class="nav-number">1.0.4.</span> <span class="nav-text">3.准备安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-用软碟通将-UBUNTU-的镜像写入-U-盘"><span class="nav-number">1.0.5.</span> <span class="nav-text">4.用软碟通将 UBUNTU 的镜像写入 U 盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-U-盘安装系统（记得关闭电脑的快速启动）"><span class="nav-number">1.0.6.</span> <span class="nav-text">5.U 盘安装系统（记得关闭电脑的快速启动）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-用-EasyBCD-引导-ubuntu"><span class="nav-number">1.0.7.</span> <span class="nav-text">6.用 EasyBCD 引导 ubuntu</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yujie Yang</span>
+</div>
+
+<!--
+<div class="powered-by">
+</div>
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>-->
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  <!-- 本站访客数:<span id="busuanzi_value_site_uv"></span> -->
+</span>
+
+<!--<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>-->
+
+
+<div class="theme-info">
+
+  <span class="post-count">博客全站共 18.5k 字</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://okcthouder.github.io/2017/03/23/Linux双系统图解教程/';
+          this.page.identifier = '2017/03/23/Linux双系统图解教程/';
+          this.page.title = 'u盘安装windows 10与Ubuntu Linux双系统图解教程';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("mxE2nxgNcrdnISwHSqQRvPUv-gzGzoHsz", "aLmsGWRpuLloK2BGcaIJroEQ");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("mxE2nxgNcrdnISwHSqQRvPUv-gzGzoHsz", "aLmsGWRpuLloK2BGcaIJroEQ");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+   
+  
+<script type="text/javascript"
+color="0,0,255" opacity='0.4' zIndex="-2" count="50" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
