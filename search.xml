@@ -177,8 +177,8 @@
         <category>jQuery</category>
       </categories>
       <tags>
-        <tag>jQuery</tag>
         <tag>javascript</tag>
+        <tag>jQuery</tag>
       </tags>
   </entry>
   <entry>
@@ -190,8 +190,8 @@
         <category>jQuery</category>
       </categories>
       <tags>
-        <tag>jQuery</tag>
         <tag>javascript</tag>
+        <tag>jQuery</tag>
         <tag>读书笔记</tag>
       </tags>
   </entry>
@@ -243,6 +243,18 @@
       <tags>
         <tag>Visual Studio</tag>
         <tag>fscanf_s</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[C语言实现链表的基本操作]]></title>
+    <url>%2F2016%2F03%2F22%2FC%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[前言本文是用C语言实现的关于链表的增删查改等基本操作。 编译环境dev c++ 下面贴出代码： 代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192193194195196197198199200#include &lt;stdio.h&gt; #include &lt;stdlib.h&gt; typedef struct Node &#123; int data; struct Node *next; &#125;Node, *ptr_Node; typedef enum Status &#123; SUCCESS, ERROR &#125;Status; const int MAXN = 1e5+7; const int totalPerLine = 8; int totalNode; ptr_Node create(int *arr, int n); void destroy(ptr_Node head); Status _insert(ptr_Node *head, ptr_Node node, int index); Status _delete(ptr_Node *head, int index, int *data); int search(ptr_Node head, int data); Status edit(ptr_Node head, int index, int *data); void print(ptr_Node head); Status sort(ptr_Node *head); int main() &#123; int i, n; int data[MAXN]; printf("please input n:\n"); scanf("%d", &amp;n); printf("please input %d numbers:\n",n); for(i = 0; i &lt; n; ++i) scanf("%d", &amp;data[i]);//初始化数组； totalNode = n; ptr_Node head = create(data, n);//将数组的内容输入到链表中； printf("Now the List is:\n"); print(head);//输出链表的内容； Node* node = (Node*)calloc(1, sizeof(Node*));//初始化要插入的结点； node-&gt;data = 122344; node-&gt;next = NULL; printf("insert node to 2\n"); _insert(&amp;head, node, 2);//将node插入到第2位之后； print(head);//输出插入后的结果； int k = 0; printf("delete a number:\n"); _delete(&amp;head, 2, &amp;k);//删除第2个数字的后一位； print(head); printf("the delete number is:\n"); printf("%d\n", k);//输出删除后的结果 ； k = search(head, 122344);//在链表中寻找122344； printf("%d\n", k); k = search(head, 12); printf("%d\n", k); printf("edit the (index+1) number:\n"); edit(head, 2, &amp;k); print(head); printf("%d\n", k); printf("the sort numbers are:\n"); sort(&amp;head); print(head); destroy(head); return 0; &#125; ptr_Node create(int *arr, int n) &#123; Node *head = (Node*)calloc(1, sizeof(Node)); if(head == NULL) return NULL; int cur = 0; head-&gt;data = arr[cur++]; Node *curNode = head; while(cur &lt; n)&#123; Node* temp = (Node*)calloc(1, sizeof(Node)); if(temp == NULL) &#123; destroy(head); return NULL; &#125; temp-&gt;data = arr[cur++]; curNode-&gt;next = temp; curNode = temp; &#125; return head; &#125; void destroy(ptr_Node head) &#123; Node *curNode = head; while(curNode != NULL) &#123; Node *temp = curNode-&gt;next; free(curNode); curNode = temp; &#125; &#125; Status _insert(ptr_Node *head, ptr_Node node, int index) &#123; int cur = 1; ptr_Node curNode = *head; while(cur &lt; index) &#123; curNode = curNode-&gt;next; ++cur; &#125; Node* rest = curNode-&gt;next; curNode-&gt;next = node; node-&gt;next = rest; ++totalNode; return SUCCESS; &#125; Status _delete(ptr_Node *head, int index, int *data) &#123; if(index == totalNode) return ERROR; int cur = 1; ptr_Node curNode = *head; while(cur &lt; index) &#123; curNode = curNode-&gt;next; ++cur; &#125; Node *rest = curNode-&gt;next-&gt;next; Node *temp = curNode-&gt;next; curNode-&gt;next = rest; *data = temp-&gt;data; free(temp); --totalNode; return SUCCESS; &#125; int search(ptr_Node head, int data) &#123; int cur = 0; ptr_Node curNode = head; while(curNode-&gt;data != data) &#123; curNode = curNode-&gt;next; if(curNode == NULL) return -1; ++cur; &#125; return cur; &#125; Status edit(ptr_Node head, int index, int *data) &#123; if(index == totalNode) return ERROR; int cur = 0; ptr_Node curNode = head; while(cur &lt; index) &#123; curNode = curNode-&gt;next; ++cur; &#125; printf("%d\n", *data); int temp = curNode-&gt;data; curNode-&gt;data = *data; *data = temp; return SUCCESS; &#125; void print(ptr_Node head) &#123; int curPerLine = 0; ptr_Node curNode = head; while(curNode != NULL) &#123; if(curPerLine == totalPerLine) &#123; puts(""); curPerLine = 0; &#125; printf("%d ", curNode-&gt;data); ++curPerLine; curNode = curNode-&gt;next; &#125; puts(""); &#125; Status sort(ptr_Node *head) &#123; ptr_Node curNodeA = *head; while(curNodeA != NULL) &#123; ptr_Node curNodeB = curNodeA; ptr_Node temp = curNodeA; while(curNodeB != NULL) &#123; if(temp-&gt;data &gt; curNodeB-&gt;data) temp = curNodeB; curNodeB = curNodeB-&gt;next; &#125; int tempData = curNodeA-&gt;data; curNodeA-&gt;data = temp-&gt;data; temp-&gt;data = tempData; curNodeA = curNodeA-&gt;next; &#125; return SUCCESS; &#125; 总结这是第一次做这么长的东西，感觉有点凌乱，有时候找bug找到想哭，不过在这个过程中收获了特别多。]]></content>
+      <categories>
+        <category>C</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>linklist</tag>
       </tags>
   </entry>
 </search>
