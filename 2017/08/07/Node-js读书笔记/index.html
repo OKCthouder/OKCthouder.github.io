@@ -125,7 +125,7 @@
 <meta property="og:site_name" content="ISLAND">
 <meta property="og:description" content="一些NPM常用命令 NPM提供了很多命令，例如install和publish，使用npm help可查看所有命令。 使用npm help &amp;lt;command&amp;gt;可查看某条命令的详细帮助，例如npm help install。 在package.json所在目录下使用npm install . -g可先在本地安装当前命令行程序，可用于发布前的本地测试。 使用npm update &amp;lt;pa">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-07T10:46:32.660Z">
+<meta property="og:updated_time" content="2017-08-07T10:49:25.512Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node.js读书笔记">
 <meta name="twitter:description" content="一些NPM常用命令 NPM提供了很多命令，例如install和publish，使用npm help可查看所有命令。 使用npm help &amp;lt;command&amp;gt;可查看某条命令的详细帮助，例如npm help install。 在package.json所在目录下使用npm install . -g可先在本地安装当前命令行程序，可用于发布前的本地测试。 使用npm update &amp;lt;pa">
@@ -605,7 +605,9 @@
 <li>使用<code>npm update &lt;package&gt;</code>可以把当前目录下<code>node_modules</code>子目录里边的对应模块更新至最新版本。</li>
 <li>使用<code>npm update &lt;package&gt; -g</code>可以把全局安装的对应命令行程序更新至最新版。</li>
 <li>使用<code>npm cache clear</code>可以清空NPM本地缓存，用于对付使用相同版本号发布新版本代码的人。</li>
-<li>使用<code>npm unpublish &lt;package&gt;@&lt;version&gt;</code>可以撤销发布自己发布过的某个版本代码。</li>
+<li><p>使用<code>npm unpublish &lt;package&gt;@&lt;version&gt;</code>可以撤销发布自己发布过的某个版本代码。</p>
+<a id="more"></a>
+</li>
 </ul>
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><h3 id="小文件拷贝"><a href="#小文件拷贝" class="headerlink" title="小文件拷贝"></a>小文件拷贝</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">copy</span>(<span class="params">src, dst</span>) </span>&#123;</div><div class="line">    fs.writeFileSync(dst, fs.readFileSync(src));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params">argv</span>) </span>&#123;</div><div class="line">    copy(argv[<span class="number">0</span>], argv[<span class="number">1</span>]);</div><div class="line">&#125;</div><div class="line"></div><div class="line">main(process.argv.slice(<span class="number">2</span>));</div></pre></td></tr></table></figure>
 <hr>
