@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Node.js读书笔记]]></title>
+    <url>%2F2017%2F08%2F07%2FNode-js%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[一些NPM常用命令 NPM提供了很多命令，例如install和publish，使用npm help可查看所有命令。 使用npm help &lt;command&gt;可查看某条命令的详细帮助，例如npm help install。 在package.json所在目录下使用npm install . -g可先在本地安装当前命令行程序，可用于发布前的本地测试。 使用npm update &lt;package&gt;可以把当前目录下node_modules子目录里边的对应模块更新至最新版本。 使用npm update &lt;package&gt; -g可以把全局安装的对应命令行程序更新至最新版。 使用npm cache clear可以清空NPM本地缓存，用于对付使用相同版本号发布新版本代码的人。 使用npm unpublish &lt;package&gt;@&lt;version&gt;可以撤销发布自己发布过的某个版本代码。 文件操作小文件拷贝1234567891011var fs = require('fs');function copy(src, dst) &#123; fs.writeFileSync(dst, fs.readFileSync(src));&#125;function main(argv) &#123; copy(argv[0], argv[1]);&#125;main(process.argv.slice(2)); 豆知识： process是一个全局变量，可通过process.argv获得命令行参数。由于argv[0]固定等于NodeJS执行程序的绝对路径，argv[1]固定等于主模块的绝对路径，因此第一个命令行参数从argv[2]这个位置开始。 大文件拷贝1234567891011var fs = require('fs');function copy(src, dst) &#123; fs.createReadStream(src).pipe(fs.createWriteStream(dst));&#125;function main(argv) &#123; copy(argv[0], argv[1]);&#125;main(process.argv.slice(2)); 防止数据流内部的缓存爆仓12345678910111213141516var rs = fs.createReadStream(src);var ws = fs.createWriteStream(dst);rs.on('data', function (chunk) &#123; if (ws.write(chunk) === false) &#123; rs.pause(); &#125;&#125;);rs.on('end', function () &#123; ws.end();&#125;);ws.on('drain', function () &#123; rs.resume();&#125;); 如果写入速度跟不上读取速度的话，只写数据流内部的缓存会爆仓。我们可以根据.write方法的返回值来判断传入的数据是写入目标了，还是临时放在了缓存了，并根据drain事件来判断什么时候只写数据流已经将缓存中的数据写入目标，可以传入下一个待写数据了。 遍历文件目录同步遍历1234567891011efunction travel(dir, callback) &#123; fs.readdirSync(dir).forEach(function (file) &#123; var pathname = path.join(dir, file); if (fs.statSync(pathname).isDirectory()) &#123; travel(pathname, callback); &#125; else &#123; callback(pathname); &#125; &#125;);&#125; 异步遍历1234567891011121314151617181920212223function travel(dir, callback, finish) &#123; fs.readdir(dir, function (err, files) &#123; (function next(i) &#123; if (i &lt; files.length) &#123; var pathname = path.join(dir, files[i]); fs.stat(pathname, function (err, stats) &#123; if (stats.isDirectory()) &#123; travel(pathname, callback, function () &#123; next(i + 1); &#125;); &#125; else &#123; callback(pathname, function () &#123; next(i + 1); &#125;); &#125; &#125;); &#125; else &#123; finish &amp;&amp; finish(); &#125; &#125;(0)); &#125;);&#125;]]></content>
+      <categories>
+        <category>node.js</category>
+      </categories>
+      <tags>
+        <tag>读书笔记</tag>
+        <tag>node.js</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[node.js 循环的陷阱]]></title>
     <url>%2F2017%2F08%2F03%2F%E5%BE%AA%E7%8E%AF%E7%9A%84%E9%99%B7%E9%98%B1%2F</url>
     <content type="text"><![CDATA[前言&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Node.js 的异步机制由事件和回调函数实现，一开始接触可能会感觉违反常规，但习惯以后就会发现还是很简单的。然而这之中其实暗藏了不少陷阱，一个很容易遇到的问题就是循环中的回调函数，初学者经常容易陷入这个圈套。 例1让我们从一个例子开始说明这个问题。//forloop.js 123456789var fs = require('fs'); var files = ['a.txt', 'b.txt', 'c.txt']; for (var i = 0; i &lt; files.length; i++) &#123; fs.readFile(files[i], 'utf-8', function(err, contents) &#123; console.log(files[i] + ': ' + contents); &#125;); &#125; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这段代码的功能很直观，就是依次读取文件 a.txt、b.txt、c.txt，并输出文件名和内容。假设这三个文件的内容分别是 AAA、BBB 和 CCC，那么我们期望的输出结果就是： 12345a.txt: AAA b.txt: BBB c.txt: CCC 可是我们运行这段代码的结果是怎样的呢？竟然是这样的结果： 12345undefined: AAA undefined: BBB undefined: CCC &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个结果说明文件内容正确输出了，而文件名却不对，也就意味着， contents 的结果是正确的，但 files[i] 的值是 undefined 。这怎么可能呢，文件名不正确却能读取文件内容？ 例2既然难以直观地理解，我们就把 files[i] 分解并打印出来看看，在读取文件的回调函数中分别输出 files 、 i 和 files[i] 。 123456789101112//forloopi.js var fs = require('fs'); var files = ['a.txt', 'b.txt', 'c.txt']; for (var i = 0; i &lt; files.length; i++) &#123; fs.readFile(files[i], 'utf-8', function(err, contents) &#123; console.log(files); console.log(i); console.log(files[i]); &#125;); &#125; 运行修改后的代码，结果如下： 123456789[ 'a.txt', 'b.txt', 'c.txt' ] 3 undefined [ 'a.txt', 'b.txt', 'c.txt' ] 3 undefined [ 'a.txt', 'b.txt', 'c.txt' ] 3 undefined &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;看到这里是不是有点启发了呢？三次输出的 i 的值都是 3，超出了 files 数组的下标范围，因此 files[i] 的值就是 undefined 了。这种情况通常会在 for 循环结束时发生，例如 for (var i = 0; i &lt; files.length; i++) ，退出循环时 i 的值就是 files.length 的值。既然 i 的值是 3，那么说明了事实上 fs.readFile 的回调函数中访问到的 i 值都是循环退出以后的，因此不能分辨。而 files[i] 作为 fs.readFile 的第一个参数在循环中就传递了，所以文件可以被定位到，而且可以显示出文件的内容。 现在问题就明朗了：原因是3次读取文件的回调函数事实上是同一个实例，其中引用到的 i 值是上面循环执行结束后的值，因此不能分辨。 例3如何解决这个问题呢？我们可以利用 JavaScript 函数式编程的特性，手动建立一个闭包： 123456789101112//forloopclosure.js var fs = require('fs'); var files = ['a.txt', 'b.txt', 'c.txt']; for (var i = 0; i &lt; files.length; i++) &#123; (function(i) &#123; fs.readFile(files[i], 'utf-8', function(err, contents) &#123; console.log(files[i] + ': ' + contents); &#125;); &#125;)(i); &#125; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面代码在 for 循环体中建立了一个匿名函数，将循环迭代变量 i 作为函数的参数传递并调用。由于运行时闭包的存在，该匿名函数中定义的变量（包括参数表）在它内部的函数（ fs.readFile 的回调函数）执行完毕之前都不会释放，因此我们在其中访问到的 i 就分别是不同闭包实例，这个实例是在循环体执行的过程中创建的，保留了不同的值。 事实上以上这种写法并不常见，因为它降低了程序的可读性，故不推荐使用。 例4大多数情况下我们可以用数组的 forEach 方法解决这个问题： 12345678910//callbackforeach.js var fs = require('fs'); var files = ['a.txt', 'b.txt', 'c.txt']; files.forEach(function(filename) &#123; fs.readFile(filename, 'utf-8', function(err, contents) &#123; console.log(filename + ': ' + contents); &#125;); &#125;);]]></content>
@@ -190,9 +202,9 @@
         <category>jQuery</category>
       </categories>
       <tags>
+        <tag>读书笔记</tag>
         <tag>jQuery</tag>
         <tag>javascript</tag>
-        <tag>读书笔记</tag>
       </tags>
   </entry>
   <entry>
