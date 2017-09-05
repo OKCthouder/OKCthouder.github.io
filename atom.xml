@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://okcthouder.github.io/"/>
-  <updated>2017-09-05T07:44:27.062Z</updated>
+  <updated>2017-09-05T07:53:20.894Z</updated>
   <id>https://okcthouder.github.io/</id>
   
   <author>
@@ -20,10 +20,10 @@
     <link href="https://okcthouder.github.io/2017/09/05/MySQL%E5%9F%BA%E7%A1%80/"/>
     <id>https://okcthouder.github.io/2017/09/05/MySQL基础/</id>
     <published>2017-09-05T07:16:03.000Z</published>
-    <updated>2017-09-05T07:44:27.062Z</updated>
+    <updated>2017-09-05T07:53:20.894Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文示例基于<a href="http://kmfree.me/files/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A.zip" target="_blank" rel="external">crashcourse</a>数据库，文中如有错误请谅解！</p>
-<p><img src="C:\Users\Simple_Y\Pictures\Saved Pictures\数据库简介.png" alt="数据库简介"></p>
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文示例基于<a href="http://kmfree.me/files/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A.zip" target="_blank" rel="external">crashcourse</a>数据库，文中如有错误请谅解！<br>　　<a href="http://kmfree.me/image/MySQL/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%80%E4%BB%8B.png" target="_blank" rel="external"><img src="http://kmfree.me/image/MySQL/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%80%E4%BB%8B.png" alt="img"></a></p>
+  <a id="more"></a>
 <hr>
 <h1 id="MySQL入门"><a href="#MySQL入门" class="headerlink" title="MySQL入门"></a>MySQL入门</h1><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">#查看数据库</div><div class="line">show databases; </div><div class="line">#选择一个数据库</div><div class="line">use 数据库名;</div><div class="line">#创建数据库</div><div class="line">create database 数据库名;</div><div class="line">#查看创建数据库的SQL语言</div><div class="line">show create database 数据库名;</div><div class="line">#查看表</div><div class="line">show tables;	</div><div class="line">#创建表</div><div class="line">create table student(id int(11) not null,name char(20));</div><div class="line">#查看表结构</div><div class="line">desc student;</div><div class="line">#查看创建表语句</div><div class="line">show create table student;</div><div class="line">#插入数据</div><div class="line">insert into student(id,name) values(1001,’zhangsan’);</div><div class="line">#查询数据</div><div class="line">select * from student; </div><div class="line">#删除数据</div><div class="line">delete from student where id=1001;	</div><div class="line">#删除表</div><div class="line">drop table student;</div><div class="line">#删除数据库</div><div class="line">drop database mydb;</div><div class="line">#查看mysql服务器状态信息</div><div class="line">show status;	</div><div class="line">#查看用户权限</div><div class="line">show grants;</div><div class="line">#查看服务器错误信息	</div><div class="line">show errors;	</div><div class="line">#查看服务器警告信息	</div><div class="line">show warnings;	</div><div class="line">#修改数据库保护模式	</div><div class="line">set SQL_SAFE_UPDATES =0;</div></pre></td></tr></table></figure>
 <hr>
@@ -55,9 +55,7 @@
 <li><p>order by——结果排序。（ASCII码）<br><code>select 列名 from 表名 order by 列名；</code><br><code>select 列名 from 表名 order by 列名1，列名2；</code></p>
 </li>
 <li><p>ASC——升序，降序——DESC，关键字排序只用于其前面的列名排序。</p>
-<p>​</p>
 <p>注：limit用于order by之后。</p>
-<p>​</p>
 <h2 id="分组查询与子查询"><a href="#分组查询与子查询" class="headerlink" title="分组查询与子查询"></a>分组查询与子查询</h2></li>
 <li><p>创建分组：<br><code>select vend_id,COUNT(*) AS　num_prods from products GROUP BY vend_id with rollup;</code><br>注：<br>后面加上with rollup,可以汇总分组数据；<br>group by 在where之后，order by 之前；</p>
 </li>
@@ -202,27 +200,23 @@
 </ol>
 <ul>
 <li><p>用法简介</p>
-<p>​</p>
 <ul>
 <li>使用‘|’，来匹配2个字符串的一个where prod_name regexp ‘1001|1002’;</li>
 </ul>
-<p>​</p>
-<ul>
-<li>使用[],匹配几个字符中的一个 where prod_name REGEXP ‘[123]’ ton’;</li>
+</li>
 </ul>
-<p>​</p>
-<ul>
-<li>使用[^ ],不匹配几个字符中的任意一个</li>
-</ul>
-<ul>
+<pre><code>- 使用[],匹配几个字符中的一个 where prod_name REGEXP ‘[123]’ ton’;
+
+
+- 使用[^ ],不匹配几个字符中的任意一个
+</code></pre><ul>
 <li>匹配一个范围，[1-9]1-9数字/[a-z]a-z字符<ul>
 <li>任意字符的匹配——‘\’如：. 表示.的转义字符</li>
 </ul>
 </li>
 </ul>
-</li>
-<li><p>正则表达式字符集<br><a href="http://kmfree.me/image/MySQL/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F_1.jpg" target="_blank" rel="external"><img src="http://kmfree.me/image/MySQL/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F_1.jpg" alt="img"></a><br><a href="http://kmfree.me/image/MySQL/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F_2.jpg" target="_blank" rel="external"><img src="http://kmfree.me/image/MySQL/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F_2.jpg" alt="img"></a><br><a href="http://kmfree.me/image/MySQL/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F_3.jpg" target="_blank" rel="external"><img src="http://kmfree.me/image/MySQL/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F_3.jpg" alt="img"></a><br>实例：<br>Where prod_name regexp ‘[[:digit:]]{4};——连续四个数字</p>
-</li>
+<ul>
+<li>正则表达式字符集<br><a href="http://kmfree.me/image/MySQL/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F_1.jpg" target="_blank" rel="external"><img src="http://kmfree.me/image/MySQL/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F_1.jpg" alt="img"></a><br><a href="http://kmfree.me/image/MySQL/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F_2.jpg" target="_blank" rel="external"><img src="http://kmfree.me/image/MySQL/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F_2.jpg" alt="img"></a><br><a href="http://kmfree.me/image/MySQL/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F_3.jpg" target="_blank" rel="external"><img src="http://kmfree.me/image/MySQL/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F_3.jpg" alt="img"></a><br>实例：<br>Where prod_name regexp ‘[[:digit:]]{4};——连续四个数字</li>
 </ul>
 <hr>
 <h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><ul>
@@ -251,7 +245,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;本文示例基于&lt;a href=&quot;http://kmfree.me/files/mysql%E5%BF%85%E7%9F%A5%E5%BF%85
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;本文示例基于&lt;a href=&quot;http://kmfree.me/files/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A.zip&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;crashcourse&lt;/a&gt;数据库，文中如有错误请谅解！&lt;br&gt;　　&lt;a href=&quot;http://kmfree.me/image/MySQL/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%80%E4%BB%8B.png&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;img src=&quot;http://kmfree.me/image/MySQL/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%80%E4%BB%8B.png&quot; alt=&quot;img&quot;&gt;&lt;/a&gt;&lt;/p&gt;
     
     </summary>
     
