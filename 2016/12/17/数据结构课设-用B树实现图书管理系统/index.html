@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="C,数据结构,B_tree,课程设计," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ISLAND" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="前言​    此文章是分享一下上学期数据结构课程的课程设计，我选择的是以B树为数据结构，开发一个图书管理系统，B树的优点在于查询快，增删结点相对于链表或者顺序表效率更好，因此用来存储大量图书信息更加合适。">
+<meta name="keywords" content="C,数据结构,B_tree,课程设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构课设--用B树实现图书管理系统">
+<meta property="og:url" content="https://okcthouder.github.io/2016/12/17/数据结构课设-用B树实现图书管理系统/index.html">
+<meta property="og:site_name" content="ISLAND">
+<meta property="og:description" content="前言​    此文章是分享一下上学期数据结构课程的课程设计，我选择的是以B树为数据结构，开发一个图书管理系统，B树的优点在于查询快，增删结点相对于链表或者顺序表效率更好，因此用来存储大量图书信息更加合适。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.blog.csdn.net/20170510230226178?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:updated_time" content="2017-11-14T03:37:39.866Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构课设--用B树实现图书管理系统">
+<meta name="twitter:description" content="前言​    此文章是分享一下上学期数据结构课程的课程设计，我选择的是以B树为数据结构，开发一个图书管理系统，B树的优点在于查询快，增删结点相对于链表或者顺序表效率更好，因此用来存储大量图书信息更加合适。">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170510230226178?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://okcthouder.github.io/2016/12/17/数据结构课设-用B树实现图书管理系统/"/>
+
+
+
+
+
+  <title>数据结构课设--用B树实现图书管理系统 | ISLAND</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+<a href="https://github.com/OKCthouder"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ISLAND</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个人的孤岛。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+ <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "http://o9w8f1xrl.bkt.clouddn.com/highqilai/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "http://o9w8f1xrl.bkt.clouddn.com/highqilai/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()    '>High一下</a> </li>
+
+      
+     
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://okcthouder.github.io/2016/12/17/数据结构课设-用B树实现图书管理系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yujie Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://assets-cdn.github.com/pinned-octocat.svg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ISLAND">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构课设--用B树实现图书管理系统</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-17T11:32:54+08:00">
+                2016-12-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/12/17/数据结构课设-用B树实现图书管理系统/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/12/17/数据结构课设-用B树实现图书管理系统/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/12/17/数据结构课设-用B树实现图书管理系统/" class="leancloud_visitors" data-flag-title="数据结构课设--用B树实现图书管理系统">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+               <span>°C</span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  6,014
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  28
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​    此文章是分享一下上学期<strong>数据结构</strong>课程的课程设计，我选择的是以<strong>B树</strong>为数据结构，开发一个<strong>图书管理系统</strong>，B树的优点在于查询快，增删结点相对于链表或者顺序表效率更好，因此用来存储大量图书信息更加合适。</p>
+  <a id="more"></a>    
+<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><p><strong>vs2015</strong></p>
+<p>下面贴出代码：</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="library-h"><a href="#library-h" class="headerlink" title="library.h"></a>library.h</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div></pre></td><td class="code"><pre><div class="line">#include    "windows.h"  </div><div class="line">#include    "stdio.h"  </div><div class="line">#include    "conio.h"  </div><div class="line">#include    "stdlib.h"  </div><div class="line">#include    "malloc.h"  </div><div class="line">#include    "time.h"  </div><div class="line">#include    "string.h"  </div><div class="line">#include    "errno.h"  </div><div class="line">  </div><div class="line">  </div><div class="line">#define TRUE 1  </div><div class="line">#define FALSE 0  </div><div class="line">#define OVERFLOW -1  </div><div class="line">#define OK 1  </div><div class="line">#define ERROR 0  </div><div class="line">#define M 3//定义阶数  </div><div class="line">#define Super_Manager_Code 5372  //超级管理员密码  </div><div class="line">#define MAX_NAME_LEN 20//姓名长度  </div><div class="line">#define MAX_BKNAME_LEN 50  </div><div class="line">#define OK 1  </div><div class="line">#define ERROR 0  </div><div class="line">#define bookinfomationfile "bookinfo.dat"   // 图书信息文件  </div><div class="line">#define borrowerfile "borrower.dat"     // 借阅者名单文件  </div><div class="line">typedef int KeyType;  </div><div class="line">typedef int Status;  </div><div class="line">  </div><div class="line">/*****************************书和借阅者结点存储定义*************************/  </div><div class="line">typedef struct ReaderNode &#123;//借阅者  </div><div class="line">    int IDnum;                      //ID号  </div><div class="line">    char reader_name[MAX_NAME_LEN]; //姓名  </div><div class="line">    ReaderNode *rnext;              //指向下一个借阅者的指针  </div><div class="line">&#125;ReaderNode, *ReaderType;  </div><div class="line">  </div><div class="line">typedef struct BookNode &#123;  </div><div class="line">    int booknum;   //书号  </div><div class="line">    char bookname[MAX_BKNAME_LEN];  //书名  </div><div class="line">    char writer[MAX_NAME_LEN];      //作者名字  </div><div class="line">    int current;                    //现存量  </div><div class="line">    int total;                      //总库存  </div><div class="line">    int published_year;             //出版年份  </div><div class="line">    float price;                    //价格  </div><div class="line">    ReaderType reader;              //借阅者链表指针  </div><div class="line">&#125;BookNode, *BookType;               //图书类型  </div><div class="line">  </div><div class="line">typedef BookNode Record;            //将书的结点定义为记录  </div><div class="line">  </div><div class="line">/*******************************B树存储定义***************************/  </div><div class="line">  </div><div class="line">typedef struct BTNode &#123;        //B树结点类型定义  </div><div class="line">    int keynum;                //结点中关键字个数，即结点的大小  </div><div class="line">    KeyType key[M+1];          //关键字，key[0]未用  </div><div class="line">    struct BTNode *parent;     //双亲结点指针  </div><div class="line">    struct BTNode *ptr[M + 1]; //孩子结点指针数组  </div><div class="line">    Record *recptr[M + 1];     //记录指针向量，0号单元未用  </div><div class="line">&#125;BTNode, *BTree;               //B树结点和B树类型  </div><div class="line">  </div><div class="line">typedef struct result &#123;  </div><div class="line">    BTNode *pt;               //指向找到的结点  </div><div class="line">    int i;                    //1&lt;=i&lt;=m,在结点中的关键字位序  </div><div class="line">    int tag;                  //1:查找成功，0:查找失败  </div><div class="line">&#125;result, *resultPtr;          //B树的查找结果类型  </div><div class="line">  </div><div class="line">  </div><div class="line">  </div><div class="line"> /*******************************B树接口定义***************************/  </div><div class="line">  </div><div class="line">  </div><div class="line">result SearchBTree(BTree T, int k);  </div><div class="line">/* </div><div class="line">    初始条件:树T存在 </div><div class="line">    操作结果:在m阶B数T上查找关键字k，返回p&#123;pt,i,tag&#125; </div><div class="line">*/  </div><div class="line">  </div><div class="line">Status InsertBTree(BTree &amp;T, int k, BTree q, int i, Record *recptr);  </div><div class="line">/* </div><div class="line">    初始条件:树T存在 </div><div class="line">    操作结果:在B树T上结点p-&gt;pt的key[i]和key[i+1]之间插入关键字k </div><div class="line">*/  </div><div class="line">  </div><div class="line">Status DeleteBTree(BTree &amp;T, int k);  </div><div class="line">/* </div><div class="line">    初始条件:B树上p结点存在 </div><div class="line">    操作结果:删除B树T上结点p-&gt;pt的关键字k </div><div class="line">*/  </div><div class="line">  </div><div class="line">void BTreeTraverse(BTree T, void(*visit)(BTree));  </div><div class="line">/* </div><div class="line">    初始条件:树T存在 </div><div class="line">    操作结果:遍历B树 </div><div class="line">*/  </div><div class="line">  </div><div class="line">  </div><div class="line">int menu();  </div><div class="line">/* </div><div class="line">    输出选择菜单 </div><div class="line">*/  </div><div class="line">  </div><div class="line">void ShowBTree(BTree T, short x = 8);  </div><div class="line">/* </div><div class="line">    以凹入表的形式输出B树 </div><div class="line">*/  </div><div class="line">int login();  </div><div class="line">/* </div><div class="line">    登陆界面 </div><div class="line">*/  </div><div class="line">  </div><div class="line">/*******************************图书馆接口定义***************************/  </div><div class="line">void InitLibrary(BTree &amp;L);  </div><div class="line">/* </div><div class="line">    初始化一棵空树 </div><div class="line">*/  </div><div class="line">void InsertBook(BTree &amp;L, BookType B, result res);  </div><div class="line">/* </div><div class="line">    插入新的书籍 </div><div class="line">*/  </div><div class="line">int DeleteBook(BTree &amp;L, BookType B);  </div><div class="line">/* </div><div class="line">    删除已存在的书籍，不存在则提示不存在 </div><div class="line">*/  </div><div class="line">int CanBorrow(BTree L, BookType B, ReaderType R);  </div><div class="line">/* </div><div class="line">    判断指定书籍能否出借 </div><div class="line">*/  </div><div class="line">void BorrowBook(BTree L, BookType B, ReaderType R);  </div><div class="line">/* </div><div class="line">    书籍出借 </div><div class="line">*/  </div><div class="line">int ReturnBook(BTree L, int booknum, int IDnum, BookType &amp;B, ReaderType &amp;R);  </div><div class="line">/* </div><div class="line">    书籍归还 </div><div class="line">*/  </div><div class="line">void PrintH();  </div><div class="line">/* </div><div class="line">    输出表格的头部 </div><div class="line">*/  </div><div class="line">void PrintB(BookType B);  </div><div class="line">/* </div><div class="line">    输出指定书籍的信息 </div><div class="line">*/  </div><div class="line">void PrintT();  </div><div class="line">/* </div><div class="line">    输出表格的尾部 </div><div class="line">*/  </div><div class="line">void PrintAll(BTree p);  </div><div class="line">/* </div><div class="line">    输出B树结点的全部关键字信息 </div><div class="line">*/  </div><div class="line">void PrintBook(BookType B);  </div><div class="line">/* </div><div class="line">    以表格形式输出一本书的信息 </div><div class="line">*/  </div><div class="line">void PrintAllbooks(BTree L);  </div><div class="line">/* </div><div class="line">    输出所有书的信息 </div><div class="line">*/  </div><div class="line">int ShowBookinfo(BTree L, int booknum);  </div><div class="line">/* </div><div class="line">    输出指定某本书的信息 </div><div class="line">*/  </div><div class="line">void PrintBorrower(ReaderType R);  </div><div class="line">/* </div><div class="line">    输出某本书的借阅者信息 </div><div class="line">*/  </div><div class="line">void    Welcome(int color);  </div><div class="line">/* </div><div class="line">    显示欢迎界面 </div><div class="line">*/  </div><div class="line">void    Creat(BTree &amp;L);  </div><div class="line">/* </div><div class="line">    从文件中读取图书信息 </div><div class="line">*/</div></pre></td></tr></table></figure>
+<h3 id="library-cpp"><a href="#library-cpp" class="headerlink" title="library.cpp"></a>library.cpp</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"Library.h"</span>  </span></div><div class="line">  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitLibrary</span><span class="params">(BTree &amp;L)</span> </span>&#123;  </div><div class="line">    L = <span class="literal">NULL</span>;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertBook</span><span class="params">(BTree &amp;L, BookType B, result res)</span> </span>&#123;  </div><div class="line">    <span class="comment">//书库L已存在，res包含B书在书库L中的位置或应该插入的位置  </span></div><div class="line">    <span class="comment">//如果书库中已存在B书，则只将B书的库存量增加，否则插入B书到书库L中  </span></div><div class="line">  </div><div class="line">    <span class="keyword">if</span> (res.tag == <span class="number">0</span>) InsertBTree(L, B-&gt;booknum, res.pt, res.i, B);  </div><div class="line">    <span class="comment">//书库中不存在该书，则插入  </span></div><div class="line">    <span class="keyword">else</span> &#123;  </div><div class="line">        BookType b = res.pt-&gt;recptr[res.i];  </div><div class="line">        b-&gt;current = b-&gt;current + B-&gt;total;<span class="comment">//现存量增加  </span></div><div class="line">        b-&gt;total = b-&gt;total + B-&gt;total;<span class="comment">//总库存增加  </span></div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">DeleteBook</span><span class="params">(BTree &amp;L, BookType B)</span> </span>&#123;  </div><div class="line">    <span class="comment">//如果书库中存在B书，则从书库中删除B书的信息，并返回OK，否则返回ERROR  </span></div><div class="line">    <span class="keyword">if</span> (DeleteBTree(L, B-&gt;booknum)) <span class="keyword">return</span> OK;<span class="comment">//删除成功  </span></div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> ERROR;<span class="comment">//删除失败  </span></div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">CanBorrow</span><span class="params">(BTree L, BookType B, ReaderType R)</span> </span>&#123;  </div><div class="line">    <span class="comment">//如果书库中存在B书，若B书现存量大于0，则可出借返回OK，否则返回ERROR  </span></div><div class="line">    <span class="keyword">if</span>(B-&gt;current&gt;<span class="number">0</span>) <span class="keyword">return</span> TRUE;<span class="comment">//现存量大于零  </span></div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> FALSE;<span class="comment">//其他情况均不允许出借  </span></div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">void</span>    <span class="title">BorrowBook</span><span class="params">(BTree L, BookType B, ReaderType R)</span>  </span></div><div class="line"><span class="comment">// 书库L存在，B书是书库中的书并且可被读者R借阅（已通过CanBorrow()判断）  </span></div><div class="line"><span class="comment">// 借出一本B书，登记借阅者R的信息，改变现存量，记录借书日期，最迟应还日期等信息。  </span></div><div class="line">&#123;  </div><div class="line">    ReaderType  r;  </div><div class="line">    <span class="keyword">if</span> (!B-&gt;reader) B-&gt;reader = R;                <span class="comment">// 无其他借阅者，则直接登记  </span></div><div class="line">    <span class="keyword">else</span> &#123;  </div><div class="line">        <span class="keyword">for</span> (r = B-&gt;reader; r-&gt;rnext; r = r-&gt;rnext);  </div><div class="line">        r-&gt;rnext = R;                            <span class="comment">// 否则到借阅者链表尾，登记  </span></div><div class="line">    &#125;  </div><div class="line">    B-&gt;current--;                                <span class="comment">// 现存量减1  </span></div><div class="line">  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">ReturnBook</span><span class="params">(BTree L, <span class="keyword">int</span> booknum, <span class="keyword">int</span> IDnum, BookType &amp;B, ReaderType &amp;R)</span> </span>&#123;  </div><div class="line">    <span class="comment">//booknum为还书书号，IDnum是借阅者的ID号  </span></div><div class="line">    <span class="comment">//若书库中不存在书号为booknum的书，则搜索出错，返回-1  </span></div><div class="line">    <span class="comment">//若有借阅记录，则注销该记录，并用B和R返回图书信息和借阅者信息并返回1  </span></div><div class="line">    <span class="comment">//若没有r借阅的记录，则用B返回图书信息，并返回0  </span></div><div class="line">    result res = SearchBTree(L, booknum); <span class="comment">//在B树上按书号搜索  </span></div><div class="line">    <span class="keyword">if</span> (res.tag == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">-1</span>;  </div><div class="line">    B = res.pt-&gt;recptr[res.i];  </div><div class="line">    ReaderType p = res.pt-&gt;recptr[res.i]-&gt;reader, pre = p;  </div><div class="line">    <span class="keyword">while</span> (p) &#123;  </div><div class="line">        <span class="keyword">if</span> (pre == p&amp;&amp;p-&gt;IDnum == IDnum) &#123;  </div><div class="line">            R = p;  </div><div class="line">            B-&gt;current++;<span class="comment">//现存量加一  </span></div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">if</span> (p-&gt;IDnum == IDnum) &#123;<span class="comment">//多个借书者  </span></div><div class="line">            R = p;  </div><div class="line">            pre-&gt;rnext = p-&gt;rnext;  </div><div class="line">            B-&gt;current++;<span class="comment">//现存量+1  </span></div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;  </div><div class="line">        &#125;  </div><div class="line">        pre = p;  </div><div class="line">        p = p-&gt;rnext;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintH</span><span class="params">()</span> </span>&#123;<span class="comment">//表格头部格式  </span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"|*********************************图书基本信息**********************************|\n"</span>);   </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"|  书号  |       书名         |      作者     | 现存 | 总库存 | 出版年份 | 定价 |\n"</span>);  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintB</span><span class="params">(BookType B)</span> </span>&#123; <span class="comment">//显示B书基本信息  </span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"|--------|--------------------|---------------|------|--------|----------|------|\n"</span>);  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"|  %-4d  |%-20s|%-15s|"</span>, B-&gt;booknum,B-&gt;bookname,B-&gt;writer);  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">" %-5d|   %-4d | %-6d   |%-6.1f|\n"</span>,  B-&gt;current, B-&gt;total, B-&gt;published_year, B-&gt;price);  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintT</span><span class="params">()</span> </span>&#123;<span class="comment">//表格底部格式  </span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"|--------|--------------------|---------------|------|--------|----------|------|\n"</span>);  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintAll</span><span class="params">(BTree p)</span> </span>&#123;<span class="comment">//显示B树每个结点的记录信息  </span></div><div class="line">    <span class="keyword">int</span> i;  </div><div class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= p-&gt;keynum; ++i) &#123;  </div><div class="line">        PrintB(p-&gt;recptr[i]);  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintBook</span><span class="params">(BookType B)</span> </span>&#123;<span class="comment">//以表格形式显示一本书的基本信息  </span></div><div class="line">    PrintH();  </div><div class="line">    PrintB(B);  </div><div class="line">    PrintT();  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintBorrower</span><span class="params">(ReaderType R)</span> </span>&#123;<span class="comment">//以表格形式显示一本书的借阅者信息  </span></div><div class="line">    ReaderType p = R;  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"|------------------------|\n"</span>);  </div><div class="line">    <span class="keyword">while</span> (p) &#123;  </div><div class="line">        <span class="built_in">printf</span>(<span class="string">"|  %-5d  |  %-10s  |\n"</span>, p-&gt;IDnum, p-&gt;reader_name);  </div><div class="line">        p = p-&gt;rnext;  </div><div class="line">    &#125;  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"|------------------------|\n"</span>);  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintAllbooks</span><span class="params">(BTree L)</span> </span>&#123;<span class="comment">//显示书库L所有图书信息  </span></div><div class="line">    PrintH();  </div><div class="line">    BTreeTraverse(L, PrintAll);  </div><div class="line">    PrintT();  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">ShowBookinfo</span><span class="params">(BTree L, <span class="keyword">int</span> booknum)</span> </span>&#123;  </div><div class="line">    <span class="comment">//若书库L中存在书号为booknum的书，则现在该书的所有信息并返回OK，书库L不存在则  </span></div><div class="line">    <span class="comment">//返回ERROR  </span></div><div class="line">    result res = SearchBTree(L, booknum);  </div><div class="line">    <span class="keyword">if</span> (!res.tag) <span class="keyword">return</span> ERROR;  </div><div class="line">    BookType B = res.pt-&gt;recptr[res.i];  </div><div class="line">    PrintBook(B);  </div><div class="line">    <span class="keyword">return</span> OK;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">void</span>    <span class="title">gotoxy</span><span class="params">(<span class="keyword">short</span> x, <span class="keyword">short</span> y)</span>  </span></div><div class="line"><span class="comment">// 移动光标到（x，y）坐标，25&gt;x&gt;=0,80&gt;y&gt;=0   </span></div><div class="line">&#123;  </div><div class="line">    COORD point = &#123; x, y &#125;;  </div><div class="line">    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), point);  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">void</span>    <span class="title">SetColor</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">short</span> TextColor)</span>  </span></div><div class="line"><span class="comment">// 设置字体和背景颜色  </span></div><div class="line">&#123;  </div><div class="line">    HANDLE hCon = GetStdHandle(STD_OUTPUT_HANDLE);  </div><div class="line">    SetConsoleTextAttribute(hCon, TextColor);  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">void</span>    <span class="title">Welcome</span><span class="params">(<span class="keyword">int</span> color)</span>  </span></div><div class="line"><span class="comment">// 显示欢迎界面  </span></div><div class="line">&#123;  </div><div class="line">    SetColor(color);  </div><div class="line">    gotoxy(<span class="number">2</span>, <span class="number">5</span>);  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"        ╭╮╭╮╭──╮╭╮　　╭──╮╭──╮╭╭╮╮╭──╮\n"</span>);  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"        │││││╭─╯││　　│╭─╯│╭╮││　　││╭─╯\n"</span>);  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"        │╰╯││╰─╮││　　││　　│││││││││╰─╮\n"</span>);  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"        │││││╭─╯││　　││　　│││││╭╮││╭─╯\n"</span>);  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"        │　　││╰─╮│╰─╮│╰─╮│╰╯││││││╰─╮\n"</span>);  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"        ╰╰╯╯╰──╯╰──╯╰──╯╰──╯╰╯╰╯╰──╯\n"</span>);  </div><div class="line">    SetColor(<span class="number">11</span>);  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"                      ╔══════════════╗\n"</span>);  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"                      ║    欢迎进入图书管理系统    ║\n"</span>);  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"                      ╚══════════════╝\n"</span>);  </div><div class="line">    SetColor(color+<span class="number">1</span>);  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">void</span>    <span class="title">Creat</span><span class="params">(BTree &amp;L)</span> </span>&#123;  </div><div class="line">    <span class="comment">// **********************************************************************************  </span></div><div class="line">    <span class="comment">// 创建函数。当显示菜单时按8即可进入本创建函数。  </span></div><div class="line">    <span class="comment">// L为书库。  </span></div><div class="line">    <span class="comment">// 从指定文件读入图书信息进行图书入库。  </span></div><div class="line">    <span class="comment">// 然后从文件读入借阅者名字，用随机数产生借阅证号和借阅书号，进行图书借阅，并记录日志，  </span></div><div class="line">    <span class="comment">// 接着读入预约者名字，用随机数产生借阅证号和图书证号，进行图书预约，并记录日志  </span></div><div class="line">    <span class="comment">// 完成后即可返回主菜单，进行还书、预约或其他测试。  </span></div><div class="line">    FILE        *fp;  </div><div class="line">    BookType    B;  </div><div class="line">    result      res;  </div><div class="line">    <span class="keyword">errno_t</span> err;  </div><div class="line">    ReaderType  R;  </div><div class="line">    <span class="comment">//fp = fopen_s(bookinfomationfile, "r");                // 打开图书信息文件  </span></div><div class="line">    <span class="keyword">if</span> ((err = fopen_s(&amp;fp, <span class="string">"bookinfo.dat"</span>, <span class="string">"r"</span>)) != <span class="number">0</span>)  </div><div class="line">    &#123;  </div><div class="line">        <span class="built_in">printf</span>(<span class="string">"不能打开图书信息文件,请确认%s文件已放到盘根目录..."</span>, bookinfomationfile);  </div><div class="line">        getchar();  </div><div class="line">        <span class="keyword">return</span>;  </div><div class="line">    &#125;  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\n下面将从文件%s读入图书信息。按任意键继续..."</span>, bookinfomationfile);  </div><div class="line">    getchar();  </div><div class="line">    <span class="keyword">while</span> (!feof(fp))                               <span class="comment">// 当未到文件结束  </span></div><div class="line">    &#123;  </div><div class="line">        B = (BookType)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(BookNode));     <span class="comment">// 申请图书空间  </span></div><div class="line">        <span class="built_in">fscanf</span>(fp, <span class="string">"%d %s %s %d %d %d %f"</span>, &amp;B-&gt;booknum, B-&gt;bookname, B-&gt;writer, &amp;B-&gt;current,  </div><div class="line">            &amp;B-&gt;total, &amp;B-&gt;published_year, &amp;B-&gt;price);<span class="comment">// 读入图书数据  </span></div><div class="line">        B-&gt;reader = <span class="literal">NULL</span>;            <span class="comment">// 读者和借阅者指针置空  </span></div><div class="line">        res = SearchBTree(L, B-&gt;booknum);            <span class="comment">// 查找插入位置  </span></div><div class="line">        <span class="keyword">if</span> (!res.tag)                               <span class="comment">// 书库中不存在该书，则插入  </span></div><div class="line">        &#123;  </div><div class="line">            InsertBook(L, B, res);                  <span class="comment">// 插入  </span></div><div class="line">            <span class="built_in">printf</span>(<span class="string">"\n\n\n 插入下面的图书"</span>);  </div><div class="line">            PrintBook(B);                           <span class="comment">// 显示该图书  </span></div><div class="line">            <span class="built_in">printf</span>(<span class="string">"\nB树的状态\n\n"</span>);  </div><div class="line">            ShowBTree(L);                           <span class="comment">// 显示插入后B树的状态  </span></div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    fclose(fp);  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\n\n读入的所有图书信息"</span>);  </div><div class="line">    PrintAllbooks(L);                               <span class="comment">// 显示所有图书  </span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\n文件图书信息读入完毕!下面从文件读入借书者信息，按任意键继续...\n"</span>);  </div><div class="line">    getchar();  </div><div class="line"><span class="comment">// **********************************************************************************  </span></div><div class="line">    system(<span class="string">"cls"</span>);  </div><div class="line">    <span class="keyword">int</span>     booknum, i = <span class="number">0</span>;  </div><div class="line">    fp = fopen(borrowerfile, <span class="string">"r"</span>);                  <span class="comment">// 打开借阅者名单文件  </span></div><div class="line">    <span class="keyword">if</span> (!fp)  </div><div class="line">    &#123;  </div><div class="line">        <span class="built_in">printf</span>(<span class="string">"\n\n\n不能打开读者信息文件,请确认%s文件已放到盘根目录..."</span>, borrowerfile);  </div><div class="line">        getch();  </div><div class="line">        <span class="keyword">return</span>;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="keyword">while</span> (i++ &lt;<span class="number">4000</span> &amp;&amp; !feof(fp))  </div><div class="line">    &#123;  </div><div class="line">        R = (ReaderType)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(ReaderNode));  </div><div class="line">        <span class="built_in">fscanf</span>(fp, <span class="string">"%6s"</span>, &amp;R-&gt;reader_name);                  <span class="comment">// 从文件读入借阅者名字  </span></div><div class="line">        R-&gt;IDnum = rand() % <span class="number">100</span>;                 <span class="comment">// 用随机数产生借阅证号  </span></div><div class="line">        R-&gt;rnext = <span class="literal">NULL</span>;                 <span class="comment">// 后续借阅者预约者指针置空  </span></div><div class="line">        booknum = rand() % <span class="number">100</span> + <span class="number">1</span>;                 <span class="comment">// 随机产生借阅书号  </span></div><div class="line">        res = SearchBTree(L, booknum);              <span class="comment">// 搜索二叉树  </span></div><div class="line">        <span class="keyword">if</span> (res.tag)                                <span class="comment">// 如果找到该书号  </span></div><div class="line">        &#123;  </div><div class="line">            B = res.pt-&gt;recptr[res.i];  </div><div class="line">            <span class="keyword">if</span> (CanBorrow(L, B, R))                 <span class="comment">// 判断该借阅者是否可以借阅该书  </span></div><div class="line">            &#123;  </div><div class="line">                BorrowBook(L, B, R);                <span class="comment">// 如果可以则借出一本  </span></div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    fclose(fp);  </div><div class="line">    PrintAllbooks(L);                           <span class="comment">// 显示所有图书（可以看到现存量减少）  </span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\n借书信息读入完毕，下面将从文件读入预约者信息。按任意键继续...."</span>);  </div><div class="line">    getch();  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="BTree-Operation-cpp"><a href="#BTree-Operation-cpp" class="headerlink" title="BTree_Operation.cpp"></a>BTree_Operation.cpp</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div></pre></td><td class="code"><pre><div class="line">/********************************B树接口实现****************************/  </div><div class="line">  </div><div class="line">int Search(BTree p, int k) &#123;  </div><div class="line">    //在B树p中查找关键字k的位置i，使得p-&gt;node[i].key&lt;=K&lt;p-&gt;node[i+1].key  </div><div class="line">    int i;  </div><div class="line">    for (i = 0; i &lt; p-&gt;keynum&amp;&amp;p-&gt;key[i + 1] &lt;= k; i++);  </div><div class="line">    return i;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">result  SearchBTree(BTree T, KeyType k)  </div><div class="line">// 在m阶B树上查找关键字k，返回结果（pt，i，tag）。若查找成功，则特征值tag=1，指针pt  </div><div class="line">// 所指结点中第i个关键字等于k；否则返回特征值tag=0，等于k的关键字应插入在pt所指结点  </div><div class="line">// 中第i和第i+1个关键字之间。  </div><div class="line">&#123;  </div><div class="line">    int     i = 1;  </div><div class="line">    BTree   p = T, q = NULL;                        // 初始化，p指向待查结点，q指向p的双亲  </div><div class="line">    int     found = FALSE;  </div><div class="line">    while (p &amp;&amp; !found)  </div><div class="line">    &#123;  </div><div class="line">        i = Search(p, k);                           // 查找k的位置使p-&gt;key[i]&lt;=k&lt;p-&gt;key[i+1]  </div><div class="line">        if (i&gt; 0 &amp;&amp; k == p-&gt;key[i])   found = TRUE;  </div><div class="line">        else &#123;                                      // 未找到，则查找下一层  </div><div class="line">            q = p;  </div><div class="line">            p = p-&gt;ptr[i];  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    if (found) &#123; result r = &#123; p, i, 1 &#125;;    return r; &#125; // 查找成功  </div><div class="line">    else &#123; result   r = &#123; q, i, 0 &#125;;    return r; &#125; // 查找不成功，返回k的插入位置信息  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">void split(BTree &amp;q, int s, BTree &amp;ap) &#123;  </div><div class="line">    //将q结点分裂成两个结点，前一半保留，后一半移入新结点ap  </div><div class="line">    int i, n = q-&gt;keynum;  </div><div class="line">    ap = (BTNode*)malloc(sizeof(BTNode));//生成新结点ap  </div><div class="line">    ap-&gt;ptr[0] = q-&gt;ptr[s];  </div><div class="line">    for (i = s + 1; i &lt;= M; i++) &#123;//后一半移入ap结点  </div><div class="line">        ap-&gt;key[i-s] = q-&gt;key[i];  </div><div class="line">        ap-&gt;ptr[i-s] = q-&gt;ptr[i];  </div><div class="line">        ap-&gt;recptr[i - s] = q-&gt;recptr[i];  </div><div class="line">    &#125;  </div><div class="line">    ap-&gt;keynum = n - s;//计算ap的关键字个数  </div><div class="line">    ap-&gt;parent = q-&gt;parent;  </div><div class="line">    for (i = 0; i &lt;= M - s; i++) &#123;  </div><div class="line">        if (ap-&gt;ptr[i])  </div><div class="line">            ap-&gt;ptr[i]-&gt;parent = ap;//将ap所有孩子结点指向ap  </div><div class="line">    &#125;  </div><div class="line">    q-&gt;keynum = s - 1;//q结点的前一半保留，修改keynum  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">void newroot(BTree &amp;T, BTree p, int k, BTree ap,Record *recptr) &#123;//生成新的根结点  </div><div class="line">    T = (BTNode*)malloc(sizeof(BTNode));  </div><div class="line">    T-&gt;keynum = 1;  </div><div class="line">    T-&gt;ptr[0] = p;  </div><div class="line">    T-&gt;ptr[1] = ap;  </div><div class="line">    T-&gt;key[1] = k;  </div><div class="line">    T-&gt;recptr[1] = recptr;  //T的子树ap的父亲指针  </div><div class="line">    if (p != NULL) p-&gt;parent = T;  </div><div class="line">    if (ap != NULL) ap-&gt;parent = T;  </div><div class="line">    T-&gt;parent = NULL;//新根的双亲是空指针  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">void Insert(BTree &amp;q, int i, int k, BTree ap,Record *recptr) &#123;//k和ap分别插到q-&gt;key[i+1]和q-&gt;ptr[i+1]  </div><div class="line">                                                            //并插入关键字为k的记录recprt  </div><div class="line">    int j, n = q-&gt;keynum;  </div><div class="line">    for (j = n; j &gt; i; j--) &#123;  </div><div class="line">        q-&gt;key[j + 1] = q-&gt;key[j];//关键字指针向后移一位  </div><div class="line">        q-&gt;ptr[j + 1] = q-&gt;ptr[j];//孩子结点指针向后移一位  </div><div class="line">        q-&gt;recptr[j + 1] = q-&gt;recptr[j];  </div><div class="line">    &#125;  </div><div class="line">    q-&gt;key[i+1] = k;//赋值  </div><div class="line">    q-&gt;ptr[i+1] = ap;  </div><div class="line">    q-&gt;recptr[i + 1] = recptr;  </div><div class="line">    if (ap != NULL) ap-&gt;parent = q;  </div><div class="line">    q-&gt;keynum++;//关键字数+1  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">Status InsertBTree(BTree &amp;T, KeyType k, BTree q, int i, Record *rec)  </div><div class="line">//  在m阶B树T上结点*q的key[i]与key[i+1]之间插入关键字K和记录rec。  </div><div class="line">//  若引起结点过大，则沿双亲链进行必要的结点分裂调整，使T仍是m阶B树。  </div><div class="line">&#123;  </div><div class="line">    BTree ap = NULL;  </div><div class="line">    int finished = FALSE;  </div><div class="line">    if (!q)    newroot(T, NULL, k, NULL, rec);  // T是空树，生成仅含关键字K的根结点*T  </div><div class="line">    else &#123;  </div><div class="line">        while (!finished)  </div><div class="line">        &#123;  </div><div class="line">            Insert(q, i, k, ap, rec);           // 将k和ap分别插入到q-&gt;key[i+1]和q-&gt;ptr[i+1]  </div><div class="line">            if (q-&gt;keynum &lt; M) finished = TRUE; // 插入完成  </div><div class="line">            else &#123;  </div><div class="line">                split(q, (M + 1) / 2, ap);          // 分裂结点Q  </div><div class="line">                k = q-&gt;key[(M + 1) / 2];  </div><div class="line">                rec = q-&gt;recptr[(M + 1) / 2];  </div><div class="line">                if (q-&gt;parent)  </div><div class="line">                &#123;                           // 在双亲结点*q中查找k的插入位置  </div><div class="line">                    q = q-&gt;parent;  </div><div class="line">                    i = Search(q, k);  </div><div class="line">                &#125;  </div><div class="line">                else finished = OVERFLOW;       // 根节点已分裂为*q和*ap两个结点  </div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">        if (finished == OVERFLOW)               // 根结点已分裂为结点*q和*ap  </div><div class="line">            newroot(T, q, k, ap, rec);          // 需生成新根结点*T,q和ap为子树指针  </div><div class="line">    &#125;  </div><div class="line">    return OK;  </div><div class="line">&#125; //  InsertBTree  </div><div class="line">  </div><div class="line">  </div><div class="line">  </div><div class="line">void TakePlace(BTree &amp;q, int &amp;i) &#123;  </div><div class="line">    //*q结点的第i个关键字为k，用q的后继关键字代替q，且令q指向后继所在结点  </div><div class="line">    BTree p = q;  </div><div class="line">    q = q-&gt;ptr[i];  </div><div class="line">    while (q-&gt;ptr[0]) q = q-&gt;ptr[0]; //查找p的后继  </div><div class="line">    p-&gt;key[i] = q-&gt;key[1]; //记录代替  </div><div class="line">    p-&gt;recptr[i] = q-&gt;recptr[1];  </div><div class="line">    i = 1;  //代替后应该删除q所指结点的第1个关键字  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">void Del(BTree q, int i) &#123;  </div><div class="line">    //删除q所指结点第i个关键字及其记录  </div><div class="line">    for (; i &lt; q-&gt;keynum; i++) &#123;//关键字和记录指针前移  </div><div class="line">        q-&gt;key[i] = q-&gt;key[i + 1];  </div><div class="line">        q-&gt;recptr[i] = q-&gt;recptr[i + 1];  </div><div class="line">    &#125;  </div><div class="line">    q-&gt;keynum--;//关键字数目减1  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">Status  Borrow(BTree q)  </div><div class="line">// 若q的兄弟结点关键字大于(m-1)/2,则从兄弟结点上移最小（或最大）的关键字到双亲结点，  </div><div class="line">// 而将双亲结点中小于(或大于）且紧靠该关键字的关键字下移至q中,并返回OK，否则返回EREOR。  </div><div class="line">&#123;  </div><div class="line">    int i;  </div><div class="line">    BTree p = q-&gt;parent, b = NULL;                   // p指向q的双亲结点  </div><div class="line">    for (i = 0; p-&gt;ptr[i] != q; i++);            // 查找q在双亲p的子树位置  </div><div class="line">    if (i &gt;= 0 &amp;&amp; i + 1 &lt;= p-&gt;keynum &amp;&amp; p-&gt;ptr[i + 1]-&gt;keynum &gt; (M - 1) / 2)  </div><div class="line">    &#123;                                       // 若q的右兄弟关键字个数大于(m-1)/2  </div><div class="line">        b = p-&gt;ptr[i + 1];                       // b指向右兄弟结点  </div><div class="line">        q-&gt;ptr[1] = b-&gt;ptr[0];                    // 子树指针也要同步移动  </div><div class="line">        q-&gt;key[1] = p-&gt;key[i + 1];                // 从父节点借第i+1个关键字  </div><div class="line">        q-&gt;recptr[1] = p-&gt;recptr[i + 1];  </div><div class="line">        p-&gt;key[i + 1] = b-&gt;key[1];                // b第一个关键字上移到父节点  </div><div class="line">        p-&gt;recptr[i + 1] = b-&gt;recptr[1];  </div><div class="line">        for (i = 1; i &lt;= b-&gt;keynum; i++)          // b第一个关键字上移，需把剩余记录前移一位  </div><div class="line">        &#123;  </div><div class="line">            b-&gt;key[i] = b-&gt;key[i + 1];  </div><div class="line">            b-&gt;recptr[i] = b-&gt;recptr[i + 1];  </div><div class="line">            b-&gt;ptr[i - 1] = b-&gt;ptr[i];  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    else if (i &gt; 0 &amp;&amp; p-&gt;ptr[i - 1]-&gt;keynum &gt; (M - 1) / 2)  </div><div class="line">    &#123;                                       // 若q的左兄弟关键字个数大约(m-1)/2  </div><div class="line">        b = p-&gt;ptr[i - 1];                       // b指向左兄弟结点  </div><div class="line">        q-&gt;ptr[1] = q-&gt;ptr[0];  </div><div class="line">        q-&gt;ptr[0] = b-&gt;ptr[b-&gt;keynum];  </div><div class="line">        q-&gt;key[1] = p-&gt;key[i];                    // 从父节点借第i个关键字  </div><div class="line">        q-&gt;recptr[1] = p-&gt;recptr[i];  </div><div class="line">        p-&gt;key[i] = b-&gt;key[b-&gt;keynum];         // 将b最后一个关键字上移到父节点  </div><div class="line">        p-&gt;recptr[i] = b-&gt;recptr[b-&gt;keynum];  </div><div class="line">    &#125;  </div><div class="line">    else return ERROR;                          // 无关键字大于(m-1)/2的兄弟  </div><div class="line">    q-&gt;keynum++;  </div><div class="line">    b-&gt;keynum--;  </div><div class="line">    for (i = 0; i &lt;= q-&gt;keynum; i++)  </div><div class="line">        if (q-&gt;ptr[i]) q-&gt;ptr[i]-&gt;parent = q;  // 刷新q的子结点的双亲指针  </div><div class="line">    return OK;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">void Combine(BTree &amp;q) &#123;  </div><div class="line">    int i, j;  </div><div class="line">    BTree p = q-&gt;parent, b = NULL;//p指向q的父亲  </div><div class="line">    for (i = 0; p-&gt;ptr[i] != q; i++);//查找q在父亲p中的子树位置  </div><div class="line">    if (i == 0) &#123;//若为0，则需合并为兄弟的第一个关键字  </div><div class="line">        b = p-&gt;ptr[i + 1];  </div><div class="line">            for (j = b-&gt;keynum; j &gt;= 0; j--) &#123;//将b的关键字和记录后移一位  </div><div class="line">                b-&gt;key[j + 1] = b-&gt;key[j];  </div><div class="line">                b-&gt;recptr[j + 1] = b-&gt;recptr[j];  </div><div class="line">                b-&gt;ptr[j + 1] = b-&gt;ptr[j];  </div><div class="line">            &#125;  </div><div class="line">            b-&gt;ptr[0] = q-&gt;ptr[0];//合并  </div><div class="line">            b-&gt;key[1] = p-&gt;key[1];  </div><div class="line">            b-&gt;recptr[1] = p-&gt;recptr[1];  </div><div class="line">        &#125;  </div><div class="line">    else if (i &gt; 0) &#123;//若q在父亲的子树位置大于0，需合并为兄弟b的最后一个关键字  </div><div class="line">        b = p-&gt;ptr[i - 1];  </div><div class="line">        b-&gt;key[b-&gt;keynum + 1] = p-&gt;key[i];//合并  </div><div class="line">        b-&gt;recptr[b-&gt;keynum + 1] = p-&gt;recptr[i];  </div><div class="line">        b-&gt;ptr[b-&gt;keynum + 1] = q-&gt;ptr[0];  </div><div class="line">    &#125;  </div><div class="line">    if(i==0||i==1)//若i为0或1，需将父结点p关键字前移一位  </div><div class="line">        for (; i &lt; p-&gt;keynum; i++) &#123;  </div><div class="line">            p-&gt;key[i] = p-&gt;key[i + 1];  </div><div class="line">            p-&gt;ptr[i] = p-&gt;ptr[i + 1];  </div><div class="line">            p-&gt;recptr[i] = p-&gt;recptr[i + 1];  </div><div class="line">        &#125;  </div><div class="line">    p-&gt;keynum--;  </div><div class="line">    b-&gt;keynum++;  </div><div class="line">    free(q);  </div><div class="line">    q = b;   //q指向修改的兄弟结点  </div><div class="line">    for (i = 0; i &lt;= b-&gt;keynum; i++)  </div><div class="line">        if (b-&gt;ptr[i]) b-&gt;ptr[i]-&gt;parent = b;//刷新b的子结点的双亲指针  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">  </div><div class="line">Status  DeleteBTree(BTree &amp;T, KeyType k)  </div><div class="line">// 在m阶B树T上删除关键字k及其对应记录，并返回OK。  </div><div class="line">// 如T上不存在关键字k，则返回ERROR。  </div><div class="line">&#123;  </div><div class="line">    KeyType x = k;  </div><div class="line">    BTree   q, b = NULL;  </div><div class="line">    int     finished = FALSE, i = 1;  </div><div class="line">    result res = SearchBTree(T, k);             // 在T中查找关键字k  </div><div class="line">    if (res.tag == 0) return ERROR;             // 未搜索到  </div><div class="line">    else  </div><div class="line">    &#123;  </div><div class="line">        q = res.pt;                             // q指向待删结点  </div><div class="line">        i = res.i;  </div><div class="line">        if (q-&gt;ptr[0]) TakePlace(q, i);          // 若q的子树不空，(非底层结点)  </div><div class="line">                                                // 则以其后继代之，且令q指向后继所在结点  </div><div class="line">        Del(q, i);                              // 删除q所指向结点中第i个关键字及记录  </div><div class="line">        if (q-&gt;keynum &gt;= (M - 1) / 2 || !q-&gt;parent)        // 若删除后关键字个数不小于(m-1)/2或q是根节点  </div><div class="line">        &#123;  </div><div class="line">            finished = TRUE;                    // 删除完成  </div><div class="line">            if (q-&gt;keynum == 0) T = NULL;        // 若q的关键字个数为0 ，则为空树  </div><div class="line">        &#125;  </div><div class="line">        while (!finished)  </div><div class="line">        &#123;  </div><div class="line">            if (Borrow(q))  finished = TRUE;    // 若q的相邻兄弟结点关键字大于(m-1)/2,则从该  </div><div class="line">                                                // 兄弟结点上移一个最大（或最小）关键字到  </div><div class="line">                                                // 父节点，从父节点借一关键字到q  </div><div class="line">            else &#123;                              // 若q相邻兄弟关键字个数均等于┌m /2┑-1  </div><div class="line">                Combine(q); // 将q中的剩余部分和双亲中的相关关键字合并至q的一个兄弟中  </div><div class="line">                q = q-&gt;parent;                   // 检查双亲  </div><div class="line">                if (q == T &amp;&amp; T-&gt;keynum == 0)    // 若被删结点的父节点是根T且T的关键字个数为0  </div><div class="line">                &#123;  </div><div class="line">                    T = T-&gt;ptr[0];               // 新根     </div><div class="line">                    T-&gt;parent = NULL;  </div><div class="line">                    free(q);                    // 删除原双亲结点  </div><div class="line">                    finished = TRUE;  </div><div class="line">                &#125;  </div><div class="line">                else if (q-&gt;keynum &gt;= M / 2) finished = TRUE;  </div><div class="line">            &#125;                               // 合并后双亲关键字个数不少于(m-1)/2，完成  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    return OK;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">  </div><div class="line">void BTreeTraverse(BTree T, void (*visit)(BTree )) &#123;  </div><div class="line">    //遍历B树T，对每个结点调用visit函数  </div><div class="line">    if (!T) return;  </div><div class="line">    visit(T);  </div><div class="line">    for (int i = 0; i &lt;= T-&gt;keynum; ++i) &#123;  </div><div class="line">        if (T-&gt;ptr[i]) BTreeTraverse(T-&gt;ptr[i], visit);  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">void    ShowBTree(BTree T, short  x)  </div><div class="line">// 递归以凹入表形式显示B树T,每层的缩进量为x，初始缩进量为8  </div><div class="line">&#123;  </div><div class="line">    if (!T) return;  </div><div class="line">    int     i;  </div><div class="line">    printf("\n");  </div><div class="line">    for (i = 0; i &lt;= x; i++) putchar(' ');           // 缩进x  </div><div class="line">    for (i = 1; i &lt;= T-&gt;keynum; i++)  </div><div class="line">    &#123;  </div><div class="line">        printf("%d,", T-&gt;key[i]);  </div><div class="line">    &#125;  </div><div class="line">    for (i = 0; i &lt;= T-&gt;keynum; i++)              // 递归显示子树结点关键字  </div><div class="line">        ShowBTree(T-&gt;ptr[i], x + 7);  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">int menu() &#123;//菜单  </div><div class="line">    int choice;  </div><div class="line">        printf("\n\n\t\t\t|**********************************************|\n");  </div><div class="line">        printf("\t\t\t|**********************************************|\n");  </div><div class="line">        printf("\t\t\t ______________________________________________|\n");  </div><div class="line">        printf("\t\t\t|                 图书馆管理系统               |\n");  </div><div class="line">        printf("\t\t\t|                                              |\n");  </div><div class="line">        printf("\t\t\t|   1.采编入库           2.清除库存            |\n");  </div><div class="line">        printf("\t\t\t|                                              |\n");  </div><div class="line">        printf("\t\t\t|   3.借阅图书           4.归还图书            |\n");  </div><div class="line">        printf("\t\t\t|                                              |\n");  </div><div class="line">        printf("\t\t\t|   5.查看图书馆全部图书 6.查看某图书信息      |\n");  </div><div class="line">        printf("\t\t\t|                                              |\n");  </div><div class="line">        printf("\t\t\t|   7.查看某书借阅者信息 8.读取图书信息        |\n");  </div><div class="line">        printf("\t\t\t|                                              |\n");  </div><div class="line">        printf("\t\t\t|   0.退出                                     |\n");  </div><div class="line">        printf("\t\t\t|______________________________________________|\n");  </div><div class="line">        printf("\t\t\t|**********************************************|\n");  </div><div class="line">        printf("\t\t\t|**********************************************|\n");  </div><div class="line">        printf("\t\t\t|              15软件工程(4)班                 |\n");  </div><div class="line">        printf("\t\t\t|                 3115005372                   |\n");  </div><div class="line">        printf("\t\t\t|                   杨宇杰                     |\n");  </div><div class="line">        printf("\t\t\t|********************S**************************|\n");  </div><div class="line">        do &#123;  </div><div class="line">            printf("\t\t\t请选择功能（输入0-8任意一个数字）:");  </div><div class="line">            scanf_s("%d", &amp;choice);  </div><div class="line">        &#125; while (choice &lt; 0 || choice &gt; 8);//避免非法输入  </div><div class="line">        return choice;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">  </div><div class="line">void gotoxy(HANDLE hOut, int x, int y) &#123;//定位光标  </div><div class="line">    COORD pos;  </div><div class="line">    pos.X = x;             //横坐标  </div><div class="line">    pos.Y = y;            //纵坐标  </div><div class="line">    SetConsoleCursorPosition(hOut, pos);  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">  </div><div class="line">int login() &#123;//登陆界面  </div><div class="line">    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);//定义显示器句柄变量  </div><div class="line">    int secret_code, i;   </div><div class="line">    printf("\n\n\t\t\t ______________________________________\n");  </div><div class="line">    printf("\t\t\t|                                      |\n");  </div><div class="line">    printf("\t\t\t|                                      |\n");  </div><div class="line">    printf("\t\t\t|         请输入图书管理员密码！       |\n");  </div><div class="line">    printf("\t\t\t|            密码：____                |\n");//密码为5372  </div><div class="line">    printf("\t\t\t|______________________________________|\n");  </div><div class="line">    gotoxy(hOut, 43, 6);  </div><div class="line">    scanf_s("%d", &amp;secret_code);  </div><div class="line">    fflush(stdin);  </div><div class="line">  </div><div class="line">  </div><div class="line">    printf("\n\t\t\tLoding：");//进入动画  </div><div class="line">    for (i = 0; i&lt;11; i++) &#123;  </div><div class="line">        Sleep(50);  </div><div class="line">        printf("█ ");  </div><div class="line">    &#125;  </div><div class="line">    printf("\n\t\t\t载入完成，进入下一级系统");  </div><div class="line">    Sleep(1000);  </div><div class="line">    system("cls");//清屏  </div><div class="line">  </div><div class="line">    if (secret_code == Super_Manager_Code)//判断是不是管理员  </div><div class="line">        return 1;  </div><div class="line">    else  </div><div class="line">        return 0;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="main-cpp"><a href="#main-cpp" class="headerlink" title="main.cpp"></a>main.cpp</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"Library.h"</span>  </span></div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </div><div class="line">    BTree L = <span class="literal">NULL</span>;  </div><div class="line">    BookType B;  </div><div class="line">    result res;  </div><div class="line">    ReaderType R;  </div><div class="line">    <span class="keyword">int</span> booknum, IDnum, k, book_num;  </div><div class="line">    <span class="keyword">char</span> flag;  </div><div class="line">    <span class="keyword">int</span> i;  </div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt;= <span class="number">10</span>; i++)&#123;           <span class="comment">// 显示欢迎界面  </span></div><div class="line">        Welcome(i % <span class="number">16</span>);  </div><div class="line">        Sleep(<span class="number">100</span>);  </div><div class="line">    &#125;  </div><div class="line">    Sleep(<span class="number">800</span>);  </div><div class="line">    system(<span class="string">"cls"</span>);<span class="comment">//清屏  </span></div><div class="line">    <span class="keyword">if</span> (login()) &#123;  </div><div class="line">        <span class="keyword">for</span> (;;) &#123;  </div><div class="line">            <span class="keyword">switch</span> (menu())  </div><div class="line">            &#123;  </div><div class="line">            <span class="keyword">case</span> <span class="number">1</span>:<span class="comment">//采编图书  </span></div><div class="line">                B = (BookType)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(BookNode));  </div><div class="line">                B-&gt;reader = <span class="literal">NULL</span>;  </div><div class="line">                <span class="built_in">printf</span>(<span class="string">"请输入要入库的书号：\n"</span>);  </div><div class="line">                fflush(<span class="built_in">stdin</span>);  </div><div class="line">                scanf_s(<span class="string">"%d"</span>, &amp;B-&gt;booknum);  </div><div class="line">                getchar();  </div><div class="line">                res = SearchBTree(L, B-&gt;booknum);  </div><div class="line">                <span class="keyword">if</span> (!res.tag) &#123;  </div><div class="line">                    fflush(<span class="built_in">stdin</span>);  </div><div class="line">                    <span class="built_in">printf</span>(<span class="string">"请输入该书书名：\n"</span>);  </div><div class="line">                    fflush(<span class="built_in">stdin</span>);  </div><div class="line">                    gets_s(B-&gt;bookname);  </div><div class="line">                    <span class="built_in">printf</span>(<span class="string">"请输入该书作者：\n"</span>);  </div><div class="line">                    fflush(<span class="built_in">stdin</span>);  </div><div class="line">                    gets_s(B-&gt;writer);  </div><div class="line">                    <span class="built_in">printf</span>(<span class="string">"请输入入库数：\n"</span>);  </div><div class="line">                    fflush(<span class="built_in">stdin</span>);  </div><div class="line">                    scanf_s(<span class="string">"%d"</span>, &amp;B-&gt;current);  </div><div class="line">                    <span class="built_in">printf</span>(<span class="string">"请输入出版年份：\n"</span>);  </div><div class="line">                    fflush(<span class="built_in">stdin</span>);  </div><div class="line">                    scanf_s(<span class="string">"%d"</span>, &amp;B-&gt;published_year);  </div><div class="line">                    <span class="built_in">printf</span>(<span class="string">"请输入书本价格：\n"</span>);  </div><div class="line">                    fflush(<span class="built_in">stdin</span>);  </div><div class="line">                    scanf_s(<span class="string">"%f"</span>, &amp;B-&gt;price);  </div><div class="line">                    B-&gt;total = B-&gt;current;  </div><div class="line">                    InsertBook(L, B, res);  </div><div class="line">                    <span class="built_in">printf</span>(<span class="string">"用凹入表形式显示B树如下：\n"</span>);  </div><div class="line">                    ShowBTree(L, <span class="number">8</span>);  </div><div class="line">                    <span class="keyword">break</span>;  </div><div class="line">                &#125;  </div><div class="line">                <span class="keyword">else</span> &#123;<span class="comment">//图书已存在，只增加库存  </span></div><div class="line">                    <span class="built_in">printf</span>(<span class="string">"书库已有该书记录，请输入增加的册数：\n"</span>);  </div><div class="line">                    fflush(<span class="built_in">stdin</span>);  </div><div class="line">                    scanf_s(<span class="string">"%d"</span>, &amp;B-&gt;total);  </div><div class="line">                    InsertBook(L, B, res);  </div><div class="line">                    B = res.pt-&gt;recptr[res.i];  </div><div class="line">                    <span class="built_in">printf</span>(<span class="string">"用凹入表形式显示B树如下：\n"</span>);  </div><div class="line">                    ShowBTree(L);  </div><div class="line">                    <span class="built_in">printf</span>(<span class="string">"新书入库操作完成！\n"</span>);  </div><div class="line">                    system(<span class="string">"pause"</span>);  </div><div class="line">                    <span class="keyword">break</span>;  </div><div class="line">                &#125;  </div><div class="line">  </div><div class="line">  </div><div class="line">            <span class="keyword">case</span> <span class="number">2</span>:<span class="comment">//清空库存  </span></div><div class="line">                <span class="built_in">printf</span>(<span class="string">"请输入要删除的图书书号：\n"</span>);  </div><div class="line">                fflush(<span class="built_in">stdin</span>);  </div><div class="line">                scanf_s(<span class="string">"%d"</span>, &amp;booknum);  </div><div class="line">                res = SearchBTree(L, booknum);  </div><div class="line">                <span class="keyword">if</span> (res.tag) &#123;  </div><div class="line">                    B = res.pt-&gt;recptr[res.i];  </div><div class="line">                    PrintBook(B);  </div><div class="line">                    <span class="built_in">printf</span>(<span class="string">"\n您确认删除上面的图书&lt;Y确认，其余按键返回主菜单&gt;?"</span>);  </div><div class="line">                    fflush(<span class="built_in">stdin</span>);  </div><div class="line">                    getchar();  </div><div class="line">                    flag = getchar();  </div><div class="line">                    <span class="keyword">if</span> (flag == <span class="string">'Y'</span> || flag == <span class="string">'y'</span>) &#123;  </div><div class="line">                        DeleteBook(L, B);  </div><div class="line">                        <span class="built_in">printf</span>(<span class="string">"\n清除完毕！\t删除后用凹入表显示B树如下：\n"</span>);  </div><div class="line">                        ShowBTree(L, <span class="number">8</span>);  </div><div class="line">                    &#125;  </div><div class="line">                &#125;  </div><div class="line">                <span class="keyword">else</span> &#123;  </div><div class="line">                    <span class="built_in">printf</span>(<span class="string">"\n书库不存在此书，删除失败！\n"</span>);  </div><div class="line">                &#125;  </div><div class="line">                <span class="built_in">printf</span>(<span class="string">"\t"</span>);  </div><div class="line">                system(<span class="string">"pause"</span>);  </div><div class="line">                <span class="keyword">break</span>;  </div><div class="line">            <span class="keyword">case</span> <span class="number">3</span>:<span class="comment">//借阅图书  </span></div><div class="line">                R = (ReaderType)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(ReaderNode));  </div><div class="line">                R-&gt;rnext = <span class="literal">NULL</span>;  </div><div class="line">                <span class="built_in">printf</span>(<span class="string">"请输入借阅图书书号：\n"</span>);  </div><div class="line">                fflush(<span class="built_in">stdin</span>);  </div><div class="line">                scanf_s(<span class="string">"%d"</span>, &amp;booknum);  </div><div class="line">                getchar();  </div><div class="line">                res = SearchBTree(L, booknum);  </div><div class="line">                <span class="keyword">if</span> (res.tag) &#123;  </div><div class="line">                    B = res.pt-&gt;recptr[res.i];  </div><div class="line">                    <span class="built_in">printf</span>(<span class="string">"请输入您的姓名：\n"</span>);  </div><div class="line">                    fflush(<span class="built_in">stdin</span>);  </div><div class="line">                    gets_s(R-&gt;reader_name);  </div><div class="line">                    <span class="built_in">printf</span>(<span class="string">"请输入您的ID号：\n"</span>);  </div><div class="line">                    fflush(<span class="built_in">stdin</span>);  </div><div class="line">                    scanf_s(<span class="string">"%d"</span>, &amp;R-&gt;IDnum);  </div><div class="line">                    <span class="keyword">if</span> (CanBorrow(L, B, R)) &#123;  </div><div class="line">                        BorrowBook(L, B, R);  </div><div class="line">                        <span class="built_in">printf</span>(<span class="string">"\n借书完成！"</span>);  </div><div class="line">                    &#125;  </div><div class="line">                    <span class="keyword">else</span> &#123;  </div><div class="line">                        <span class="built_in">printf</span>(<span class="string">"\n库存不足，借阅失败！"</span>);  </div><div class="line">                        <span class="built_in">free</span>(R);  </div><div class="line">                    &#125;  </div><div class="line">                &#125;  </div><div class="line">                <span class="keyword">else</span> &#123;  </div><div class="line">                    <span class="built_in">printf</span>(<span class="string">"\n库存无此书，借阅失败！"</span>);  </div><div class="line">                    <span class="built_in">free</span>(R);  </div><div class="line">                &#125;  </div><div class="line">                <span class="built_in">printf</span>(<span class="string">"\t"</span>);  </div><div class="line">                system(<span class="string">"pause"</span>);  </div><div class="line">                <span class="keyword">break</span>;  </div><div class="line">            <span class="keyword">case</span> <span class="number">4</span>:<span class="comment">//归还图书  </span></div><div class="line">                <span class="built_in">printf</span>(<span class="string">"\n请输入图书号：\n"</span>);  </div><div class="line">                scanf_s(<span class="string">"%d"</span>, &amp;booknum);  </div><div class="line">                <span class="built_in">printf</span>(<span class="string">"请输入您的ID号：\n"</span>);  </div><div class="line">                scanf_s(<span class="string">"%d"</span>, &amp;IDnum);  </div><div class="line">                k = ReturnBook(L, booknum, IDnum, B, R);  </div><div class="line">                <span class="keyword">if</span> (k == <span class="number">1</span>) &#123;  </div><div class="line">                    <span class="built_in">printf</span>(<span class="string">"\n还书完成！"</span>);  </div><div class="line">                    R = <span class="literal">NULL</span>;  </div><div class="line">                &#125;  </div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (k == <span class="number">0</span>) &#123;  </div><div class="line">                    <span class="built_in">printf</span>(<span class="string">"\n还书失败，系统没有您借该书记录！"</span>);  </div><div class="line">                &#125;  </div><div class="line">                <span class="keyword">else</span> &#123;  </div><div class="line">                    <span class="built_in">printf</span>(<span class="string">"\n书库中不存在此书!"</span>);  </div><div class="line">                &#125;  </div><div class="line">                <span class="built_in">printf</span>(<span class="string">"\t"</span>);  </div><div class="line">                system(<span class="string">"pause"</span>);  </div><div class="line">                <span class="keyword">break</span>;  </div><div class="line">            <span class="keyword">case</span> <span class="number">5</span>:<span class="comment">//输出总库存  </span></div><div class="line">                <span class="built_in">printf</span>(<span class="string">"图书馆总库存信息如下：\n"</span>);  </div><div class="line">                PrintAllbooks(L);  </div><div class="line">                <span class="keyword">break</span>;  </div><div class="line">            <span class="keyword">case</span> <span class="number">6</span>:<span class="comment">//查找某种图书  </span></div><div class="line">                <span class="built_in">printf</span>(<span class="string">"请输入要查找的图书的编号：\n"</span>);  </div><div class="line">                scanf_s(<span class="string">"%d"</span>, &amp;book_num);  </div><div class="line">                ShowBookinfo(L, book_num);  </div><div class="line">                <span class="keyword">break</span>;  </div><div class="line">            <span class="keyword">case</span> <span class="number">7</span>:<span class="comment">//输出某图书的借阅者信息  </span></div><div class="line">                <span class="built_in">printf</span>(<span class="string">"请输入要查找的图书的编号：\n"</span>);  </div><div class="line">                scanf_s(<span class="string">"%d"</span>, &amp;book_num);  </div><div class="line">                res = SearchBTree(L, book_num);  </div><div class="line">                <span class="keyword">if</span> (res.tag) &#123;  </div><div class="line">                    B = res.pt-&gt;recptr[res.i];  </div><div class="line">                    <span class="built_in">printf</span>(<span class="string">"借阅者信息如下：\n"</span>);  </div><div class="line">                    PrintBorrower(B-&gt;reader);  </div><div class="line">                &#125;  </div><div class="line">                <span class="keyword">else</span> &#123;  </div><div class="line">                    <span class="built_in">printf</span>(<span class="string">"\n书库不存在此书，查找失败！\n"</span>);  </div><div class="line">                &#125;  </div><div class="line">                <span class="built_in">printf</span>(<span class="string">"\t"</span>);  </div><div class="line">                system(<span class="string">"pause"</span>);  </div><div class="line">                <span class="keyword">break</span>;  </div><div class="line">            <span class="keyword">case</span> <span class="number">8</span>:Creat(L);  </div><div class="line">                system(<span class="string">"cls"</span>);  </div><div class="line">                <span class="keyword">break</span>;  </div><div class="line">            <span class="keyword">case</span> <span class="number">0</span>:  <span class="comment">//退出管理系统  </span></div><div class="line">                <span class="built_in">exit</span>(<span class="number">0</span>);  </div><div class="line">            <span class="keyword">default</span>:  </div><div class="line">                <span class="keyword">break</span>;  </div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">else</span> &#123;  </div><div class="line">        <span class="built_in">printf</span>(<span class="string">"密码输入错误！\n"</span>);  </div><div class="line">        system(<span class="string">"pause"</span>);  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="bookinfo-dat"><a href="#bookinfo-dat" class="headerlink" title="bookinfo.dat"></a>bookinfo.dat</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="number">35</span>  灯下漫笔        鲁迅      <span class="number">39</span>  <span class="number">39</span>  <span class="number">1997</span>    <span class="number">19.5</span>  </div><div class="line"><span class="number">16</span>  BASIC语言     谭浩强     <span class="number">38</span>  <span class="number">38</span>  <span class="number">1980</span>    <span class="number">18.0</span>  </div><div class="line"><span class="number">18</span>  C程序设计       谭浩强     <span class="number">40</span>  <span class="number">40</span>  <span class="number">2007</span>    <span class="number">26.0</span>  </div><div class="line"><span class="number">70</span>  阿Q正传            鲁迅      <span class="number">28</span>  <span class="number">28</span>  <span class="number">1984</span>    <span class="number">13.5</span>  </div><div class="line"><span class="number">5</span>   计算机组成原理     白中英     <span class="number">56</span>  <span class="number">56</span>  <span class="number">2008</span>    <span class="number">39.0</span>  </div><div class="line"><span class="number">50</span>  意志力训练手册     美·弗兰克   <span class="number">46</span>  <span class="number">46</span>  <span class="number">2005</span>    <span class="number">20.0</span>  </div><div class="line"><span class="number">22</span>  打出速度-五笔教程   导向科技    <span class="number">45</span>  <span class="number">45</span>  <span class="number">2003</span>    <span class="number">18.0</span>  </div><div class="line"><span class="number">60</span>  幽默大师        南琦      <span class="number">48</span>  <span class="number">48</span>  <span class="number">2007</span>    <span class="number">38.5</span>  </div><div class="line"><span class="number">13</span>  鲁迅小说选       鲁迅      <span class="number">39</span>  <span class="number">39</span>  <span class="number">1976</span>    <span class="number">18.3</span>  </div><div class="line"><span class="number">17</span>  计算机组成原理题库   白中英     <span class="number">36</span>  <span class="number">36</span>  <span class="number">2008</span>    <span class="number">18.5</span>  </div><div class="line"><span class="number">12</span>  坟           鲁迅      <span class="number">55</span>  <span class="number">55</span>  <span class="number">1973</span>    <span class="number">8.6</span>  </div><div class="line"><span class="number">45</span>  学会说话        南琦      <span class="number">57</span>  <span class="number">57</span>  <span class="number">2004</span>    <span class="number">18.5</span>  </div><div class="line"><span class="number">25</span>  准风月谈        鲁迅      <span class="number">60</span>  <span class="number">60</span>  <span class="number">1973</span>    <span class="number">13.9</span>  </div><div class="line"><span class="number">42</span>  超越自己        南琦      <span class="number">45</span>  <span class="number">45</span>  <span class="number">2007</span>    <span class="number">15.0</span>  </div><div class="line"><span class="number">15</span>  鲁迅杂文选       鲁迅      <span class="number">30</span>  <span class="number">30</span>  <span class="number">1973</span>    <span class="number">18.9</span>  </div><div class="line"><span class="number">90</span>  鲁迅日文作品集     鲁迅      <span class="number">45</span>  <span class="number">45</span>  <span class="number">1981</span>    <span class="number">15.5</span>  </div><div class="line"><span class="number">30</span>  数字电子简明教程    余孟尝     <span class="number">55</span>  <span class="number">55</span>  <span class="number">2005</span>    <span class="number">35.0</span>  </div><div class="line"><span class="number">7</span>   数据结构(C语言版)  严蔚敏     <span class="number">60</span>  <span class="number">60</span>  <span class="number">2008</span>    <span class="number">30.0</span></div></pre></td></tr></table></figure>
+<h2 id="程序截图"><a href="#程序截图" class="headerlink" title="程序截图"></a>程序截图</h2><p><img src="http://img.blog.csdn.net/20170510230226178?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://wx1.sinaimg.cn/mw1024/b033f7d0gy1fhtulvvmmcj20px0zk40h.jpg" alt="Yujie Yang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+            -------------本文结束
+            <i class="fa fa-paw"></i>
+            感谢您的阅读-------------
+        </div>
+    
+</div>
+  
+</div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C</a>
+          
+            <a href="/tags/数据结构/" rel="tag"><i class="fa fa-tag"></i> 数据结构</a>
+          
+            <a href="/tags/B-tree/" rel="tag"><i class="fa fa-tag"></i> B_tree</a>
+          
+            <a href="/tags/课程设计/" rel="tag"><i class="fa fa-tag"></i> 课程设计</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/26/C语言实现顺序表的基本操作/" rel="next" title="C语言实现顺序表的基本操作">
+                <i class="fa fa-chevron-left"></i> C语言实现顺序表的基本操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/17/关于解决VS2015不能用fscanf而老是提示用fscanf-s的方法/" rel="prev" title="关于解决VS2015不能用fscanf而老是提示用fscanf_s的方法">
+                关于解决VS2015不能用fscanf而老是提示用fscanf_s的方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://assets-cdn.github.com/pinned-octocat.svg"
+               alt="Yujie Yang" />
+          <p class="site-author-name" itemprop="name">Yujie Yang</p>
+           
+              <p class="site-description motion-element" itemprop="description">杨宇杰的个人博客。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/OKCthouder" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2956195792/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/Yujie_Yang666" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/onlylove_kd" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-codiepie"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://okcthouder.github.io/author" target="_blank" title="Author">
+                  
+                    <i class="fa fa-fw fa-user-circle-o"></i>
+                  
+                  Author
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://lindexi.github.io/lindexi/" title="林德熙" target="_blank">林德熙</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.williamlong.info/" title="月光博客" target="_blank">月光博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.phodal.com/" title="phodal" target="_blank">phodal</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发环境"><span class="nav-number">2.</span> <span class="nav-text">开发环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#library-h"><span class="nav-number">3.1.</span> <span class="nav-text">library.h</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#library-cpp"><span class="nav-number">3.2.</span> <span class="nav-text">library.cpp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BTree-Operation-cpp"><span class="nav-number">3.3.</span> <span class="nav-text">BTree_Operation.cpp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-cpp"><span class="nav-number">3.4.</span> <span class="nav-text">main.cpp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bookinfo-dat"><span class="nav-number">3.5.</span> <span class="nav-text">bookinfo.dat</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序截图"><span class="nav-number">4.</span> <span class="nav-text">程序截图</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yujie Yang</span>
+</div>
+
+<!--
+<div class="powered-by">
+</div>
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>-->
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  <!-- 本站访客数:<span id="busuanzi_value_site_uv"></span> -->
+</span>
+
+<!--<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>-->
+
+
+<div class="theme-info">
+
+  <span class="post-count">博客全站共 32.0k 字</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://okcthouder.github.io/2016/12/17/数据结构课设-用B树实现图书管理系统/';
+          this.page.identifier = '2016/12/17/数据结构课设-用B树实现图书管理系统/';
+          this.page.title = '数据结构课设--用B树实现图书管理系统';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("mxE2nxgNcrdnISwHSqQRvPUv-gzGzoHsz", "aLmsGWRpuLloK2BGcaIJroEQ");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("mxE2nxgNcrdnISwHSqQRvPUv-gzGzoHsz", "aLmsGWRpuLloK2BGcaIJroEQ");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+   
+  
+<script type="text/javascript"
+color="0,0,255" opacity='0.4' zIndex="-2" count="50" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
