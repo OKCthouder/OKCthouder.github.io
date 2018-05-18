@@ -117,35 +117,35 @@
 
 
 
-<meta name="description" content="第一个任务遇到的一些问题​    在捣鼓了几天的SVN检出项目之后，终于成功把代码从远程代码库下载下来并成功把系统运行起来了。但是由于系统过于庞大，跟了我几年的电脑开始有点不堪重负，CPU跟内存占用都达到了80%，风扇也转的很大声，赶紧叫来了标哥，在tomcat的配置文件那里加了一句： 1-Xms2048m -Xmx2048m -XX:PermSize=512m -XX:MaxPermSize=5">
+<meta name="description" content="​    在捣鼓了几天的SVN检出项目之后，终于成功把代码从远程代码库下载下来并成功把系统运行起来了。但是由于系统过于庞大，跟了我几年的电脑开始有点不堪重负，CPU跟内存占用都达到了80%，风扇也转的很大声，赶紧叫来了标哥，在tomcat的配置文件那里加了一句： 1-Xms2048m -Xmx2048m -XX:PermSize=512m -XX:MaxPermSize=512m ​    问题终">
 <meta name="keywords" content="SVN,java， Tomcat,空指针， PMS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第一个任务遇到的一些问题">
 <meta property="og:url" content="https://okcthouder.github.io/2018/05/03/第一个任务遇到的一些问题/index.html">
 <meta property="og:site_name" content="ISLAND">
-<meta property="og:description" content="第一个任务遇到的一些问题​    在捣鼓了几天的SVN检出项目之后，终于成功把代码从远程代码库下载下来并成功把系统运行起来了。但是由于系统过于庞大，跟了我几年的电脑开始有点不堪重负，CPU跟内存占用都达到了80%，风扇也转的很大声，赶紧叫来了标哥，在tomcat的配置文件那里加了一句： 1-Xms2048m -Xmx2048m -XX:PermSize=512m -XX:MaxPermSize=5">
+<meta property="og:description" content="​    在捣鼓了几天的SVN检出项目之后，终于成功把代码从远程代码库下载下来并成功把系统运行起来了。但是由于系统过于庞大，跟了我几年的电脑开始有点不堪重负，CPU跟内存占用都达到了80%，风扇也转的很大声，赶紧叫来了标哥，在tomcat的配置文件那里加了一句： 1-Xms2048m -Xmx2048m -XX:PermSize=512m -XX:MaxPermSize=512m ​    问题终">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="c:/Users/Simple_Y/Pictures/总结/微信图片_20180502153628.png">
-<meta property="og:image" content="c:/Users/Simple_Y/Pictures/总结/微信图片_20180502154106.png">
-<meta property="og:image" content="c:/Users/Simple_Y/Pictures/总结/TIM图片20180502155412.png">
-<meta property="og:image" content="c:/Users/Simple_Y/Pictures/总结/微信图片_20180502162608.png">
-<meta property="og:image" content="c:/Users/Simple_Y/Pictures/总结/微信图片_20180502162901.png">
-<meta property="og:image" content="c:/Users/Simple_Y/Pictures/总结/微信图片_20180502163008.png">
-<meta property="og:image" content="c:/Users/Simple_Y/Pictures/总结/微信图片_20180502163114.png">
-<meta property="og:image" content="c:/Users/Simple_Y/Pictures/总结/微信图片_20180502163339.png">
-<meta property="og:image" content="c:/Users/Simple_Y/Pictures/总结/微信图片_20180502163733.png">
-<meta property="og:image" content="c:/Users/Simple_Y/Pictures/总结/微信图片_20180502163957.png">
-<meta property="og:image" content="c:/Users/Simple_Y/Pictures/总结/微信图片_20180502164225.jpg">
-<meta property="og:image" content="c:/Users/Simple_Y/Pictures/总结/微信图片_20180502164507.png">
-<meta property="og:image" content="c:/Users/Simple_Y/Pictures/总结/微信图片_20180503162529.png">
-<meta property="og:image" content="c:/Users/Simple_Y/Pictures/总结/微信图片_20180502163733.png">
-<meta property="og:image" content="c:/Users/Simple_Y/Pictures/总结/微信图片_20180503162920.png">
-<meta property="og:image" content="c:/Users/Simple_Y/Pictures/总结/微信图片_20180503163022.png">
-<meta property="og:updated_time" content="2018-05-18T07:36:49.170Z">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518155232636">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518155308885">
+<meta property="og:image" content="https://img-blog.csdn.net/2018051815533263">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518155410464">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518155527555">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518155453192">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518155542632">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518155554987">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518155607240">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518155621441">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518155634423">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518155647379">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518155729214">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518155739989">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518155804915">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518155900354">
+<meta property="og:updated_time" content="2018-05-18T08:28:21.359Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第一个任务遇到的一些问题">
-<meta name="twitter:description" content="第一个任务遇到的一些问题​    在捣鼓了几天的SVN检出项目之后，终于成功把代码从远程代码库下载下来并成功把系统运行起来了。但是由于系统过于庞大，跟了我几年的电脑开始有点不堪重负，CPU跟内存占用都达到了80%，风扇也转的很大声，赶紧叫来了标哥，在tomcat的配置文件那里加了一句： 1-Xms2048m -Xmx2048m -XX:PermSize=512m -XX:MaxPermSize=5">
-<meta name="twitter:image" content="c:/Users/Simple_Y/Pictures/总结/微信图片_20180502153628.png">
+<meta name="twitter:description" content="​    在捣鼓了几天的SVN检出项目之后，终于成功把代码从远程代码库下载下来并成功把系统运行起来了。但是由于系统过于庞大，跟了我几年的电脑开始有点不堪重负，CPU跟内存占用都达到了80%，风扇也转的很大声，赶紧叫来了标哥，在tomcat的配置文件那里加了一句： 1-Xms2048m -Xmx2048m -XX:PermSize=512m -XX:MaxPermSize=512m ​    问题终">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180518155232636">
 
 
 
@@ -581,7 +581,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  2,475
+                  2,456
                 </span>
               
 
@@ -615,13 +615,13 @@
       
 
       
-        <h3 id="第一个任务遇到的一些问题"><a href="#第一个任务遇到的一些问题" class="headerlink" title="第一个任务遇到的一些问题"></a>第一个任务遇到的一些问题</h3><p>​    在捣鼓了几天的SVN检出项目之后，终于成功把代码从远程代码库下载下来并成功把系统运行起来了。但是由于系统过于庞大，跟了我几年的电脑开始有点不堪重负，CPU跟内存占用都达到了80%，风扇也转的很大声，赶紧叫来了标哥，在tomcat的配置文件那里加了一句：</p>
+        <p>​    在捣鼓了几天的SVN检出项目之后，终于成功把代码从远程代码库下载下来并成功把系统运行起来了。但是由于系统过于庞大，跟了我几年的电脑开始有点不堪重负，CPU跟内存占用都达到了80%，风扇也转的很大声，赶紧叫来了标哥，在tomcat的配置文件那里加了一句：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-Xms2048m -Xmx2048m -XX:PermSize=512m -XX:MaxPermSize=512m</div></pre></td></tr></table></figure>
 <p>​    问题终于迎刃而解。</p>
- <a id="more"></a>
+  <a id="more"></a>
 <p>​    于是也就迎来了在公司的第一个任务：</p>
 <blockquote>
-<p>熊奉标 10:56:41<br>局内业务批量受理校验功能，如果导入的字段值有空格，则系统校验不通过，提示机房或者设施不存在。因此，要去系统优化功能，能自动去除字段值前后的空格后再进行校验。案例见附件</p>
+<p>熊奉标 10:56:41局内业务批量受理校验功能，如果导入的字段值有空格，则系统校验不通过，提示机房或者设施不存在。因此，要去系统优化功能，能自动去除字段值前后的空格后再进行校验。案例见附件</p>
 </blockquote>
 <p>​    这个任务的需求也就是在局内业务批量受理校验功能中，用户从系统导出excel模板，对着模板填充对应的信息。但是由于用户有时候会误操作，或者输入的时候会填充多一些空格在文字的前后，此时系统校验功能就会出错，自动读取空格为某一列，然后导致错位，提示机房或者设施不存在。所以需要在系统原有的基础上进行优化，能自动去除字段值前后的空格后再进行校验。</p>
 <p>​    由于我的excel是2016版本，如果单元格没有设置为文本格式的话，是没有办法直接在文字前面或者后面直接添加空格，因为excel会自动去除空格，2010版本则没有这个问题。下面则列出我的部分测试数据(高亮部分为特殊测试数据，在数字的前后分别加入空格):</p>
@@ -690,8 +690,8 @@
 <td></td>
 <td></td>
 <td></td>
-<td>==<strong>11</strong>==</td>
-<td><strong>==11==</strong></td>
+<td>11</td>
+<td>11</td>
 <td>1</td>
 <td></td>
 <td></td>
@@ -701,18 +701,18 @@
 </tr>
 </tbody>
 </table>
-<p>​    在看了好久的源代码之后，终于开始着手写代码了。首先找到了<img src="C:\Users\Simple_Y\Pictures\总结\微信图片_20180502153628.png" alt="微信图片_20180502153628"></p>
-<p>在该源文件中添加了如下代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getStringWithoutSpace</span><span class="params">(String str)</span></span>&#123;</div><div class="line">  	String str1 = str.replaceAll(<span class="string">" "</span>, <span class="string">""</span>);</div><div class="line">  	<span class="keyword">return</span> str1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    在看了好久的源代码之后，终于开始着手写代码了。首先找到了</p>
+<p><img src="https://img-blog.csdn.net/20180518155232636" alt="img"><br>在该源文件中添加了如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public static String getStringWithoutSpace(String str)&#123;</div><div class="line">    String str1 = str.replaceAll(&quot; &quot;, &quot;&quot;);</div><div class="line">    return str1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>ctrl + S保存，再找到如下文件：</p>
-<p><img src="C:\Users\Simple_Y\Pictures\总结\微信图片_20180502154106.png" alt="微信图片_20180502154106"></p>
+<p><img src="https://img-blog.csdn.net/20180518155308885" alt="img"></p>
 <p>在源代码中：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//由于所有excel表格数据都是获取到mapmo对象中</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; loopCount; j++) &#123;</div><div class="line">			List&lt;Map&lt;String, String&gt;&gt; list = getDatasByPage(fileparse, j, <span class="number">0</span>);</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; list.size(); k++) &#123;</div><div class="line">				Map&lt;String, String&gt; mapmo = list.get(k);</div><div class="line">              ｝</div><div class="line">                </div><div class="line"><span class="comment">//所以我就在想只要在每次mapmo对象获取key对应的value值时，对获得的String字符串进行去空格处理，如下所示：                </span></div><div class="line">String fiberMainState = mapmo.get(<span class="string">"CUS_NOTNULL_FIBERMAINSTATE"</span>);</div><div class="line">-&gt; </div><div class="line">String fiberMainState = InventoryUtil.getStringWithoutSpace(mapmo.get(<span class="string">"CUS_NOTNULL_FIBERMAINSTATE"</span>));</div><div class="line"></div><div class="line"><span class="comment">//对OrderVerifyImportProcessor.java文件中所有相应部位都加上InventoryUtil.getStringWithoutSpace(）处理。对读取的String进行去空格处理。</span></div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//由于所有excel表格数据都是获取到mapmo对象中</div><div class="line">for (int j = 0; j &lt; loopCount; j++) &#123;</div><div class="line">            List&lt;Map&lt;String, String&gt;&gt; list = getDatasByPage(fileparse, j, 0);</div><div class="line">            for (int k = 0; k &lt; list.size(); k++) &#123;</div><div class="line">                Map&lt;String, String&gt; mapmo = list.get(k);</div><div class="line">              ｝</div><div class="line">                </div><div class="line">//所以我就在想只要在每次mapmo对象获取key对应的value值时，对获得的String字符串进行去空格处理，如下所示：                </div><div class="line">String fiberMainState = mapmo.get(&quot;CUS_NOTNULL_FIBERMAINSTATE&quot;);</div><div class="line">-&gt; </div><div class="line">String fiberMainState = InventoryUtil.getStringWithoutSpace(mapmo.get(&quot;CUS_NOTNULL_FIBERMAINSTATE&quot;));</div><div class="line"></div><div class="line">//对OrderVerifyImportProcessor.java文件中所有相应部位都加上InventoryUtil.getStringWithoutSpace(）处理。对读取的String进行去空格处理。</div></pre></td></tr></table></figure>
 <p>Ctrl + S保存，右键tomcat-&gt;debug运行，导入测试文件进行测试，然后弹出如下空指针异常：</p>
-<p><img src="C:\Users\Simple_Y\Pictures\总结\TIM图片20180502155412.png" alt="TIM图片20180502155412"></p>
+<p><img src="https://img-blog.csdn.net/2018051815533263" alt="img"></p>
 <p>这一下子就有点懵逼了，于是开始苦逼的debug断点调试，F5,F6旋转跳跃不停歇。</p>
 <p>终于在一处地方看到了端倪：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">String fiberMainState = InventoryUtil.getStringWithoutSpace(mapmo.get(<span class="string">"CUS_NOTNULL_FIBERMAINSTATE"</span>));</div><div class="line"><span class="comment">//当mapmo获取对应的value时，如果该value值本身为null，而上述的去空格代码没有进行判空处理，就会出现空指针异常。</span></div><div class="line"><span class="comment">//于是将代码改成如下：</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getStringWithoutSpace</span><span class="params">(String str)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(str != <span class="keyword">null</span>)</div><div class="line">    &#123;</div><div class="line">    	String str1 = str.trim(); </div><div class="line">    	<span class="keyword">return</span> str1;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> str;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">String fiberMainState = InventoryUtil.getStringWithoutSpace(mapmo.get(&quot;CUS_NOTNULL_FIBERMAINSTATE&quot;));</div><div class="line">//当mapmo获取对应的value时，如果该value值本身为null，而上述的去空格代码没有进行判空处理，就会出现空指针异常。</div><div class="line">//于是将代码改成如下：</div><div class="line"></div><div class="line">public static String getStringWithoutSpace(String str)</div><div class="line">&#123;</div><div class="line">    if(str != null)</div><div class="line">    &#123;</div><div class="line">        String str1 = str.trim(); </div><div class="line">        return str1;</div><div class="line">    &#125;</div><div class="line">    return str;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>此时再次运行系统就没有再出现空指针异常。</p>
 <p>然后成功导入用户的检验文件，输出校验结果文件：</p>
 <table>
@@ -760,8 +760,8 @@
 <td></td>
 <td></td>
 <td>海珠</td>
-<td>==<strong>11</strong>==</td>
-<td>==<strong>11</strong>==</td>
+<td>11</td>
+<td>11</td>
 <td>1</td>
 <td></td>
 <td>黄埔</td>
@@ -771,52 +771,52 @@
 </table>
 <p>RESULT文件并没有将空格去除，但是在读取文件的时候空格明明已经去除了，我就在想可能是因为在读取excel文件时去除空格，只是存在于内存中，而在生成RESULT文件时没有将空格去除，所以还是有空格。</p>
 <p>于是我又找到了生成RESULT文件的方法，对其进行修改：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">createExcelFileManySheet</span><span class="params">(OutputStream out, String[] dataTitles,</span></span></div><div class="line">			List&lt;Map&lt;String, String&gt;&gt; dataList,HSSFRichTextString[] cellComment,String metaClassName,String verifyCode) &#123;</div><div class="line">		WritableWorkbook workbook;</div><div class="line">		WritableCellFeatures wcfeatures = <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			workbook = Workbook.createWorkbook(out);</div><div class="line">			WritableSheet sheet = workbook.createSheet(<span class="string">"sheet1"</span>,<span class="number">0</span>);</div><div class="line">			NetworkTemplateUtil.initialSheetSetting(sheet);</div><div class="line">			verifyCode = <span class="string">"校验成功码："</span>+(verifyCode==<span class="keyword">null</span>?<span class="string">""</span>:verifyCode);</div><div class="line">			String productName = NetworkTemplateUtil.templateNameMaps.get(metaClassName);</div><div class="line">			sheet.addCell(<span class="keyword">new</span> Label(<span class="number">0</span>, <span class="number">0</span>, verifyCode));</div><div class="line">			sheet.addCell(<span class="keyword">new</span> Label(<span class="number">0</span>, <span class="number">1</span>, productName));</div><div class="line">			Label label;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; dataTitles.length; j++)&#123;</div><div class="line">				label = <span class="keyword">new</span> Label(j, <span class="number">2</span>, dataTitles[j]);</div><div class="line">				wcfeatures = <span class="keyword">new</span> WritableCellFeatures(); </div><div class="line">		        wcfeatures.setComment(cellComment[j].toString()); </div><div class="line">		        label.setCellFeatures(wcfeatures); </div><div class="line">				sheet.addCell(label);</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> row=<span class="number">0</span>; row&lt;dataList.size(); row++) &#123;</div><div class="line">				Map&lt;String , String &gt; maps = dataList.get(row);</div><div class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n &lt; dataTitles.length ; n++) &#123;</div><div class="line">					Cell cells = sheet.getCell(n, <span class="number">2</span>);</div><div class="line">					String str = cells.getCellFeatures().getComment();</div><div class="line">					label = <span class="keyword">new</span> Label(n, row + <span class="number">3</span>, InventoryUtil.getStringWithoutSpace(maps.get(str));</div><div class="line">                                      <span class="comment">//在此处加入去空格处理，所以写入RESULT文件时就会没有空格</span></div><div class="line">					sheet.addCell(label);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			workbook.write();</div><div class="line">			workbook.close();</div><div class="line">		&#125; <span class="keyword">catch</span> (SocketException s) &#123;</div><div class="line">			s.printStackTrace();</div><div class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125; <span class="keyword">catch</span> (WriteException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125; <span class="keyword">catch</span> (Exception ex) &#123;</div><div class="line">			ex.printStackTrace();</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">private void createExcelFileManySheet(OutputStream out, String[] dataTitles,</div><div class="line">            List&lt;Map&lt;String, String&gt;&gt; dataList,HSSFRichTextString[] cellComment,String metaClassName,String verifyCode) &#123;</div><div class="line">        WritableWorkbook workbook;</div><div class="line">        WritableCellFeatures wcfeatures = null;</div><div class="line">        try &#123;</div><div class="line">            workbook = Workbook.createWorkbook(out);</div><div class="line">            WritableSheet sheet = workbook.createSheet(&quot;sheet1&quot;,0);</div><div class="line">            NetworkTemplateUtil.initialSheetSetting(sheet);</div><div class="line">            verifyCode = &quot;校验成功码：&quot;+(verifyCode==null?&quot;&quot;:verifyCode);</div><div class="line">            String productName = NetworkTemplateUtil.templateNameMaps.get(metaClassName);</div><div class="line">            sheet.addCell(new Label(0, 0, verifyCode));</div><div class="line">            sheet.addCell(new Label(0, 1, productName));</div><div class="line">            Label label;</div><div class="line">            for (int j = 0; j &lt; dataTitles.length; j++)&#123;</div><div class="line">                label = new Label(j, 2, dataTitles[j]);</div><div class="line">                wcfeatures = new WritableCellFeatures(); </div><div class="line">                wcfeatures.setComment(cellComment[j].toString()); </div><div class="line">                label.setCellFeatures(wcfeatures); </div><div class="line">                sheet.addCell(label);</div><div class="line">            &#125;</div><div class="line">            for (int row=0; row&lt;dataList.size(); row++) &#123;</div><div class="line">                Map&lt;String , String &gt; maps = dataList.get(row);</div><div class="line">                for (int n = 0; n &lt; dataTitles.length ; n++) &#123;</div><div class="line">                    Cell cells = sheet.getCell(n, 2);</div><div class="line">                    String str = cells.getCellFeatures().getComment();</div><div class="line">                    label = new Label(n, row + 3, InventoryUtil.getStringWithoutSpace(maps.get(str));</div><div class="line">                                      //在此处加入去空格处理，所以写入RESULT文件时就会没有空格</div><div class="line">                    sheet.addCell(label);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            workbook.write();</div><div class="line">            workbook.close();</div><div class="line">        &#125; catch (SocketException s) &#123;</div><div class="line">            s.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (WriteException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (Exception ex) &#123;</div><div class="line">            ex.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <p>事情到这个阶段就告一段落，成功运行系统，导出正确的RESULT文件，看到想要的结果，超级开心地叫来了标哥，在看了代码以后标哥给了个建议：</p>
 <blockquote>
 <p>这样改的话，可能需要改动的地方太多了，每一处有用到mapmo获取的地方都需要加入去空格处理，工程量太大，看看能不能在一开始获取excel表数据的源头那里就直接对数据进行处理，这样以后就不用每次都处理。</p>
 </blockquote>
 <p>然后我就找到了一开始读取excel表的方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> List&lt;Map&lt;String, String&gt;&gt; parse(<span class="keyword">int</span> begin, <span class="keyword">int</span> end, <span class="keyword">int</span> sheetIndex) &#123;</div><div class="line">	XSSFSheet sheet = sheets.get(sheetIndex);</div><div class="line">	<span class="keyword">if</span>(sheet == <span class="keyword">null</span>)&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">	List&lt;String&gt; keyList = sheetsKeyList.get(sheetIndex);</div><div class="line">	List&lt;Map&lt;String, String&gt;&gt; excelList = <span class="keyword">new</span> ArrayList&lt;Map&lt;String, String&gt;&gt;();</div><div class="line">	<span class="keyword">int</span> startCol = <span class="number">0</span>;</div><div class="line">	<span class="keyword">if</span>(commentRow==<span class="number">3</span>) startCol=<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> row = begin; row &lt;= end; row++) &#123;</div><div class="line">		Map&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</div><div class="line">		<span class="keyword">if</span> (sheet.getRow(row) != <span class="keyword">null</span>) &#123;</div><div class="line"></div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; keyList.size(); i++) &#123;</div><div class="line">				String key = keyList.get(i);</div><div class="line">				String value = getCellValue(sheet, row, i+startCol);</div><div class="line">                 	  <span class="comment">//在这里加入去空格处理：</span></div><div class="line">                 	  String value = InventoryUtil.getStringWithoutSpace(getCellValue(sheet, row, i+startCol)）;</div><div class="line">				map.put(key, value);</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> (map.size() &gt; <span class="number">0</span>) &#123;</div><div class="line">				excelList.add(map);</div><div class="line">			&#125;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			map.put(<span class="keyword">null</span>, <span class="keyword">null</span>);</div><div class="line">			excelList.add(map);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> excelList;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">public List&lt;Map&lt;String, String&gt;&gt; parse(int begin, int end, int sheetIndex) &#123;</div><div class="line">    XSSFSheet sheet = sheets.get(sheetIndex);</div><div class="line">    if(sheet == null)&#123;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">    List&lt;String&gt; keyList = sheetsKeyList.get(sheetIndex);</div><div class="line">    List&lt;Map&lt;String, String&gt;&gt; excelList = new ArrayList&lt;Map&lt;String, String&gt;&gt;();</div><div class="line">    int startCol = 0;</div><div class="line">    if(commentRow==3) startCol=1;</div><div class="line">    for (int row = begin; row &lt;= end; row++) &#123;</div><div class="line">        Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();</div><div class="line">        if (sheet.getRow(row) != null) &#123;</div><div class="line">  </div><div class="line">            for (int i = 0; i &lt; keyList.size(); i++) &#123;</div><div class="line">                String key = keyList.get(i);</div><div class="line">                String value = getCellValue(sheet, row, i+startCol);</div><div class="line">                  //在这里加入去空格处理：</div><div class="line">                  String value = InventoryUtil.getStringWithoutSpace(getCellValue(sheet, row, i+startCol)）;</div><div class="line">                map.put(key, value);</div><div class="line">            &#125;</div><div class="line">            if (map.size() &gt; 0) &#123;</div><div class="line">                excelList.add(map);</div><div class="line">            &#125;</div><div class="line">        &#125; else &#123;</div><div class="line">            map.put(null, null);</div><div class="line">            excelList.add(map);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return excelList;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>去除其他地方的去空格处理，运行系统，得到了想要的效果。把标哥叫来了，标哥看了下这个parse方法，发现有两三处地方都调用了这个方法，改动了这个方法后这样子就有可能影响了其他地方的功能。所以再次给出了另外一个建议：</p>
 <blockquote>
 <p>既然所有的数据都是先获取到mapmo对象中，那可不可以考虑在获取mapmp后直接对其进行处理，然后再开始对它进行调用。</p>
-<p>//由于所有excel表格数据都是获取到mapmo对象中<br>for (int j = 0; j &lt; loopCount; j++) {</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt; 		List&lt;Map&lt;String, String&gt;&gt; list = getDatasByPage(fileparse, j, <span class="number">0</span>);</div><div class="line">&gt; 		<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; list.size(); k++) &#123;</div><div class="line">&gt; 			Map&lt;String, String&gt; mapmo = list.get(k);</div><div class="line">&gt;           ｝</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<p>//由于所有excel表格数据都是获取到mapmo对象中for (int j = 0; j &lt; loopCount; j++) {</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;           List&lt;Map&lt;String, String&gt;&gt; list = getDatasByPage(fileparse, j, 0);</div><div class="line">&gt;           for (int k = 0; k &lt; list.size(); k++) &#123;</div><div class="line">&gt;               Map&lt;String, String&gt; mapmo = list.get(k);</div><div class="line">&gt;             ｝</div><div class="line">&gt;</div></pre></td></tr></table></figure>
 </blockquote>
 <p>​    考虑了一下以后，在OrderVerifyImportProcessor.java文件中编写一个新的方法，对mapmo对象进行去空格处理：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">getMapmoWithoutSpace</span><span class="params">(Map&lt;String, String&gt; mapmo)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span> (mapmo == <span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">	Set&lt;String&gt; keys = mapmo.keySet();</div><div class="line">	<span class="keyword">for</span> (String key : keys) &#123;</div><div class="line">			String value = mapmo.get(key);</div><div class="line">			value = InventoryUtil.getStringWithoutSpace(value);</div><div class="line">			mapmo.put(key, value);</div><div class="line">		&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">private void getMapmoWithoutSpace(Map&lt;String, String&gt; mapmo) &#123;</div><div class="line">    if (mapmo == null) return;</div><div class="line">    Set&lt;String&gt; keys = mapmo.keySet();</div><div class="line">    for (String key : keys) &#123;</div><div class="line">            String value = mapmo.get(key);</div><div class="line">            value = InventoryUtil.getStringWithoutSpace(value);</div><div class="line">            mapmo.put(key, value);</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>​    运行系统，终于大功告成，第一个任务顺利完成，终于也能在公司提交自己写的代码了，也是很有成就感。</p>
 <p>接下来就是将自己的代码同步到远程SVN仓库：</p>
 <p>点击Team Synchronizing视图：</p>
-<p><img src="C:\Users\Simple_Y\Pictures\总结\微信图片_20180502162608.png" alt="微信图片_20180502162608"></p>
+<p><img src="https://img-blog.csdn.net/20180518155410464" alt="img"></p>
 <p>点击Synchronize：</p>
-<p><img src="C:\Users\Simple_Y\Pictures\总结\微信图片_20180502162901.png" alt="微信图片_20180502162901"></p>
+<p><img src="https://img-blog.csdn.net/20180518155527555" alt="img"></p>
 <p>选择SVN:</p>
-<p><img src="C:\Users\Simple_Y\Pictures\总结\微信图片_20180502163008.png" alt="微信图片_20180502163008"></p>
+<p><img src="https://img-blog.csdn.net/20180518155453192" alt="img"></p>
 <p>可以直接选取工作空间，也可以选择工作集，然后可以创建自己的工作集，这样就不用每次都再全部同步:</p>
-<p><img src="C:\Users\Simple_Y\Pictures\总结\微信图片_20180502163114.png" alt="微信图片_20180502163114"></p>
+<p><img src="https://img-blog.csdn.net/20180518155542632" alt="img"></p>
 <p>成功同步后，点击以下按钮：</p>
-<p><img src="C:\Users\Simple_Y\Pictures\总结\微信图片_20180502163339.png" alt="微信图片_20180502163339"></p>
+<p><img src="https://img-blog.csdn.net/20180518155554987" alt="img"></p>
 <p>查看svn代码库与本地代码库不同的文件，然后全选那些不同的文件，右键-&gt;更新，先对本地代码进行更新。</p>
 <p>然后点击如下按钮：</p>
-<p><img src="C:\Users\Simple_Y\Pictures\总结\微信图片_20180502163733.png" alt="微信图片_20180502163733"></p>
+<p><img src="https://img-blog.csdn.net/20180518155607240" alt="img"></p>
 <p>经过与SVN代码库的代码对比，找出做出的修改，尽量做到只提交必要的修改：</p>
-<p><img src="C:\Users\Simple_Y\Pictures\总结\微信图片_20180502163957.png" alt="微信图片_20180502163957"></p>
+<p><img src="https://img-blog.csdn.net/20180518155621441" alt="img"></p>
 <p>然后右键对应的文件-&gt;提交：</p>
-<p><img src="C:\Users\Simple_Y\Pictures\总结\微信图片_20180502164225.jpg" alt="微信图片_20180502164225"></p>
-<p><img src="C:\Users\Simple_Y\Pictures\总结\微信图片_20180502164507.png" alt="微信图片_20180502164507"></p>
+<p><img src="https://img-blog.csdn.net/20180518155634423" alt="img"></p>
+<p><img src="https://img-blog.csdn.net/20180518155647379" alt="img"></p>
 <p>此处需要用到PMS帐号，由于我还没有申请PMS帐号，所以就先写到这里。</p>
 <hr>
 <p>终于等到了PMS帐号，可以为公司提交代码啦，刚注册了PMS帐号，就发现自己头上有两个bug任务：</p>
-<p><img src="C:\Users\Simple_Y\Pictures\总结\微信图片_20180503162529.png" alt="微信图片_20180503162529"></p>
+<p><img src="https://img-blog.csdn.net/20180518155729214" alt="img"></p>
 <p>接下来让我们来提交第一个bug的解决方案：</p>
-<p><img src="C:\Users\Simple_Y\Pictures\总结\微信图片_20180502163733.png" alt="微信图片_20180502163733"></p>
+<p><img src="https://img-blog.csdn.net/20180518155739989" alt="img"></p>
 <p>选择需要提交的代码，此处不能选择全部提交，只需要提交改动的java文件即可：</p>
-<p><img src="C:\Users\Simple_Y\Pictures\总结\微信图片_20180503162920.png" alt="微信图片_20180503162920"></p>
+<p><img src="https://img-blog.csdn.net/20180518155804915" alt="img"></p>
 <p>添加上对应的PMS，点击OK即可。</p>
 <p>接下来就是欣赏自己的成果了：</p>
-<p><img src="C:\Users\Simple_Y\Pictures\总结\微信图片_20180503163022.png" alt="微信图片_20180503163022"></p>
+<p><img src="https://img-blog.csdn.net/20180518155900354" alt="img"></p>
 <p>第一个任务到此就顺利完成啦~</p>
 
       
@@ -961,17 +961,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://assets-cdn.github.com/pinned-octocat.svg"
@@ -1113,22 +1104,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一个任务遇到的一些问题"><span class="nav-number">1.</span> <span class="nav-text">第一个任务遇到的一些问题</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
