@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://okcthouder.github.io/"/>
-  <updated>2018-05-18T08:38:14.336Z</updated>
+  <updated>2018-09-10T15:06:05.451Z</updated>
   <id>https://okcthouder.github.io/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>cookie 和session 的区别详解</title>
+    <link href="https://okcthouder.github.io/2018/09/10/cookie-and-session/"/>
+    <id>https://okcthouder.github.io/2018/09/10/cookie-and-session/</id>
+    <published>2018-09-10T14:57:47.000Z</published>
+    <updated>2018-09-10T15:06:05.451Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="二者的定义："><a href="#二者的定义：" class="headerlink" title="二者的定义："></a>二者的定义：</h3><p>​         当你在浏览网站的时候，WEB 服务器会先送一小小资料放在你的计算机上，Cookie 会帮你在网站上所打的文字或是一些选择都纪录下来。当下次你再光临同一个网站，WEB 服务器会先看看有没有它上次留下的 Cookie 资料，有的话，就会依据 Cookie里的内容来判断使用者，送出特定的网页内容给你。 Cookie 的使用很普遍，许多有提供个人化服务的网站，都是利用 Cookie来辨认使用者，以方便送出使用者量身定做的内容，像是 Web 接口的免费 email 网站，都要用到 Cookie。</p>
+<p>​         具体来说cookie机制采用的是在客户端保持状态的方案，而session机制采用的是在服务器端保持状态的方案。</p>
+ <a id="more"></a>
+<p>​        同时我们也看到，由于采用服务器端保持状态的方案在客户端也需要保存一个标识，所以session机制可能需要借助于cookie机制来达到保存标识的目的，但实际上它还有其他选择。</p>
+<p>​         cookie机制。正统的cookie分发是通过扩展HTTP协议来实现的，服务器通过在HTTP的响应头中加上一行特殊的指示以提示浏览器按照指示生成相应的cookie。然而纯粹的客户端脚本如JavaScript或者VBScript也可以生成cookie。而cookie的使用是由浏览器按照一定的原则在后台自动发送给服务器的。浏览器检查所有存储的cookie，如果某个cookie所声明的作用范围大于等于将要请求的资源所在的位置，则把该cookie附在请求资源的HTTP请求头上发送给服务器。<br>​          cookie的内容主要包括：名字，值，过期时间，路径和域。路径与域一起构成cookie的作用范围。若不设置过期时间，则表示这个cookie的生命期为浏览器会话期间，关闭浏览器窗口，cookie就消失。这种生命期为浏览器会话期的cookie被称为会话cookie。</p>
+<p>​         会话cookie一般不存储在硬盘上而是保存在内存里，当然这种行为并不是规范规定的。若设置了过期时间，浏览器就会把cookie保存到硬盘上，关闭后再次打开浏览器，这些cookie仍然有效直到超过设定的过期时间。存储在硬盘上的cookie可以在不同的浏览器进程间共享，比如两个IE窗口。而对于保存在内存里的cookie，不同的浏览器有不同的处理方式session机制。session机制是一种服务器端的机制，服务器使用一种类似于散列表的结构（也可能就是使用散列表）来保存信息。</p>
+<p>​          当程序需要为某个客户端的请求创建一个session时，服务器首先检查这个客户端的请求里是否已包含了一个session标识（称为session id），如果已包含则说明以前已经为此客户端创建过session，服务器就按照session id把这个session检索出来使用（检索不到，会新建一个），如果客户端请求不包含session id，则为此客户端创建一个session并且生成一个与此session相关联的session id，session id的值应该是一个既不会重复，又不容易被找到规律以仿造的字符串，这个session id将被在本次响应中返回给客户端保存。保存这个session id的方式可以采用cookie，这样在交互过程中浏览器可以自动的按照规则把这个标识发送给服务器。一般这个cookie的名字都是类似于SEEESIONID。但cookie可以被人为的禁止，则必须有其他机制以便在cookie被禁止时仍然能够把session id传递回服务器。经常被使用的一种技术叫做URL重写，就是把session id直接附加在URL路径的后面。还有一种技术叫做表单隐藏字段。就是服务器会自动修改表单，添加一个隐藏字段，以便在表单提交时能够把session id传递回服务器。比如： </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">"testform"</span> <span class="attr">action</span>=<span class="string">"/xxx"</span>&gt;</span> </div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"jsessionid"</span> <span class="attr">value</span>=<span class="string">"ByOK3vjFD75aPnrF7C2HmdnV6QZcEbzWoWiBYEnLerjQ99zWpBng!-145788764"</span>&gt;</span> </div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span>&gt;</span> </div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>实际上这种技术可以简单的用对action应用URL重写来代替。</p>
+<p>cookie 和session 的区别：</p>
+<p>1、cookie数据存放在客户的浏览器上，session数据放在服务器上。</p>
+<p>2、cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗<br>   考虑到安全应当使用session。</p>
+<p>3、session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能<br>   考虑到减轻服务器性能方面，应当使用COOKIE。</p>
+<p>4、单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie。</p>
+<p>5、所以个人建议：<br>   将登陆信息等重要信息存放为SESSION<br>   其他信息如果需要保留，可以放在COOKIE中</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;二者的定义：&quot;&gt;&lt;a href=&quot;#二者的定义：&quot; class=&quot;headerlink&quot; title=&quot;二者的定义：&quot;&gt;&lt;/a&gt;二者的定义：&lt;/h3&gt;&lt;p&gt;​         当你在浏览网站的时候，WEB 服务器会先送一小小资料放在你的计算机上，Cookie 会帮你在网站上所打的文字或是一些选择都纪录下来。当下次你再光临同一个网站，WEB 服务器会先看看有没有它上次留下的 Cookie 资料，有的话，就会依据 Cookie里的内容来判断使用者，送出特定的网页内容给你。 Cookie 的使用很普遍，许多有提供个人化服务的网站，都是利用 Cookie来辨认使用者，以方便送出使用者量身定做的内容，像是 Web 接口的免费 email 网站，都要用到 Cookie。&lt;/p&gt;
+&lt;p&gt;​         具体来说cookie机制采用的是在客户端保持状态的方案，而session机制采用的是在服务器端保持状态的方案。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="面试小问题" scheme="https://okcthouder.github.io/categories/%E9%9D%A2%E8%AF%95%E5%B0%8F%E9%97%AE%E9%A2%98/"/>
+    
+    
+      <category term="cookie" scheme="https://okcthouder.github.io/tags/cookie/"/>
+    
+      <category term="session" scheme="https://okcthouder.github.io/tags/session/"/>
+    
+  </entry>
   
   <entry>
     <title>第四个任务</title>
@@ -66,9 +106,9 @@
     
       <category term="java" scheme="https://okcthouder.github.io/tags/java/"/>
     
-      <category term="PMS" scheme="https://okcthouder.github.io/tags/PMS/"/>
-    
       <category term="逻辑校验" scheme="https://okcthouder.github.io/tags/%E9%80%BB%E8%BE%91%E6%A0%A1%E9%AA%8C/"/>
+    
+      <category term="PMS" scheme="https://okcthouder.github.io/tags/PMS/"/>
     
   </entry>
   
@@ -286,9 +326,9 @@
     
       <category term="java" scheme="https://okcthouder.github.io/tags/java/"/>
     
-      <category term="PMS" scheme="https://okcthouder.github.io/tags/PMS/"/>
-    
       <category term="逻辑校验" scheme="https://okcthouder.github.io/tags/%E9%80%BB%E8%BE%91%E6%A0%A1%E9%AA%8C/"/>
+    
+      <category term="PMS" scheme="https://okcthouder.github.io/tags/PMS/"/>
     
   </entry>
   
@@ -959,6 +999,80 @@
   </entry>
   
   <entry>
+    <title>VMwave Workstation12虚拟机安装OS X 10.11所遇到的各种问题集合(详细版)</title>
+    <link href="https://okcthouder.github.io/2017/07/24/10-11%E6%89%80%E9%81%87%E5%88%B0%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88-%E8%AF%A6%E7%BB%86%E7%89%88/"/>
+    <id>https://okcthouder.github.io/2017/07/24/10-11所遇到的各种问题集合-详细版/</id>
+    <published>2017-07-24T08:09:29.000Z</published>
+    <updated>2017-09-05T07:59:24.049Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>最近笔者闲着无聊，由于一直挺仰慕mac大法，所以想装个mac系统来玩玩。虽然说过程不是很难，但是出现的各种小问题还是挺多的，所以在这里跟大家分享一下我的解决方法。</p>
+<p>1.首先，当然是安装工具：</p>
+<ul>
+<li>Mac OS X 10.11 镜像文件（链接：<a href="http://pan.baidu.com/s/1pL8HE59" target="_blank" rel="external">http://pan.baidu.com/s/1pL8HE59</a> 密码：cq4d）（此镜像为网络收集，如果觉得有问题自己找谢谢。）</li>
+<li>unlocker208文件（链接：<a href="http://pan.baidu.com/s/1bpftVjT" target="_blank" rel="external">http://pan.baidu.com/s/1bpftVjT</a> 密码：dp2g）</li>
+<li>VMware Workstation12（<a href="http://blog.sina.com.cn/s/blog_af49f8090102wqmw.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_af49f8090102wqmw.html</a>）</li>
+</ul>
+<p>2.详细教程请查看：<a href="http://jingyan.baidu.com/article/363872ec206a356e4ba16f30.html" target="_blank" rel="external">http://jingyan.baidu.com/article/363872ec206a356e4ba16f30.html</a></p>
+<p>在这里我就不再赘述。</p>
+ <a id="more"></a>
+<h2 id="二、所遇到的问题"><a href="#二、所遇到的问题" class="headerlink" title="二、所遇到的问题"></a>二、所遇到的问题</h2><p>下面来看看我安装后遇到的各种问题：</p>
+<h2 id="1-VMware上MAC虚拟机不能上网问题"><a href="#1-VMware上MAC虚拟机不能上网问题" class="headerlink" title="1)  VMware上MAC虚拟机不能上网问题"></a>1)  VMware上MAC虚拟机不能上网问题</h2><p>首先最大的问题当然就是没网啦，别急，且听我慢慢道来：</p>
+<h3 id="解决方法-步骤"><a href="#解决方法-步骤" class="headerlink" title="解决方法/步骤"></a>解决方法/步骤</h3><h4 id="1-从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。"><a href="#1-从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。" class="headerlink" title="1.从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。"></a>1.从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。</h4><p><img src="http://img.blog.csdn.net/20170424190230322?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="2-选择属性，点击共享按钮。"><a href="#2-选择属性，点击共享按钮。" class="headerlink" title="2.选择属性，点击共享按钮。"></a>2.选择属性，点击共享按钮。</h4><p><img src="http://img.blog.csdn.net/20170424190316370?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="3-将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware-Network-Adapter-VMnet1。"><a href="#3-将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware-Network-Adapter-VMnet1。" class="headerlink" title="3.将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware Network Adapter VMnet1。"></a>3.将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware Network Adapter VMnet1。</h4><p><img src="http://img.blog.csdn.net/20170430203759981?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="4-在安装的虚拟机中选择虚拟机-gt-设置选项。"><a href="#4-在安装的虚拟机中选择虚拟机-gt-设置选项。" class="headerlink" title="4.在安装的虚拟机中选择虚拟机-&gt;设置选项。"></a>4.在安装的虚拟机中选择虚拟机-&gt;设置选项。</h4><p><img src="http://img.blog.csdn.net/20170424190515128?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="5-点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。"><a href="#5-点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。" class="headerlink" title="5.点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。"></a>5.点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。</h4><p><img src="http://img.blog.csdn.net/20170424190604613?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="6-进入Mac系统，选择设置，进入网络设置"><a href="#6-进入Mac系统，选择设置，进入网络设置" class="headerlink" title="6.进入Mac系统，选择设置，进入网络设置"></a>6.进入Mac系统，选择设置，进入网络设置</h4><p><img src="http://img.blog.csdn.net/20170424190642379?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="7-配置Ipv4选择设置DHCP，点击应用即可开始上网。"><a href="#7-配置Ipv4选择设置DHCP，点击应用即可开始上网。" class="headerlink" title="7.配置Ipv4选择设置DHCP，点击应用即可开始上网。"></a>7.配置Ipv4选择设置DHCP，点击应用即可开始上网。</h4><h2 id="2-OS-X-10-11-El-Capitan-无法连接Apple-store-和登录Apple-ID的问题"><a href="#2-OS-X-10-11-El-Capitan-无法连接Apple-store-和登录Apple-ID的问题" class="headerlink" title="2)OS X 10.11 El Capitan 无法连接Apple store 和登录Apple ID的问题"></a>2)<a href="http://blog.csdn.net/qq_25131687/article/details/52194202" target="_blank" rel="external">OS X 10.11 El Capitan 无法连接Apple store 和登录Apple ID的问题</a></h2><h4 id="1-step-1"><a href="#1-step-1" class="headerlink" title="1.step 1"></a>1.step 1</h4><p>强制退出Apple store进程</p>
+<h4 id="2-step-2"><a href="#2-step-2" class="headerlink" title="2. step 2"></a>2. step 2</h4><p>打开terminal终端（在launch中搜索终端），输入以下命令：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo pkill <span class="number">-9</span> -f Account    </div><div class="line"></div><div class="line">sudo rm $HOME/Library/Accounts<span class="comment">/*</span></div></pre></td></tr></table></figure>
+<p> 进行此操作时需要提供管理员密码，输入密码敲回车就行了。</p>
+<h4 id="3-step-3"><a href="#3-step-3" class="headerlink" title="3.step 3"></a>3.step 3</h4><p>完成前面两步你已经可以进入apple store了，但是你发现你的apple ID无法登陆：</p>
+<p>This action cant be Completed!</p>
+<p>这时你可以terminal终端输入以下命令：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo mkdir -p /Users/Shared     </div><div class="line"></div><div class="line">sudo chown root:wheel /Users/Shared    </div><div class="line"></div><div class="line">sudo chmod -R <span class="number">1777</span> /Users/Shared</div></pre></td></tr></table></figure>
+<p>至此，你的Apple ID就可以在Apple store上Login了。</p>
+<h2 id="3-苹果ID注册最后一步总是显示-如需帮助，请联系iTunes支持"><a href="#3-苹果ID注册最后一步总是显示-如需帮助，请联系iTunes支持" class="headerlink" title="3)苹果ID注册最后一步总是显示 如需帮助，请联系iTunes支持"></a>3)苹果ID注册最后一步总是显示 如需帮助，请联系iTunes支持</h2><p>由于我的apple id是刚刚注册的，登陆apple store后提示我还没有完善资料什么的，所以我就去填资料</p>
+<p>填完资料发现老是出现上面的那一句，继续不了。</p>
+<p>所以我又开始了尝试</p>
+<h4 id="1-首先在iTunes软件上面注册Apple-ID帐号时，注意要把提供付款方式选择为“银联UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple-ID帐号。"><a href="#1-首先在iTunes软件上面注册Apple-ID帐号时，注意要把提供付款方式选择为“银联UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple-ID帐号。" class="headerlink" title="1.首先在iTunes软件上面注册Apple ID帐号时，注意要把提供付款方式选择为“银联UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple ID帐号。"></a>1.首先在iTunes软件上面注册Apple ID帐号时，注意要把提供<a href="https://www.baidu.com/s?wd=%E4%BB%98%E6%AC%BE%E6%96%B9%E5%BC%8F&amp;tn=44039180_cpr&amp;fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1Yvm1TLPvn3PWw9mynLrj640ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnW0dnWc1nHn4PHfsnWT3Pj6zPs" target="_blank" rel="external">付款方式</a>选择为“<a href="https://www.baidu.com/s?wd=%E9%93%B6%E8%81%94&amp;tn=44039180_cpr&amp;fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1Yvm1TLPvn3PWw9mynLrj640ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnW0dnWc1nHn4PHfsnWT3Pj6zPs" target="_blank" rel="external">银联</a>UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple ID帐号。</h4><p><img src="http://img.blog.csdn.net/20170424190735973?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="2-然后填写银行卡以及输入银行预留手机号码。-注意：手机号码一定是要和银行卡绑定在一起的才可以使用。"><a href="#2-然后填写银行卡以及输入银行预留手机号码。-注意：手机号码一定是要和银行卡绑定在一起的才可以使用。" class="headerlink" title="2.然后填写银行卡以及输入银行预留手机号码。(注意：手机号码一定是要和银行卡绑定在一起的才可以使用。)"></a>2.然后填写银行卡以及输入银行预留手机号码。(注意：手机号码一定是要和银行卡绑定在一起的才可以使用。)</h4><p><img src="http://img.blog.csdn.net/20170424190825299?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="3-接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。"><a href="#3-接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。" class="headerlink" title="3.接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。"></a>3.接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。</h4><p><img src="http://img.blog.csdn.net/20170424190901802?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="4-点击创建Apple-ID，进入下一步。"><a href="#4-点击创建Apple-ID，进入下一步。" class="headerlink" title="4.点击创建Apple ID，进入下一步。"></a>4.点击创建Apple ID，进入下一步。</h4><p><img src="http://img.blog.csdn.net/20170424190938535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="5-然后收取绑定银行的短信验证码输入里面进行验证。"><a href="#5-然后收取绑定银行的短信验证码输入里面进行验证。" class="headerlink" title="5.然后收取绑定银行的短信验证码输入里面进行验证。"></a>5.然后收取绑定银行的<a href="https://www.baidu.com/s?wd=%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%E7%A0%81&amp;tn=44039180_cpr&amp;fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1Yvm1TLPvn3PWw9mynLrj640ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnW0dnWc1nHn4PHfsnWT3Pj6zPs" target="_blank" rel="external">短信验证码</a>输入里面进行验证。</h4><p><img src="http://img.blog.csdn.net/20170424191016740?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>填入验证码就可以完美解决，我也试过用银行卡的方式，但是还是不行，最后尝试了银联这个就OK了。</p>
+<h2 id="三、补充"><a href="#三、补充" class="headerlink" title="三、补充"></a>三、补充</h2><p>对了，补充一下，可能安装后会发现虚拟机没办法占全屏，只要安装VMwave Tools既可以完美解决，至于卡顿问题，我笔记本是8G内存，我分了4G在虚拟机，相对来说比较不卡，也可以下载一个叫做beamoff的工具,在mac osx下解压即可消除卡顿的感觉。</p>
+<p>下载链接 :   <a href="http://download.csdn.net/detail/u013803262/9702291" target="_blank" rel="external">http://download.csdn<strong>.NET</strong>/detail/u013803262/9702291</a></p>
+<p>具体解决方法参考：<a href="http://blog.csdn.net/u013803262/article/details/53467693" target="_blank" rel="external">http://blog.csdn.net/u013803262/article/details/53467693</a></p>
+<p>好了，以上就是我装mac虚拟机所遇到的比较难缠的问题，分享给大家一下。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、前言&quot;&gt;&lt;a href=&quot;#一、前言&quot; class=&quot;headerlink&quot; title=&quot;一、前言&quot;&gt;&lt;/a&gt;一、前言&lt;/h2&gt;&lt;p&gt;最近笔者闲着无聊，由于一直挺仰慕mac大法，所以想装个mac系统来玩玩。虽然说过程不是很难，但是出现的各种小问题还是挺多的，所以在这里跟大家分享一下我的解决方法。&lt;/p&gt;
+&lt;p&gt;1.首先，当然是安装工具：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mac OS X 10.11 镜像文件（链接：&lt;a href=&quot;http://pan.baidu.com/s/1pL8HE59&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://pan.baidu.com/s/1pL8HE59&lt;/a&gt; 密码：cq4d）（此镜像为网络收集，如果觉得有问题自己找谢谢。）&lt;/li&gt;
+&lt;li&gt;unlocker208文件（链接：&lt;a href=&quot;http://pan.baidu.com/s/1bpftVjT&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://pan.baidu.com/s/1bpftVjT&lt;/a&gt; 密码：dp2g）&lt;/li&gt;
+&lt;li&gt;VMware Workstation12（&lt;a href=&quot;http://blog.sina.com.cn/s/blog_af49f8090102wqmw.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.sina.com.cn/s/blog_af49f8090102wqmw.html&lt;/a&gt;）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2.详细教程请查看：&lt;a href=&quot;http://jingyan.baidu.com/article/363872ec206a356e4ba16f30.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://jingyan.baidu.com/article/363872ec206a356e4ba16f30.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在这里我就不再赘述。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="装系统" scheme="https://okcthouder.github.io/categories/%E8%A3%85%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="VMwave" scheme="https://okcthouder.github.io/tags/VMwave/"/>
+    
+      <category term="OS X 10.11" scheme="https://okcthouder.github.io/tags/OS-X-10-11/"/>
+    
+      <category term="虚拟机" scheme="https://okcthouder.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+  </entry>
+  
+  <entry>
     <title>如何理解javascript中的闭包</title>
     <link href="https://okcthouder.github.io/2017/07/24/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3javascript%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85/"/>
     <id>https://okcthouder.github.io/2017/07/24/如何理解javascript中的闭包/</id>
@@ -1110,80 +1224,6 @@
       <category term="闭包" scheme="https://okcthouder.github.io/tags/%E9%97%AD%E5%8C%85/"/>
     
       <category term="funtion" scheme="https://okcthouder.github.io/tags/funtion/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>VMwave Workstation12虚拟机安装OS X 10.11所遇到的各种问题集合(详细版)</title>
-    <link href="https://okcthouder.github.io/2017/07/24/10-11%E6%89%80%E9%81%87%E5%88%B0%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88-%E8%AF%A6%E7%BB%86%E7%89%88/"/>
-    <id>https://okcthouder.github.io/2017/07/24/10-11所遇到的各种问题集合-详细版/</id>
-    <published>2017-07-24T08:09:29.000Z</published>
-    <updated>2017-09-05T07:59:24.049Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>最近笔者闲着无聊，由于一直挺仰慕mac大法，所以想装个mac系统来玩玩。虽然说过程不是很难，但是出现的各种小问题还是挺多的，所以在这里跟大家分享一下我的解决方法。</p>
-<p>1.首先，当然是安装工具：</p>
-<ul>
-<li>Mac OS X 10.11 镜像文件（链接：<a href="http://pan.baidu.com/s/1pL8HE59" target="_blank" rel="external">http://pan.baidu.com/s/1pL8HE59</a> 密码：cq4d）（此镜像为网络收集，如果觉得有问题自己找谢谢。）</li>
-<li>unlocker208文件（链接：<a href="http://pan.baidu.com/s/1bpftVjT" target="_blank" rel="external">http://pan.baidu.com/s/1bpftVjT</a> 密码：dp2g）</li>
-<li>VMware Workstation12（<a href="http://blog.sina.com.cn/s/blog_af49f8090102wqmw.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_af49f8090102wqmw.html</a>）</li>
-</ul>
-<p>2.详细教程请查看：<a href="http://jingyan.baidu.com/article/363872ec206a356e4ba16f30.html" target="_blank" rel="external">http://jingyan.baidu.com/article/363872ec206a356e4ba16f30.html</a></p>
-<p>在这里我就不再赘述。</p>
- <a id="more"></a>
-<h2 id="二、所遇到的问题"><a href="#二、所遇到的问题" class="headerlink" title="二、所遇到的问题"></a>二、所遇到的问题</h2><p>下面来看看我安装后遇到的各种问题：</p>
-<h2 id="1-VMware上MAC虚拟机不能上网问题"><a href="#1-VMware上MAC虚拟机不能上网问题" class="headerlink" title="1)  VMware上MAC虚拟机不能上网问题"></a>1)  VMware上MAC虚拟机不能上网问题</h2><p>首先最大的问题当然就是没网啦，别急，且听我慢慢道来：</p>
-<h3 id="解决方法-步骤"><a href="#解决方法-步骤" class="headerlink" title="解决方法/步骤"></a>解决方法/步骤</h3><h4 id="1-从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。"><a href="#1-从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。" class="headerlink" title="1.从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。"></a>1.从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。</h4><p><img src="http://img.blog.csdn.net/20170424190230322?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="2-选择属性，点击共享按钮。"><a href="#2-选择属性，点击共享按钮。" class="headerlink" title="2.选择属性，点击共享按钮。"></a>2.选择属性，点击共享按钮。</h4><p><img src="http://img.blog.csdn.net/20170424190316370?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="3-将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware-Network-Adapter-VMnet1。"><a href="#3-将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware-Network-Adapter-VMnet1。" class="headerlink" title="3.将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware Network Adapter VMnet1。"></a>3.将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware Network Adapter VMnet1。</h4><p><img src="http://img.blog.csdn.net/20170430203759981?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="4-在安装的虚拟机中选择虚拟机-gt-设置选项。"><a href="#4-在安装的虚拟机中选择虚拟机-gt-设置选项。" class="headerlink" title="4.在安装的虚拟机中选择虚拟机-&gt;设置选项。"></a>4.在安装的虚拟机中选择虚拟机-&gt;设置选项。</h4><p><img src="http://img.blog.csdn.net/20170424190515128?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="5-点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。"><a href="#5-点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。" class="headerlink" title="5.点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。"></a>5.点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。</h4><p><img src="http://img.blog.csdn.net/20170424190604613?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="6-进入Mac系统，选择设置，进入网络设置"><a href="#6-进入Mac系统，选择设置，进入网络设置" class="headerlink" title="6.进入Mac系统，选择设置，进入网络设置"></a>6.进入Mac系统，选择设置，进入网络设置</h4><p><img src="http://img.blog.csdn.net/20170424190642379?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="7-配置Ipv4选择设置DHCP，点击应用即可开始上网。"><a href="#7-配置Ipv4选择设置DHCP，点击应用即可开始上网。" class="headerlink" title="7.配置Ipv4选择设置DHCP，点击应用即可开始上网。"></a>7.配置Ipv4选择设置DHCP，点击应用即可开始上网。</h4><h2 id="2-OS-X-10-11-El-Capitan-无法连接Apple-store-和登录Apple-ID的问题"><a href="#2-OS-X-10-11-El-Capitan-无法连接Apple-store-和登录Apple-ID的问题" class="headerlink" title="2)OS X 10.11 El Capitan 无法连接Apple store 和登录Apple ID的问题"></a>2)<a href="http://blog.csdn.net/qq_25131687/article/details/52194202" target="_blank" rel="external">OS X 10.11 El Capitan 无法连接Apple store 和登录Apple ID的问题</a></h2><h4 id="1-step-1"><a href="#1-step-1" class="headerlink" title="1.step 1"></a>1.step 1</h4><p>强制退出Apple store进程</p>
-<h4 id="2-step-2"><a href="#2-step-2" class="headerlink" title="2. step 2"></a>2. step 2</h4><p>打开terminal终端（在launch中搜索终端），输入以下命令：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo pkill <span class="number">-9</span> -f Account    </div><div class="line"></div><div class="line">sudo rm $HOME/Library/Accounts<span class="comment">/*</span></div></pre></td></tr></table></figure>
-<p> 进行此操作时需要提供管理员密码，输入密码敲回车就行了。</p>
-<h4 id="3-step-3"><a href="#3-step-3" class="headerlink" title="3.step 3"></a>3.step 3</h4><p>完成前面两步你已经可以进入apple store了，但是你发现你的apple ID无法登陆：</p>
-<p>This action cant be Completed!</p>
-<p>这时你可以terminal终端输入以下命令：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo mkdir -p /Users/Shared     </div><div class="line"></div><div class="line">sudo chown root:wheel /Users/Shared    </div><div class="line"></div><div class="line">sudo chmod -R <span class="number">1777</span> /Users/Shared</div></pre></td></tr></table></figure>
-<p>至此，你的Apple ID就可以在Apple store上Login了。</p>
-<h2 id="3-苹果ID注册最后一步总是显示-如需帮助，请联系iTunes支持"><a href="#3-苹果ID注册最后一步总是显示-如需帮助，请联系iTunes支持" class="headerlink" title="3)苹果ID注册最后一步总是显示 如需帮助，请联系iTunes支持"></a>3)苹果ID注册最后一步总是显示 如需帮助，请联系iTunes支持</h2><p>由于我的apple id是刚刚注册的，登陆apple store后提示我还没有完善资料什么的，所以我就去填资料</p>
-<p>填完资料发现老是出现上面的那一句，继续不了。</p>
-<p>所以我又开始了尝试</p>
-<h4 id="1-首先在iTunes软件上面注册Apple-ID帐号时，注意要把提供付款方式选择为“银联UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple-ID帐号。"><a href="#1-首先在iTunes软件上面注册Apple-ID帐号时，注意要把提供付款方式选择为“银联UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple-ID帐号。" class="headerlink" title="1.首先在iTunes软件上面注册Apple ID帐号时，注意要把提供付款方式选择为“银联UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple ID帐号。"></a>1.首先在iTunes软件上面注册Apple ID帐号时，注意要把提供<a href="https://www.baidu.com/s?wd=%E4%BB%98%E6%AC%BE%E6%96%B9%E5%BC%8F&amp;tn=44039180_cpr&amp;fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1Yvm1TLPvn3PWw9mynLrj640ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnW0dnWc1nHn4PHfsnWT3Pj6zPs" target="_blank" rel="external">付款方式</a>选择为“<a href="https://www.baidu.com/s?wd=%E9%93%B6%E8%81%94&amp;tn=44039180_cpr&amp;fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1Yvm1TLPvn3PWw9mynLrj640ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnW0dnWc1nHn4PHfsnWT3Pj6zPs" target="_blank" rel="external">银联</a>UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple ID帐号。</h4><p><img src="http://img.blog.csdn.net/20170424190735973?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="2-然后填写银行卡以及输入银行预留手机号码。-注意：手机号码一定是要和银行卡绑定在一起的才可以使用。"><a href="#2-然后填写银行卡以及输入银行预留手机号码。-注意：手机号码一定是要和银行卡绑定在一起的才可以使用。" class="headerlink" title="2.然后填写银行卡以及输入银行预留手机号码。(注意：手机号码一定是要和银行卡绑定在一起的才可以使用。)"></a>2.然后填写银行卡以及输入银行预留手机号码。(注意：手机号码一定是要和银行卡绑定在一起的才可以使用。)</h4><p><img src="http://img.blog.csdn.net/20170424190825299?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="3-接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。"><a href="#3-接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。" class="headerlink" title="3.接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。"></a>3.接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。</h4><p><img src="http://img.blog.csdn.net/20170424190901802?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="4-点击创建Apple-ID，进入下一步。"><a href="#4-点击创建Apple-ID，进入下一步。" class="headerlink" title="4.点击创建Apple ID，进入下一步。"></a>4.点击创建Apple ID，进入下一步。</h4><p><img src="http://img.blog.csdn.net/20170424190938535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="5-然后收取绑定银行的短信验证码输入里面进行验证。"><a href="#5-然后收取绑定银行的短信验证码输入里面进行验证。" class="headerlink" title="5.然后收取绑定银行的短信验证码输入里面进行验证。"></a>5.然后收取绑定银行的<a href="https://www.baidu.com/s?wd=%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%E7%A0%81&amp;tn=44039180_cpr&amp;fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1Yvm1TLPvn3PWw9mynLrj640ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnW0dnWc1nHn4PHfsnWT3Pj6zPs" target="_blank" rel="external">短信验证码</a>输入里面进行验证。</h4><p><img src="http://img.blog.csdn.net/20170424191016740?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>填入验证码就可以完美解决，我也试过用银行卡的方式，但是还是不行，最后尝试了银联这个就OK了。</p>
-<h2 id="三、补充"><a href="#三、补充" class="headerlink" title="三、补充"></a>三、补充</h2><p>对了，补充一下，可能安装后会发现虚拟机没办法占全屏，只要安装VMwave Tools既可以完美解决，至于卡顿问题，我笔记本是8G内存，我分了4G在虚拟机，相对来说比较不卡，也可以下载一个叫做beamoff的工具,在mac osx下解压即可消除卡顿的感觉。</p>
-<p>下载链接 :   <a href="http://download.csdn.net/detail/u013803262/9702291" target="_blank" rel="external">http://download.csdn<strong>.NET</strong>/detail/u013803262/9702291</a></p>
-<p>具体解决方法参考：<a href="http://blog.csdn.net/u013803262/article/details/53467693" target="_blank" rel="external">http://blog.csdn.net/u013803262/article/details/53467693</a></p>
-<p>好了，以上就是我装mac虚拟机所遇到的比较难缠的问题，分享给大家一下。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一、前言&quot;&gt;&lt;a href=&quot;#一、前言&quot; class=&quot;headerlink&quot; title=&quot;一、前言&quot;&gt;&lt;/a&gt;一、前言&lt;/h2&gt;&lt;p&gt;最近笔者闲着无聊，由于一直挺仰慕mac大法，所以想装个mac系统来玩玩。虽然说过程不是很难，但是出现的各种小问题还是挺多的，所以在这里跟大家分享一下我的解决方法。&lt;/p&gt;
-&lt;p&gt;1.首先，当然是安装工具：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Mac OS X 10.11 镜像文件（链接：&lt;a href=&quot;http://pan.baidu.com/s/1pL8HE59&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://pan.baidu.com/s/1pL8HE59&lt;/a&gt; 密码：cq4d）（此镜像为网络收集，如果觉得有问题自己找谢谢。）&lt;/li&gt;
-&lt;li&gt;unlocker208文件（链接：&lt;a href=&quot;http://pan.baidu.com/s/1bpftVjT&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://pan.baidu.com/s/1bpftVjT&lt;/a&gt; 密码：dp2g）&lt;/li&gt;
-&lt;li&gt;VMware Workstation12（&lt;a href=&quot;http://blog.sina.com.cn/s/blog_af49f8090102wqmw.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.sina.com.cn/s/blog_af49f8090102wqmw.html&lt;/a&gt;）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;2.详细教程请查看：&lt;a href=&quot;http://jingyan.baidu.com/article/363872ec206a356e4ba16f30.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://jingyan.baidu.com/article/363872ec206a356e4ba16f30.html&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;在这里我就不再赘述。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="装系统" scheme="https://okcthouder.github.io/categories/%E8%A3%85%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="VMwave" scheme="https://okcthouder.github.io/tags/VMwave/"/>
-    
-      <category term="OS X 10.11" scheme="https://okcthouder.github.io/tags/OS-X-10-11/"/>
-    
-      <category term="虚拟机" scheme="https://okcthouder.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
     
   </entry>
   
@@ -1522,45 +1562,6 @@
     
     
       <category term="Thread" scheme="https://okcthouder.github.io/tags/Thread/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java读书笔记-IO类-编程小问题</title>
-    <link href="https://okcthouder.github.io/2017/07/13/java%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-IO%E7%B1%BB-%E7%BC%96%E7%A8%8B%E5%B0%8F%E9%97%AE%E9%A2%98/"/>
-    <id>https://okcthouder.github.io/2017/07/13/java读书笔记-IO类-编程小问题/</id>
-    <published>2017-07-13T11:20:28.000Z</published>
-    <updated>2017-07-26T11:24:19.463Z</updated>
-    
-    <content type="html"><![CDATA[<p>&nbsp;</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近在重新复习下java SE的内容，把一下小问题记录下来。</p>
- <a id="more"></a>
-<h3 id="一、Java流式输入输出原理图"><a href="#一、Java流式输入输出原理图" class="headerlink" title="一、Java流式输入输出原理图"></a>一、Java流式输入输出原理图</h3><p><img src="http://img.blog.csdn.net/20170712114742456?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h3 id="二、流的分类"><a href="#二、流的分类" class="headerlink" title="二、流的分类"></a>二、流的分类</h3><p><img src="http://img.blog.csdn.net/20170712114801974?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h3 id="三、节点流类型"><a href="#三、节点流类型" class="headerlink" title="三、节点流类型"></a>三、节点流类型</h3><p><img src="http://img.blog.csdn.net/20170712114821261?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><pre><code>以stream结尾的是字节流，以reader或writer结尾的是字符流。
-</code></pre><h4 id="一、字节流文件复制"><a href="#一、字节流文件复制" class="headerlink" title="一、字节流文件复制"></a>一、字节流文件复制</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.io.*;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestFileOutputStream</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">	  <span class="keyword">int</span> b = <span class="number">0</span>;</div><div class="line">	  FileInputStream in = <span class="keyword">null</span>;</div><div class="line">	  FileOutputStream out = <span class="keyword">null</span>;</div><div class="line">	  <span class="keyword">try</span> &#123;</div><div class="line">	    in = <span class="keyword">new</span> FileInputStream(<span class="string">"d:/share/java/HelloWorld.java"</span>);</div><div class="line">	    out = <span class="keyword">new</span> FileOutputStream(<span class="string">"d:/share/java/io/HW.java"</span>);</div><div class="line">	    <span class="keyword">while</span>((b=in.read())!=-<span class="number">1</span>)&#123;</div><div class="line">	      out.write(b);</div><div class="line">	    &#125;</div><div class="line">	    in.close();</div><div class="line">	    out.close();</div><div class="line">	  &#125; <span class="keyword">catch</span> (FileNotFoundException e2) &#123;</div><div class="line">	    System.out.println(<span class="string">"找不到指定文件"</span>); System.exit(-<span class="number">1</span>);</div><div class="line">	  &#125; <span class="keyword">catch</span> (IOException e1) &#123;</div><div class="line">	    System.out.println(<span class="string">"文件复制错误"</span>); System.exit(-<span class="number">1</span>);</div><div class="line">	  &#125;</div><div class="line">	  System.out.println(<span class="string">"文件已复制"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="二、BufferedWriter和BufferedReader图解"><a href="#二、BufferedWriter和BufferedReader图解" class="headerlink" title="二、BufferedWriter和BufferedReader图解"></a>二、BufferedWriter和BufferedReader图解</h4><pre><code>如果只是用FileWriter的话只能每次写入一个字符，而在外面再包装一层BufferedWriter的话一次可以写入一个缓冲区的内容。
-</code></pre><p><img src="http://img.blog.csdn.net/20170712114952059?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="三、OutputStreamWriter工作原理"><a href="#三、OutputStreamWriter工作原理" class="headerlink" title="三、OutputStreamWriter工作原理"></a>三、OutputStreamWriter工作原理</h4><pre><code>如果只是用FileWriter的话只能每次写入一个字节，而在外面再包装一层BufferedWriter的话一次可以写入一个字符串的内容。
-</code></pre><p><img src="http://img.blog.csdn.net/20170712115009370?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&amp;nbsp;&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近在重新复习下java SE的内容，把一下小问题记录下来。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="java" scheme="https://okcthouder.github.io/categories/java/"/>
-    
-    
-      <category term="java" scheme="https://okcthouder.github.io/tags/java/"/>
-    
-      <category term="IO" scheme="https://okcthouder.github.io/tags/IO/"/>
-    
-      <category term="编程小问题" scheme="https://okcthouder.github.io/tags/%E7%BC%96%E7%A8%8B%E5%B0%8F%E9%97%AE%E9%A2%98/"/>
     
   </entry>
   
