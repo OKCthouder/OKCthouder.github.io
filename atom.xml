@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://okcthouder.github.io/"/>
-  <updated>2018-09-10T15:06:05.451Z</updated>
+  <updated>2018-09-11T01:17:40.401Z</updated>
   <id>https://okcthouder.github.io/</id>
   
   <author>
@@ -14,6 +14,86 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows命令行神器Cmder</title>
+    <link href="https://okcthouder.github.io/2018/09/11/Windows%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%A5%9E%E5%99%A8Cmder/"/>
+    <id>https://okcthouder.github.io/2018/09/11/Windows命令行神器Cmder/</id>
+    <published>2018-09-11T14:57:47.000Z</published>
+    <updated>2018-09-11T01:17:40.401Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>cmder是一个增强型命令行工具，不仅可以使用windows下的所有命令，更爽的是可以使用linux的命令,shell命令。</p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>官网地址：<a href="http://cmder.net/" target="_blank" rel="external">http://cmder.net/</a></p>
+<p><img src="https://segmentfault.com/img/bVVPNl?w=1536&amp;h=859" alt="clipboard.png"></p>
+<a id="more"></a>
+<p>下载的时候，会有两个版本，分别是mini与full版；唯一的差别在于有没有内建msysgit工具，这是Git for Windows的标准配备；全安装版 cmder 自带了 msysgit, 压缩包 23M, 除了 git 本身这个命令之外, 里面可以使用大量的 linux 命令；比如 grep, curl(没有 wget)； 像vim, grep, tar, unzip, ssh, ls, bash, perl 对于爱折腾的Coder更是痛点需求。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>直接解压到某个目录就可以了，点击Cmder.exe运行。</p>
+<p><img src="https://segmentfault.com/img/bVVPOt?w=696&amp;h=392" alt="clipboard.png"></p>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>在系统变量添加</p>
+<ul>
+<li>变量名： <strong>CMDER_HOME</strong></li>
+<li>变量值： 安装绝对路径</li>
+</ul>
+<p><img src="https://segmentfault.com/img/bVVPPu?w=667&amp;h=187" alt="clipboard.png"><br>最后在Path添加一条<em>斜体文字</em><br><strong>%CMDER_HOME%</strong></p>
+<p><img src="https://segmentfault.com/img/bVVPPP?w=541&amp;h=567" alt="clipboard.png"></p>
+<h2 id="添加-cmder-到右键菜单"><a href="#添加-cmder-到右键菜单" class="headerlink" title="添加 cmder 到右键菜单"></a>添加 cmder 到右键菜单</h2><p>配置环境变量后，在<strong>管理员权限</strong>的终端输入以下语句。<br>Win8或者Win10可以直接 win+x 再按 a 键进入。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Cmder.exe /REGISTER ALL</div></pre></td></tr></table></figure>
+<p><img src="https://segmentfault.com/img/bVVPQu?w=993&amp;h=516" alt="clipboard.png"></p>
+<p>配置好后，任意文件夹右键</p>
+<p><img src="https://segmentfault.com/img/bVVPQH?w=208&amp;h=367" alt="clipboard.png"></p>
+<h2 id="新标签打开个管理员权限终端"><a href="#新标签打开个管理员权限终端" class="headerlink" title="新标签打开个管理员权限终端"></a>新标签打开个管理员权限终端</h2><p>快捷键 Ctrl + t 后勾选</p>
+<p><img src="https://segmentfault.com/img/bVVPRb?w=471&amp;h=297" alt="clipboard.png"></p>
+<p><img src="https://segmentfault.com/img/bVVPRh?w=471&amp;h=297" alt="clipboard.png"></p>
+<h2 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h2><p>快捷键：win + alt + p<br>或者在右下角图标，右击</p>
+<p><img src="https://segmentfault.com/img/bVVPRS?w=391&amp;h=294" alt="clipboard.png"></p>
+<h2 id="设置bash作为默认开启的选项"><a href="#设置bash作为默认开启的选项" class="headerlink" title="设置bash作为默认开启的选项"></a><strong>设置bash作为默认开启的选项</strong></h2><p><img src="https://segmentfault.com/img/bVVPSa?w=767&amp;h=489" alt="clipboard.png"></p>
+<h2 id="解决中文乱码问题"><a href="#解决中文乱码问题" class="headerlink" title="解决中文乱码问题"></a>解决中文乱码问题</h2><p>之前在网找了好多方法，可是都解决不了，很多人在在Environment里添加set LANG=zh_CN.UTF-8来解决中文乱码的问题，可是我用这个方法并没有成功，可能是环境的原因吧，我的系统是win10的。<br>最后找到解决办法：<br>Settings-&gt;Startup-&gt;Environment 添加<br>set LANG=zh_CN.UTF-8<br>set LC_ALL=zh_CN.utf8</p>
+<p><img src="https://segmentfault.com/img/bVVPTf?w=767&amp;h=489" alt="clipboard.png"></p>
+<p>重启Cmder，发现使用ls，中文正确显示了。</p>
+<p><img src="https://segmentfault.com/img/bVVPUc?w=510&amp;h=89" alt="clipboard.png"></p>
+<h2 id="更改背景"><a href="#更改背景" class="headerlink" title="更改背景"></a>更改背景</h2><p><img src="https://segmentfault.com/img/bVVP5C?w=767&amp;h=489" alt="clipboard.png"></p>
+<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>内置了几款不错的主题，当然如果你觉得不合适，当然也支持自己设定。</p>
+<p><img src="https://segmentfault.com/img/bVVP54?w=767&amp;h=489" alt="clipboard.png"></p>
+<h1 id="常用功能介绍"><a href="#常用功能介绍" class="headerlink" title="常用功能介绍"></a>常用功能介绍</h1><p><img src="https://segmentfault.com/img/bVVPUy?w=652&amp;h=531" alt="clipboard.png"></p>
+<p>如上图示编号的部分说明如下：</p>
+<p>1, Cmder常用快捷键</p>
+<ul>
+<li>利用Tab，自动路径补全；</li>
+<li>利用Ctrl+T建立新页签；利用Ctrl+W关闭页签;</li>
+<li>利用Ctrl+Tab切换页签;</li>
+<li>Alt+F4：关闭所有页签</li>
+<li>Alt+Shift+1：开启cmd.exe</li>
+<li>Alt+Shift+2：开启powershell.exe</li>
+<li>Alt+Shift+3：开启powershell.exe (系统管理员权限)</li>
+<li>Ctrl+1：快速切换到第1个页签</li>
+<li>Ctrl+n：快速切换到第n个页签( n值无上限)</li>
+<li>Alt + enter： 切换到全屏状态；</li>
+<li>Ctr+r 历史命令搜索</li>
+</ul>
+<p>2, 可在视窗内搜寻画面上出现过的任意关键字。</p>
+<p>3, 新增页签按钮。</p>
+<p>4, 切换页签按钮。</p>
+<p>5, 锁定视窗，让视窗无法再输入。</p>
+<p>6, 切换视窗是否提供卷轴功能，启动时可查询之前显示过的内容。</p>
+<p>7, 按下滑鼠左键可开启系统选单，滑鼠右键可开启工具选项视窗。 Win+Alt+P ：开启工具选项视窗。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;cmder是一个增强型命令行工具，不仅可以使用windows下的所有命令，更爽的是可以使用linux的命令,shell命令。&lt;/p&gt;
+&lt;h2 id=&quot;下载&quot;&gt;&lt;a href=&quot;#下载&quot; class=&quot;headerlink&quot; title=&quot;下载&quot;&gt;&lt;/a&gt;下载&lt;/h2&gt;&lt;p&gt;官网地址：&lt;a href=&quot;http://cmder.net/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://cmder.net/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://segmentfault.com/img/bVVPNl?w=1536&amp;amp;h=859&quot; alt=&quot;clipboard.png&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="小工具" scheme="https://okcthouder.github.io/categories/%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="Windows" scheme="https://okcthouder.github.io/tags/Windows/"/>
+    
+      <category term="Cmder" scheme="https://okcthouder.github.io/tags/Cmder/"/>
+    
+  </entry>
   
   <entry>
     <title>cookie 和session 的区别详解</title>
@@ -412,9 +492,9 @@
     
       <category term="java" scheme="https://okcthouder.github.io/tags/java/"/>
     
-      <category term="PMS" scheme="https://okcthouder.github.io/tags/PMS/"/>
-    
       <category term="逻辑校验" scheme="https://okcthouder.github.io/tags/%E9%80%BB%E8%BE%91%E6%A0%A1%E9%AA%8C/"/>
+    
+      <category term="PMS" scheme="https://okcthouder.github.io/tags/PMS/"/>
     
   </entry>
   
@@ -632,9 +712,9 @@
     
       <category term="java" scheme="https://okcthouder.github.io/tags/java/"/>
     
-      <category term="PMS" scheme="https://okcthouder.github.io/tags/PMS/"/>
-    
       <category term="逻辑校验" scheme="https://okcthouder.github.io/tags/%E9%80%BB%E8%BE%91%E6%A0%A1%E9%AA%8C/"/>
+    
+      <category term="PMS" scheme="https://okcthouder.github.io/tags/PMS/"/>
     
   </entry>
   
@@ -1305,80 +1385,6 @@
   </entry>
   
   <entry>
-    <title>VMwave Workstation12虚拟机安装OS X 10.11所遇到的各种问题集合(详细版)</title>
-    <link href="https://okcthouder.github.io/2017/07/24/10-11%E6%89%80%E9%81%87%E5%88%B0%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88-%E8%AF%A6%E7%BB%86%E7%89%88/"/>
-    <id>https://okcthouder.github.io/2017/07/24/10-11所遇到的各种问题集合-详细版/</id>
-    <published>2017-07-24T08:09:29.000Z</published>
-    <updated>2017-09-05T07:59:24.049Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>最近笔者闲着无聊，由于一直挺仰慕mac大法，所以想装个mac系统来玩玩。虽然说过程不是很难，但是出现的各种小问题还是挺多的，所以在这里跟大家分享一下我的解决方法。</p>
-<p>1.首先，当然是安装工具：</p>
-<ul>
-<li>Mac OS X 10.11 镜像文件（链接：<a href="http://pan.baidu.com/s/1pL8HE59" target="_blank" rel="external">http://pan.baidu.com/s/1pL8HE59</a> 密码：cq4d）（此镜像为网络收集，如果觉得有问题自己找谢谢。）</li>
-<li>unlocker208文件（链接：<a href="http://pan.baidu.com/s/1bpftVjT" target="_blank" rel="external">http://pan.baidu.com/s/1bpftVjT</a> 密码：dp2g）</li>
-<li>VMware Workstation12（<a href="http://blog.sina.com.cn/s/blog_af49f8090102wqmw.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_af49f8090102wqmw.html</a>）</li>
-</ul>
-<p>2.详细教程请查看：<a href="http://jingyan.baidu.com/article/363872ec206a356e4ba16f30.html" target="_blank" rel="external">http://jingyan.baidu.com/article/363872ec206a356e4ba16f30.html</a></p>
-<p>在这里我就不再赘述。</p>
- <a id="more"></a>
-<h2 id="二、所遇到的问题"><a href="#二、所遇到的问题" class="headerlink" title="二、所遇到的问题"></a>二、所遇到的问题</h2><p>下面来看看我安装后遇到的各种问题：</p>
-<h2 id="1-VMware上MAC虚拟机不能上网问题"><a href="#1-VMware上MAC虚拟机不能上网问题" class="headerlink" title="1)  VMware上MAC虚拟机不能上网问题"></a>1)  VMware上MAC虚拟机不能上网问题</h2><p>首先最大的问题当然就是没网啦，别急，且听我慢慢道来：</p>
-<h3 id="解决方法-步骤"><a href="#解决方法-步骤" class="headerlink" title="解决方法/步骤"></a>解决方法/步骤</h3><h4 id="1-从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。"><a href="#1-从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。" class="headerlink" title="1.从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。"></a>1.从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。</h4><p><img src="http://img.blog.csdn.net/20170424190230322?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="2-选择属性，点击共享按钮。"><a href="#2-选择属性，点击共享按钮。" class="headerlink" title="2.选择属性，点击共享按钮。"></a>2.选择属性，点击共享按钮。</h4><p><img src="http://img.blog.csdn.net/20170424190316370?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="3-将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware-Network-Adapter-VMnet1。"><a href="#3-将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware-Network-Adapter-VMnet1。" class="headerlink" title="3.将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware Network Adapter VMnet1。"></a>3.将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware Network Adapter VMnet1。</h4><p><img src="http://img.blog.csdn.net/20170430203759981?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="4-在安装的虚拟机中选择虚拟机-gt-设置选项。"><a href="#4-在安装的虚拟机中选择虚拟机-gt-设置选项。" class="headerlink" title="4.在安装的虚拟机中选择虚拟机-&gt;设置选项。"></a>4.在安装的虚拟机中选择虚拟机-&gt;设置选项。</h4><p><img src="http://img.blog.csdn.net/20170424190515128?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="5-点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。"><a href="#5-点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。" class="headerlink" title="5.点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。"></a>5.点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。</h4><p><img src="http://img.blog.csdn.net/20170424190604613?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="6-进入Mac系统，选择设置，进入网络设置"><a href="#6-进入Mac系统，选择设置，进入网络设置" class="headerlink" title="6.进入Mac系统，选择设置，进入网络设置"></a>6.进入Mac系统，选择设置，进入网络设置</h4><p><img src="http://img.blog.csdn.net/20170424190642379?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="7-配置Ipv4选择设置DHCP，点击应用即可开始上网。"><a href="#7-配置Ipv4选择设置DHCP，点击应用即可开始上网。" class="headerlink" title="7.配置Ipv4选择设置DHCP，点击应用即可开始上网。"></a>7.配置Ipv4选择设置DHCP，点击应用即可开始上网。</h4><h2 id="2-OS-X-10-11-El-Capitan-无法连接Apple-store-和登录Apple-ID的问题"><a href="#2-OS-X-10-11-El-Capitan-无法连接Apple-store-和登录Apple-ID的问题" class="headerlink" title="2)OS X 10.11 El Capitan 无法连接Apple store 和登录Apple ID的问题"></a>2)<a href="http://blog.csdn.net/qq_25131687/article/details/52194202" target="_blank" rel="external">OS X 10.11 El Capitan 无法连接Apple store 和登录Apple ID的问题</a></h2><h4 id="1-step-1"><a href="#1-step-1" class="headerlink" title="1.step 1"></a>1.step 1</h4><p>强制退出Apple store进程</p>
-<h4 id="2-step-2"><a href="#2-step-2" class="headerlink" title="2. step 2"></a>2. step 2</h4><p>打开terminal终端（在launch中搜索终端），输入以下命令：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo pkill <span class="number">-9</span> -f Account    </div><div class="line"></div><div class="line">sudo rm $HOME/Library/Accounts<span class="comment">/*</span></div></pre></td></tr></table></figure>
-<p> 进行此操作时需要提供管理员密码，输入密码敲回车就行了。</p>
-<h4 id="3-step-3"><a href="#3-step-3" class="headerlink" title="3.step 3"></a>3.step 3</h4><p>完成前面两步你已经可以进入apple store了，但是你发现你的apple ID无法登陆：</p>
-<p>This action cant be Completed!</p>
-<p>这时你可以terminal终端输入以下命令：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo mkdir -p /Users/Shared     </div><div class="line"></div><div class="line">sudo chown root:wheel /Users/Shared    </div><div class="line"></div><div class="line">sudo chmod -R <span class="number">1777</span> /Users/Shared</div></pre></td></tr></table></figure>
-<p>至此，你的Apple ID就可以在Apple store上Login了。</p>
-<h2 id="3-苹果ID注册最后一步总是显示-如需帮助，请联系iTunes支持"><a href="#3-苹果ID注册最后一步总是显示-如需帮助，请联系iTunes支持" class="headerlink" title="3)苹果ID注册最后一步总是显示 如需帮助，请联系iTunes支持"></a>3)苹果ID注册最后一步总是显示 如需帮助，请联系iTunes支持</h2><p>由于我的apple id是刚刚注册的，登陆apple store后提示我还没有完善资料什么的，所以我就去填资料</p>
-<p>填完资料发现老是出现上面的那一句，继续不了。</p>
-<p>所以我又开始了尝试</p>
-<h4 id="1-首先在iTunes软件上面注册Apple-ID帐号时，注意要把提供付款方式选择为“银联UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple-ID帐号。"><a href="#1-首先在iTunes软件上面注册Apple-ID帐号时，注意要把提供付款方式选择为“银联UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple-ID帐号。" class="headerlink" title="1.首先在iTunes软件上面注册Apple ID帐号时，注意要把提供付款方式选择为“银联UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple ID帐号。"></a>1.首先在iTunes软件上面注册Apple ID帐号时，注意要把提供<a href="https://www.baidu.com/s?wd=%E4%BB%98%E6%AC%BE%E6%96%B9%E5%BC%8F&amp;tn=44039180_cpr&amp;fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1Yvm1TLPvn3PWw9mynLrj640ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnW0dnWc1nHn4PHfsnWT3Pj6zPs" target="_blank" rel="external">付款方式</a>选择为“<a href="https://www.baidu.com/s?wd=%E9%93%B6%E8%81%94&amp;tn=44039180_cpr&amp;fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1Yvm1TLPvn3PWw9mynLrj640ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnW0dnWc1nHn4PHfsnWT3Pj6zPs" target="_blank" rel="external">银联</a>UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple ID帐号。</h4><p><img src="http://img.blog.csdn.net/20170424190735973?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="2-然后填写银行卡以及输入银行预留手机号码。-注意：手机号码一定是要和银行卡绑定在一起的才可以使用。"><a href="#2-然后填写银行卡以及输入银行预留手机号码。-注意：手机号码一定是要和银行卡绑定在一起的才可以使用。" class="headerlink" title="2.然后填写银行卡以及输入银行预留手机号码。(注意：手机号码一定是要和银行卡绑定在一起的才可以使用。)"></a>2.然后填写银行卡以及输入银行预留手机号码。(注意：手机号码一定是要和银行卡绑定在一起的才可以使用。)</h4><p><img src="http://img.blog.csdn.net/20170424190825299?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="3-接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。"><a href="#3-接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。" class="headerlink" title="3.接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。"></a>3.接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。</h4><p><img src="http://img.blog.csdn.net/20170424190901802?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="4-点击创建Apple-ID，进入下一步。"><a href="#4-点击创建Apple-ID，进入下一步。" class="headerlink" title="4.点击创建Apple ID，进入下一步。"></a>4.点击创建Apple ID，进入下一步。</h4><p><img src="http://img.blog.csdn.net/20170424190938535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="5-然后收取绑定银行的短信验证码输入里面进行验证。"><a href="#5-然后收取绑定银行的短信验证码输入里面进行验证。" class="headerlink" title="5.然后收取绑定银行的短信验证码输入里面进行验证。"></a>5.然后收取绑定银行的<a href="https://www.baidu.com/s?wd=%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%E7%A0%81&amp;tn=44039180_cpr&amp;fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1Yvm1TLPvn3PWw9mynLrj640ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnW0dnWc1nHn4PHfsnWT3Pj6zPs" target="_blank" rel="external">短信验证码</a>输入里面进行验证。</h4><p><img src="http://img.blog.csdn.net/20170424191016740?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>填入验证码就可以完美解决，我也试过用银行卡的方式，但是还是不行，最后尝试了银联这个就OK了。</p>
-<h2 id="三、补充"><a href="#三、补充" class="headerlink" title="三、补充"></a>三、补充</h2><p>对了，补充一下，可能安装后会发现虚拟机没办法占全屏，只要安装VMwave Tools既可以完美解决，至于卡顿问题，我笔记本是8G内存，我分了4G在虚拟机，相对来说比较不卡，也可以下载一个叫做beamoff的工具,在mac osx下解压即可消除卡顿的感觉。</p>
-<p>下载链接 :   <a href="http://download.csdn.net/detail/u013803262/9702291" target="_blank" rel="external">http://download.csdn<strong>.NET</strong>/detail/u013803262/9702291</a></p>
-<p>具体解决方法参考：<a href="http://blog.csdn.net/u013803262/article/details/53467693" target="_blank" rel="external">http://blog.csdn.net/u013803262/article/details/53467693</a></p>
-<p>好了，以上就是我装mac虚拟机所遇到的比较难缠的问题，分享给大家一下。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;一、前言&quot;&gt;&lt;a href=&quot;#一、前言&quot; class=&quot;headerlink&quot; title=&quot;一、前言&quot;&gt;&lt;/a&gt;一、前言&lt;/h2&gt;&lt;p&gt;最近笔者闲着无聊，由于一直挺仰慕mac大法，所以想装个mac系统来玩玩。虽然说过程不是很难，但是出现的各种小问题还是挺多的，所以在这里跟大家分享一下我的解决方法。&lt;/p&gt;
-&lt;p&gt;1.首先，当然是安装工具：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Mac OS X 10.11 镜像文件（链接：&lt;a href=&quot;http://pan.baidu.com/s/1pL8HE59&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://pan.baidu.com/s/1pL8HE59&lt;/a&gt; 密码：cq4d）（此镜像为网络收集，如果觉得有问题自己找谢谢。）&lt;/li&gt;
-&lt;li&gt;unlocker208文件（链接：&lt;a href=&quot;http://pan.baidu.com/s/1bpftVjT&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://pan.baidu.com/s/1bpftVjT&lt;/a&gt; 密码：dp2g）&lt;/li&gt;
-&lt;li&gt;VMware Workstation12（&lt;a href=&quot;http://blog.sina.com.cn/s/blog_af49f8090102wqmw.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.sina.com.cn/s/blog_af49f8090102wqmw.html&lt;/a&gt;）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;2.详细教程请查看：&lt;a href=&quot;http://jingyan.baidu.com/article/363872ec206a356e4ba16f30.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://jingyan.baidu.com/article/363872ec206a356e4ba16f30.html&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;在这里我就不再赘述。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="装系统" scheme="https://okcthouder.github.io/categories/%E8%A3%85%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="VMwave" scheme="https://okcthouder.github.io/tags/VMwave/"/>
-    
-      <category term="OS X 10.11" scheme="https://okcthouder.github.io/tags/OS-X-10-11/"/>
-    
-      <category term="虚拟机" scheme="https://okcthouder.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
-    
-  </entry>
-  
-  <entry>
     <title>如何理解javascript中的闭包</title>
     <link href="https://okcthouder.github.io/2017/07/24/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3javascript%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85/"/>
     <id>https://okcthouder.github.io/2017/07/24/如何理解javascript中的闭包/</id>
@@ -1530,6 +1536,80 @@
       <category term="闭包" scheme="https://okcthouder.github.io/tags/%E9%97%AD%E5%8C%85/"/>
     
       <category term="funtion" scheme="https://okcthouder.github.io/tags/funtion/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>VMwave Workstation12虚拟机安装OS X 10.11所遇到的各种问题集合(详细版)</title>
+    <link href="https://okcthouder.github.io/2017/07/24/10-11%E6%89%80%E9%81%87%E5%88%B0%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88-%E8%AF%A6%E7%BB%86%E7%89%88/"/>
+    <id>https://okcthouder.github.io/2017/07/24/10-11所遇到的各种问题集合-详细版/</id>
+    <published>2017-07-24T08:09:29.000Z</published>
+    <updated>2017-09-05T07:59:24.049Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>最近笔者闲着无聊，由于一直挺仰慕mac大法，所以想装个mac系统来玩玩。虽然说过程不是很难，但是出现的各种小问题还是挺多的，所以在这里跟大家分享一下我的解决方法。</p>
+<p>1.首先，当然是安装工具：</p>
+<ul>
+<li>Mac OS X 10.11 镜像文件（链接：<a href="http://pan.baidu.com/s/1pL8HE59" target="_blank" rel="external">http://pan.baidu.com/s/1pL8HE59</a> 密码：cq4d）（此镜像为网络收集，如果觉得有问题自己找谢谢。）</li>
+<li>unlocker208文件（链接：<a href="http://pan.baidu.com/s/1bpftVjT" target="_blank" rel="external">http://pan.baidu.com/s/1bpftVjT</a> 密码：dp2g）</li>
+<li>VMware Workstation12（<a href="http://blog.sina.com.cn/s/blog_af49f8090102wqmw.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_af49f8090102wqmw.html</a>）</li>
+</ul>
+<p>2.详细教程请查看：<a href="http://jingyan.baidu.com/article/363872ec206a356e4ba16f30.html" target="_blank" rel="external">http://jingyan.baidu.com/article/363872ec206a356e4ba16f30.html</a></p>
+<p>在这里我就不再赘述。</p>
+ <a id="more"></a>
+<h2 id="二、所遇到的问题"><a href="#二、所遇到的问题" class="headerlink" title="二、所遇到的问题"></a>二、所遇到的问题</h2><p>下面来看看我安装后遇到的各种问题：</p>
+<h2 id="1-VMware上MAC虚拟机不能上网问题"><a href="#1-VMware上MAC虚拟机不能上网问题" class="headerlink" title="1)  VMware上MAC虚拟机不能上网问题"></a>1)  VMware上MAC虚拟机不能上网问题</h2><p>首先最大的问题当然就是没网啦，别急，且听我慢慢道来：</p>
+<h3 id="解决方法-步骤"><a href="#解决方法-步骤" class="headerlink" title="解决方法/步骤"></a>解决方法/步骤</h3><h4 id="1-从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。"><a href="#1-从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。" class="headerlink" title="1.从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。"></a>1.从本机中选择打开连接网络，选择本地连接。如果是无线网可以选择无线网。</h4><p><img src="http://img.blog.csdn.net/20170424190230322?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="2-选择属性，点击共享按钮。"><a href="#2-选择属性，点击共享按钮。" class="headerlink" title="2.选择属性，点击共享按钮。"></a>2.选择属性，点击共享按钮。</h4><p><img src="http://img.blog.csdn.net/20170424190316370?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="3-将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware-Network-Adapter-VMnet1。"><a href="#3-将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware-Network-Adapter-VMnet1。" class="headerlink" title="3.将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware Network Adapter VMnet1。"></a>3.将internet连接共享下面两个选项都选中，然后在家庭网络连接选择VMware Network Adapter VMnet1。</h4><p><img src="http://img.blog.csdn.net/20170430203759981?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="4-在安装的虚拟机中选择虚拟机-gt-设置选项。"><a href="#4-在安装的虚拟机中选择虚拟机-gt-设置选项。" class="headerlink" title="4.在安装的虚拟机中选择虚拟机-&gt;设置选项。"></a>4.在安装的虚拟机中选择虚拟机-&gt;设置选项。</h4><p><img src="http://img.blog.csdn.net/20170424190515128?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="5-点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。"><a href="#5-点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。" class="headerlink" title="5.点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。"></a>5.点击网络适配器，将网络连接改成仅主机模式（Host-only），然后在右侧选择主机模式，点击确定。</h4><p><img src="http://img.blog.csdn.net/20170424190604613?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="6-进入Mac系统，选择设置，进入网络设置"><a href="#6-进入Mac系统，选择设置，进入网络设置" class="headerlink" title="6.进入Mac系统，选择设置，进入网络设置"></a>6.进入Mac系统，选择设置，进入网络设置</h4><p><img src="http://img.blog.csdn.net/20170424190642379?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="7-配置Ipv4选择设置DHCP，点击应用即可开始上网。"><a href="#7-配置Ipv4选择设置DHCP，点击应用即可开始上网。" class="headerlink" title="7.配置Ipv4选择设置DHCP，点击应用即可开始上网。"></a>7.配置Ipv4选择设置DHCP，点击应用即可开始上网。</h4><h2 id="2-OS-X-10-11-El-Capitan-无法连接Apple-store-和登录Apple-ID的问题"><a href="#2-OS-X-10-11-El-Capitan-无法连接Apple-store-和登录Apple-ID的问题" class="headerlink" title="2)OS X 10.11 El Capitan 无法连接Apple store 和登录Apple ID的问题"></a>2)<a href="http://blog.csdn.net/qq_25131687/article/details/52194202" target="_blank" rel="external">OS X 10.11 El Capitan 无法连接Apple store 和登录Apple ID的问题</a></h2><h4 id="1-step-1"><a href="#1-step-1" class="headerlink" title="1.step 1"></a>1.step 1</h4><p>强制退出Apple store进程</p>
+<h4 id="2-step-2"><a href="#2-step-2" class="headerlink" title="2. step 2"></a>2. step 2</h4><p>打开terminal终端（在launch中搜索终端），输入以下命令：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo pkill <span class="number">-9</span> -f Account    </div><div class="line"></div><div class="line">sudo rm $HOME/Library/Accounts<span class="comment">/*</span></div></pre></td></tr></table></figure>
+<p> 进行此操作时需要提供管理员密码，输入密码敲回车就行了。</p>
+<h4 id="3-step-3"><a href="#3-step-3" class="headerlink" title="3.step 3"></a>3.step 3</h4><p>完成前面两步你已经可以进入apple store了，但是你发现你的apple ID无法登陆：</p>
+<p>This action cant be Completed!</p>
+<p>这时你可以terminal终端输入以下命令：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo mkdir -p /Users/Shared     </div><div class="line"></div><div class="line">sudo chown root:wheel /Users/Shared    </div><div class="line"></div><div class="line">sudo chmod -R <span class="number">1777</span> /Users/Shared</div></pre></td></tr></table></figure>
+<p>至此，你的Apple ID就可以在Apple store上Login了。</p>
+<h2 id="3-苹果ID注册最后一步总是显示-如需帮助，请联系iTunes支持"><a href="#3-苹果ID注册最后一步总是显示-如需帮助，请联系iTunes支持" class="headerlink" title="3)苹果ID注册最后一步总是显示 如需帮助，请联系iTunes支持"></a>3)苹果ID注册最后一步总是显示 如需帮助，请联系iTunes支持</h2><p>由于我的apple id是刚刚注册的，登陆apple store后提示我还没有完善资料什么的，所以我就去填资料</p>
+<p>填完资料发现老是出现上面的那一句，继续不了。</p>
+<p>所以我又开始了尝试</p>
+<h4 id="1-首先在iTunes软件上面注册Apple-ID帐号时，注意要把提供付款方式选择为“银联UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple-ID帐号。"><a href="#1-首先在iTunes软件上面注册Apple-ID帐号时，注意要把提供付款方式选择为“银联UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple-ID帐号。" class="headerlink" title="1.首先在iTunes软件上面注册Apple ID帐号时，注意要把提供付款方式选择为“银联UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple ID帐号。"></a>1.首先在iTunes软件上面注册Apple ID帐号时，注意要把提供<a href="https://www.baidu.com/s?wd=%E4%BB%98%E6%AC%BE%E6%96%B9%E5%BC%8F&amp;tn=44039180_cpr&amp;fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1Yvm1TLPvn3PWw9mynLrj640ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnW0dnWc1nHn4PHfsnWT3Pj6zPs" target="_blank" rel="external">付款方式</a>选择为“<a href="https://www.baidu.com/s?wd=%E9%93%B6%E8%81%94&amp;tn=44039180_cpr&amp;fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1Yvm1TLPvn3PWw9mynLrj640ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnW0dnWc1nHn4PHfsnWT3Pj6zPs" target="_blank" rel="external">银联</a>UnionPay”，目前因为iTunes软件版本更新了不能像以前那样不绑定银行卡就可以注册Apple ID帐号。</h4><p><img src="http://img.blog.csdn.net/20170424190735973?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="2-然后填写银行卡以及输入银行预留手机号码。-注意：手机号码一定是要和银行卡绑定在一起的才可以使用。"><a href="#2-然后填写银行卡以及输入银行预留手机号码。-注意：手机号码一定是要和银行卡绑定在一起的才可以使用。" class="headerlink" title="2.然后填写银行卡以及输入银行预留手机号码。(注意：手机号码一定是要和银行卡绑定在一起的才可以使用。)"></a>2.然后填写银行卡以及输入银行预留手机号码。(注意：手机号码一定是要和银行卡绑定在一起的才可以使用。)</h4><p><img src="http://img.blog.csdn.net/20170424190825299?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="3-接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。"><a href="#3-接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。" class="headerlink" title="3.接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。"></a>3.接下来在帐单寄送地址下方依次将个人的姓、名、街道地址、所在地区、邮编、省份、手机号码填写正确完整。</h4><p><img src="http://img.blog.csdn.net/20170424190901802?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="4-点击创建Apple-ID，进入下一步。"><a href="#4-点击创建Apple-ID，进入下一步。" class="headerlink" title="4.点击创建Apple ID，进入下一步。"></a>4.点击创建Apple ID，进入下一步。</h4><p><img src="http://img.blog.csdn.net/20170424190938535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="5-然后收取绑定银行的短信验证码输入里面进行验证。"><a href="#5-然后收取绑定银行的短信验证码输入里面进行验证。" class="headerlink" title="5.然后收取绑定银行的短信验证码输入里面进行验证。"></a>5.然后收取绑定银行的<a href="https://www.baidu.com/s?wd=%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%E7%A0%81&amp;tn=44039180_cpr&amp;fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1Yvm1TLPvn3PWw9mynLrj640ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnW0dnWc1nHn4PHfsnWT3Pj6zPs" target="_blank" rel="external">短信验证码</a>输入里面进行验证。</h4><p><img src="http://img.blog.csdn.net/20170424191016740?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvT25seUxvdmVfS0Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>填入验证码就可以完美解决，我也试过用银行卡的方式，但是还是不行，最后尝试了银联这个就OK了。</p>
+<h2 id="三、补充"><a href="#三、补充" class="headerlink" title="三、补充"></a>三、补充</h2><p>对了，补充一下，可能安装后会发现虚拟机没办法占全屏，只要安装VMwave Tools既可以完美解决，至于卡顿问题，我笔记本是8G内存，我分了4G在虚拟机，相对来说比较不卡，也可以下载一个叫做beamoff的工具,在mac osx下解压即可消除卡顿的感觉。</p>
+<p>下载链接 :   <a href="http://download.csdn.net/detail/u013803262/9702291" target="_blank" rel="external">http://download.csdn<strong>.NET</strong>/detail/u013803262/9702291</a></p>
+<p>具体解决方法参考：<a href="http://blog.csdn.net/u013803262/article/details/53467693" target="_blank" rel="external">http://blog.csdn.net/u013803262/article/details/53467693</a></p>
+<p>好了，以上就是我装mac虚拟机所遇到的比较难缠的问题，分享给大家一下。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、前言&quot;&gt;&lt;a href=&quot;#一、前言&quot; class=&quot;headerlink&quot; title=&quot;一、前言&quot;&gt;&lt;/a&gt;一、前言&lt;/h2&gt;&lt;p&gt;最近笔者闲着无聊，由于一直挺仰慕mac大法，所以想装个mac系统来玩玩。虽然说过程不是很难，但是出现的各种小问题还是挺多的，所以在这里跟大家分享一下我的解决方法。&lt;/p&gt;
+&lt;p&gt;1.首先，当然是安装工具：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mac OS X 10.11 镜像文件（链接：&lt;a href=&quot;http://pan.baidu.com/s/1pL8HE59&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://pan.baidu.com/s/1pL8HE59&lt;/a&gt; 密码：cq4d）（此镜像为网络收集，如果觉得有问题自己找谢谢。）&lt;/li&gt;
+&lt;li&gt;unlocker208文件（链接：&lt;a href=&quot;http://pan.baidu.com/s/1bpftVjT&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://pan.baidu.com/s/1bpftVjT&lt;/a&gt; 密码：dp2g）&lt;/li&gt;
+&lt;li&gt;VMware Workstation12（&lt;a href=&quot;http://blog.sina.com.cn/s/blog_af49f8090102wqmw.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.sina.com.cn/s/blog_af49f8090102wqmw.html&lt;/a&gt;）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2.详细教程请查看：&lt;a href=&quot;http://jingyan.baidu.com/article/363872ec206a356e4ba16f30.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://jingyan.baidu.com/article/363872ec206a356e4ba16f30.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在这里我就不再赘述。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="装系统" scheme="https://okcthouder.github.io/categories/%E8%A3%85%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="VMwave" scheme="https://okcthouder.github.io/tags/VMwave/"/>
+    
+      <category term="OS X 10.11" scheme="https://okcthouder.github.io/tags/OS-X-10-11/"/>
+    
+      <category term="虚拟机" scheme="https://okcthouder.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
     
   </entry>
   
@@ -1793,46 +1873,6 @@
       <category term="Oracle" scheme="https://okcthouder.github.io/tags/Oracle/"/>
     
       <category term="sql" scheme="https://okcthouder.github.io/tags/sql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Oracle学习笔记(一)</title>
-    <link href="https://okcthouder.github.io/2017/07/16/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/"/>
-    <id>https://okcthouder.github.io/2017/07/16/Oracle学习笔记-一/</id>
-    <published>2017-07-16T08:38:47.000Z</published>
-    <updated>2017-07-23T08:40:32.831Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sqlplus sys/所设定的密码 as sysdba(用管理员登陆)</div><div class="line"><span class="keyword">alter</span> <span class="keyword">user</span> scott <span class="keyword">account</span> <span class="keyword">unlock</span>;(解锁scott账户)</div></pre></td></tr></table></figure>
-<h3 id="1-table-structure"><a href="#1-table-structure" class="headerlink" title="1. table structure"></a>1. table structure</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">描述某一张表：desc 表名</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> 表名</div></pre></td></tr></table></figure>
-<h3 id="2-select-语句"><a href="#2-select-语句" class="headerlink" title="2. select 语句"></a>2. select 语句</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">计算数据可以用空表：比如：<span class="keyword">select</span> <span class="number">2</span>*<span class="number">3</span> <span class="keyword">from</span> dual</div></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> ename,sal*<span class="number">12</span> annual_sal <span class="keyword">from</span> emp;与<span class="keyword">select</span> ename,sal*<span class="number">12</span> <span class="string">"annual sal"</span> <span class="keyword">from</span> emp;区别，加双引号保持原大小写。不加全变大写。</div></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> ename || <span class="string">"abcd"</span> 如果连接字符串中含有单引号，用两个单引号代替一个单引号。(||代表连接符)</div></pre></td></tr></table></figure>
- <a id="more"></a>
-<h3 id="3-distinct"><a href="#3-distinct" class="headerlink" title="3. distinct"></a>3. distinct</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> deptno <span class="keyword">from</span> emp;</div><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> deptno <span class="keyword">from</span> emp;</div><div class="line"></div><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> deptno <span class="keyword">from</span> emp;</div><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> deptno ,job <span class="keyword">from</span> emp</div><div class="line">去掉deptno,job两者组合的重复。更多的项，就是这么多项的组合的不重复组合。</div></pre></td></tr></table></figure>
-<h3 id="4-where"><a href="#4-where" class="headerlink" title="4. where"></a>4. where</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">where</span> deptno =<span class="number">10</span>;</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">where</span> deptno &lt;&gt;<span class="number">10</span>;不等于10        </div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">where</span> ename =<span class="string">'bike'</span>;</div><div class="line"><span class="keyword">select</span> ename,sal <span class="keyword">from</span> emp <span class="keyword">where</span> sal <span class="keyword">between</span> <span class="number">800</span> <span class="keyword">and</span> <span class="number">1500</span> (&gt;=<span class="number">800</span> <span class="keyword">and</span> &lt;=<span class="number">1500</span>)空值处理:</div><div class="line"><span class="keyword">select</span> ename,sal,comm <span class="keyword">from</span> emp <span class="keyword">where</span> comm <span class="keyword">is</span> (<span class="keyword">not</span>) <span class="literal">null</span>;</div><div class="line"><span class="keyword">select</span> ename,sal,comm <span class="keyword">from</span> emp <span class="keyword">where</span> ename ( <span class="keyword">not</span>)<span class="keyword">in</span> (<span class="string">'smith'</span>,<span class="string">'king'</span>,<span class="string">'abc'</span>);</div><div class="line"><span class="keyword">select</span> ename <span class="keyword">from</span> emp <span class="keyword">where</span> ename <span class="keyword">like</span> <span class="string">'_A%'</span>;_代表一个字母,%代表0个或多个字母. 如果查询%</div><div class="line">可用转义字符.\%. 还可以用escape '$'比如:<span class="keyword">select</span> ename <span class="keyword">from</span> emp <span class="keyword">where</span> ename <span class="keyword">like</span> <span class="string">'%$a%'</span> escape <span class="string">'$'</span>;</div></pre></td></tr></table></figure>
-<h3 id="5-orderby"><a href="#5-orderby" class="headerlink" title="5. orderby"></a>5. orderby</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> dept; </div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> dept <span class="keyword">order</span> <span class="keyword">by</span> dept <span class="keyword">desc</span>;(默认:asc)</div><div class="line"><span class="keyword">select</span> ename,sal,deptno <span class="keyword">from</span> emp <span class="keyword">order</span> <span class="keyword">by</span> deptno <span class="keyword">asc</span>,ename <span class="keyword">desc</span>;</div></pre></td></tr></table></figure>
-<h3 id="6-sql-function1"><a href="#6-sql-function1" class="headerlink" title="6. sql function1"></a>6. sql function1</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> ename,sal*<span class="number">12</span> annual_sal <span class="keyword">from</span> emp</div><div class="line"><span class="keyword">where</span> ename <span class="keyword">not</span> <span class="keyword">like</span> <span class="string">'_A%'</span> <span class="keyword">and</span> sal&gt;<span class="number">800</span></div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> sal <span class="keyword">desc</span>;</div><div class="line"></div><div class="line"><span class="keyword">select</span> <span class="keyword">lower</span>(ename) <span class="keyword">from</span> emp;</div><div class="line"></div><div class="line"><span class="keyword">select</span> ename <span class="keyword">from</span> emp </div><div class="line"><span class="keyword">where</span> <span class="keyword">lower</span>(ename) <span class="keyword">like</span> <span class="string">'_a%'</span>;等同于</div><div class="line"><span class="keyword">select</span> ename <span class="keyword">from</span> emp <span class="keyword">where</span> ename <span class="keyword">like</span> <span class="string">'_a%'</span> <span class="keyword">or</span> ename <span class="keyword">like</span> <span class="string">'_A%'</span>;</div><div class="line"></div><div class="line"><span class="keyword">select</span> <span class="keyword">substr</span>(ename,<span class="number">2</span>,<span class="number">3</span>) <span class="keyword">from</span> emp;从第二字符截,一共截三个字符.</div><div class="line"><span class="keyword">select</span> <span class="keyword">chr</span>(<span class="number">65</span>) <span class="keyword">from</span> dual 结果为:A</div><div class="line"><span class="keyword">select</span> <span class="keyword">ascii</span>(<span class="string">'a'</span>) <span class="keyword">from</span> dual 结果为:<span class="number">65</span></div><div class="line"><span class="keyword">select</span> <span class="keyword">round</span>(<span class="number">23.652</span>,<span class="number">1</span>) <span class="keyword">from</span> dual; 结果为: 23.7</div><div class="line"><span class="keyword">select</span> <span class="keyword">round</span>(<span class="number">23.652</span>,<span class="number">-1</span>) <span class="keyword">from</span> dual; 20</div><div class="line">  </div><div class="line"><span class="keyword">select</span> to_char(sal,<span class="string">'$99_999_999'</span>) <span class="keyword">from</span> emp;</div><div class="line"><span class="keyword">select</span> to_char(sal,<span class="string">'L99_999_999'</span>) <span class="keyword">from</span> emp;人民币符号,L:代表本地符号</div><div class="line"></div><div class="line">这个需要掌握牢:</div><div class="line"><span class="keyword">select</span> birthdate <span class="keyword">from</span> emp;</div><div class="line">显示为:</div><div class="line">BIRTHDATE</div><div class="line"><span class="comment">----------------</span></div><div class="line">17-12月-80</div><div class="line"><span class="comment">----------------</span></div><div class="line"></div><div class="line">改为:</div><div class="line"><span class="keyword">select</span> to_char(birthdate,<span class="string">'YYYY-MM-DD HH:MI:SS'</span>) <span class="keyword">from</span> emp;</div><div class="line"></div><div class="line">显示:</div><div class="line"> </div><div class="line">BIRTHDATE</div><div class="line"><span class="comment">-------------------</span></div><div class="line">1980-12-17 12:00:00</div><div class="line"><span class="comment">-------------------</span></div><div class="line"></div><div class="line"><span class="keyword">select</span> to_char(<span class="keyword">sysdate</span>,<span class="string">'YYYY-MM-DD HH24:MI:SS'</span>) <span class="keyword">from</span> dual; //也可以改为:HH12</div><div class="line">TO_CHAR(SYSDATE,'YY</div><div class="line"><span class="comment">-------------------</span></div><div class="line">2017-07-15 14:46:14</div></pre></td></tr></table></figure>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">to_date函数:</div><div class="line">select ename,birthdate from emp where birthdate &gt; to_date('1981-2-20 12:34:56','YYYY-MM-DD HH24:MI:SS');</div><div class="line">如果直接写 birthdate&gt;'1981-2-20 12:34:56'会出现格式不匹配,因为表中的格式为: DD-MM月-YY.</div></pre></td></tr></table></figure>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">select sal from emp where sal&gt;888.88 无错.但</div><div class="line">select sal from emp where sal&gt;$1,250,00;</div><div class="line">会出现无效字符错误. </div><div class="line">改为:</div><div class="line">select sal from emp where sal&gt;to_number('$1,250.00','$9,999.99');s</div><div class="line"></div><div class="line">把空值改为0</div><div class="line">select ename,sal*12+nvl(comm,0) from emp;</div><div class="line">这样可以防止comm为空时,sal*12相加也为空的情况.</div></pre></td></tr></table></figure>
-<h3 id="7-Group-function-组函数"><a href="#7-Group-function-组函数" class="headerlink" title="7.  Group function 组函数"></a>7.  Group function 组函数</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">max,min,avg ,count,sum函数</div></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> to_char(<span class="keyword">avg</span>(sal),<span class="string">'99999999,99'</span>) <span class="keyword">from</span> emp;</div></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">round</span>(<span class="keyword">avg</span>(sal),<span class="number">2</span>) <span class="keyword">from</span> emp;</div><div class="line">结果:2073.21</div><div class="line">  </div><div class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">from</span> emp <span class="keyword">where</span> deptno=<span class="number">10</span>;</div><div class="line"><span class="keyword">select</span> <span class="keyword">count</span>(ename) <span class="keyword">from</span> emp <span class="keyword">where</span> deptno=<span class="number">10</span>; count某个字段,如果这个字段不为空就算一个.</div><div class="line"><span class="keyword">select</span> <span class="keyword">count</span>(<span class="keyword">distinct</span> deptno) <span class="keyword">from</span> emp;</div><div class="line"><span class="keyword">select</span> <span class="keyword">sum</span>(sal) <span class="keyword">from</span> emp;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;sqlplus sys/所设定的密码 as sysdba(用管理员登陆)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;alter&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;user&lt;/span&gt; scott &lt;span class=&quot;keyword&quot;&gt;account&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;unlock&lt;/span&gt;;(解锁scott账户)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;1-table-structure&quot;&gt;&lt;a href=&quot;#1-table-structure&quot; class=&quot;headerlink&quot; title=&quot;1. table structure&quot;&gt;&lt;/a&gt;1. table structure&lt;/h3&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;描述某一张表：desc 表名&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; * &lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; 表名&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;2-select-语句&quot;&gt;&lt;a href=&quot;#2-select-语句&quot; class=&quot;headerlink&quot; title=&quot;2. select 语句&quot;&gt;&lt;/a&gt;2. select 语句&lt;/h3&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;计算数据可以用空表：比如：&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;*&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; dual&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; ename,sal*&lt;span class=&quot;number&quot;&gt;12&lt;/span&gt; annual_sal &lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; emp;与&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; ename,sal*&lt;span class=&quot;number&quot;&gt;12&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;annual sal&quot;&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; emp;区别，加双引号保持原大小写。不加全变大写。&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; ename || &lt;span class=&quot;string&quot;&gt;&quot;abcd&quot;&lt;/span&gt; 如果连接字符串中含有单引号，用两个单引号代替一个单引号。(||代表连接符)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-      <category term="Oracle" scheme="https://okcthouder.github.io/categories/Oracle/"/>
-    
-    
-      <category term="Oracle sql" scheme="https://okcthouder.github.io/tags/Oracle-sql/"/>
     
   </entry>
   
